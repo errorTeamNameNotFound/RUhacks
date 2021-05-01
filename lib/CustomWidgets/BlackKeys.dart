@@ -33,7 +33,7 @@ class BlackKeys extends StatelessWidget {
           color: blackKeyColor,
         ),
         SizedBox(
-          width: 98,
+          width: 135,
         ),
         Container(
           width: MediaQuery.of(context).size.width / kBlackKeyWidth,
@@ -49,7 +49,7 @@ class BlackKeys extends StatelessWidget {
           color: blackKeyColor,
         ),
         SizedBox(
-          width: 105,
+          width: 125,
         ),
         Container(
           width: MediaQuery.of(context).size.width / kBlackKeyWidth,
