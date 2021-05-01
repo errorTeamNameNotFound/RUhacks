@@ -5,7 +5,9 @@ import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/Pages/FreestylePage.dart';
 import 'package:ru_hacks/Pages/LevelsPage.dart';
 import 'package:ru_hacks/Pages/PianoPage.dart';
+import 'package:ru_hacks/Pages/LevelsPage.dart';
 import '../constants.dart';
+import 'package:ru_hacks/database/database.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -92,7 +94,9 @@ class _HomePageState extends State<HomePage> {
                         CustomMenuButton(
                           buttonLabel: "Levels",
                           whenPressed: () {
-                            //playSound("uiClick.wav");
+                            playSound("uiClick.wav");
+
+                            getSongs();
                             Navigator.push(
                               context,
                               MaterialPageRoute(
