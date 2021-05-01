@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
-import 'package:ru_hacks/PianoPage.dart';
+import 'package:ru_hacks/Pages/PianoPage.dart';
 import 'package:ru_hacks/database/database.dart';
 import 'package:ru_hacks/functions/songLoop.dart';
 import 'constants.dart';
