@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ru_hacks/database/database.dart';
 
 void main() {
   runApp(new MaterialApp(
@@ -22,7 +23,13 @@ class _State extends State<MyApp> {
         padding: new EdgeInsets.all(32.0),
         child: new Column(
           children: <Widget>[
-            new Text('Add Widgets Here')
+            FloatingActionButton(
+              onPressed: () {
+                sendData("test");
+              },
+              child: const Icon(Icons.navigation),
+              backgroundColor: Colors.green,
+            ),
           ],
         ),
       ),
