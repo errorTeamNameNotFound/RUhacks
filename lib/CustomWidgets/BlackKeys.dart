@@ -8,81 +8,68 @@ class BlackKeys extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyHeight,
-          height: MediaQuery.of(context).size.height / kBlackKeyWidth,
-          color: blackKeyColor,
-        ),
         SizedBox(
           width: 98,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyHeight,
-          height: MediaQuery.of(context).size.height / kBlackKeyWidth,
+          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
+          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
           color: blackKeyColor,
         ),
         SizedBox(
           width: 23,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyHeight,
-          height: MediaQuery.of(context).size.height / kBlackKeyWidth,
+          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
+          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
           color: blackKeyColor,
         ),
         SizedBox(
           width: 23,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyHeight,
-          height: MediaQuery.of(context).size.height / kBlackKeyWidth,
+          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
+          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
           color: blackKeyColor,
         ),
         SizedBox(
-          width: 98,
+          width: 135,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyHeight,
-          height: MediaQuery.of(context).size.height / kBlackKeyWidth,
-          color: blackKeyColor,
-        ),
-        SizedBox(
-          width: 23,
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyHeight,
-          height: MediaQuery.of(context).size.height / kBlackKeyWidth,
-          color: blackKeyColor,
-        ),
-        SizedBox(
-          width: 98,
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyHeight,
-          height: MediaQuery.of(context).size.height / kBlackKeyWidth,
+          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
+          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
           color: blackKeyColor,
         ),
         SizedBox(
           width: 23,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyHeight,
-          height: MediaQuery.of(context).size.height / kBlackKeyWidth,
+          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
+          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
           color: blackKeyColor,
         ),
         SizedBox(
-          width: 23,
+          width: 125,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyHeight,
-          height: MediaQuery.of(context).size.height / kBlackKeyWidth,
+          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
+          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
           color: blackKeyColor,
         ),
         SizedBox(
-          width: 98,
+          width: 25,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyHeight,
-          height: MediaQuery.of(context).size.height / kBlackKeyWidth,
+          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
+          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
+          color: blackKeyColor,
+        ),
+        SizedBox(
+          width: 25,
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
+          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
           color: blackKeyColor,
         ),
       ],
