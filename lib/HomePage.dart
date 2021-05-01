@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'constants.dart';
+import 'CustomWidgets/BlackKeys.dart';
 
 class Key {
   String keyLabel;
@@ -15,7 +17,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Key> keys = [
-    Key(keyLabel: "C"),
     Key(keyLabel: "D"),
     Key(keyLabel: "E"),
     Key(keyLabel: "F"),
@@ -52,23 +53,18 @@ class _HomePageState extends State<HomePage> {
 
           //This is where the piano will go
           Expanded(
-            child: Stack(children: <Widget>[
-              // Positioned(
-              //
-              //   child: Container(
-              //     width: MediaQuery.of(context).size.width / 25,
-              //     height: MediaQuery.of(context).size.height / 5,
-              //     color: Colors.black,
-              //   ),
-              // ),
-              ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: keys.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return makePiano(keys[index].keyLabel);
-                },
-              ),
-            ]),
+            child: Stack(
+              children: <Widget>[
+                Positioned(left: 49, child: BlackKeys()),
+                ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: keys.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return makePiano(keys[index].keyLabel);
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -86,7 +82,7 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.only(
           bottom: 20,
         ),
-        width: MediaQuery.of(context).size.width / 16,
+        width: MediaQuery.of(context).size.width / keys.length,
         decoration: BoxDecoration(
           border: Border.all(),
         ),
