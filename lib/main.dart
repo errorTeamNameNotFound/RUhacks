@@ -25,7 +25,7 @@ class _State extends State<MyApp> {
           children: <Widget>[
             FloatingActionButton(
               onPressed: () {
-                sendData("test");
+                getSongs();
               },
               child: const Icon(Icons.navigation),
               backgroundColor: Colors.green,
