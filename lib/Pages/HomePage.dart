@@ -69,11 +69,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              
-              Expanded(
-                flex: 1,
-                child: Image.asset("assets/staffPics/b1.PNG"),
-              ),
+
+
 
               //Buttons
               Expanded(
