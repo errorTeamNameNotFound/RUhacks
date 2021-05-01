@@ -26,6 +26,7 @@ dependencies:
   firebase_core:
   # google_sign_in: ^4.4.4
   firebase_database:
+  audioplayers: ^0.18.3
 
   # Add the dependency for the FlutterFire plugin for Google Analytics
   # firebase_analytics: ^7.1.0
@@ -54,7 +55,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+    - assets/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
