@@ -13,8 +13,8 @@ const kBlueyWhite = Color(0xffE5F0F3);
 //Measurements
 const kBlackKeyWidth = 17;
 const kBlackKeyHeight = 5;
-const kMenuButtonHeight = 10;
-const kMenuButtonWidth = 3;
+const kMenuButtonHeight = 9.5;
+const kMenuButtonWidth = 3.5;
 const kLevelCardHeight = 3;
 const kLevelCardWidth = 4;
 
