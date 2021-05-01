@@ -1,5 +1,7 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audio_cache.dart';
+
 
 void main() {
   runApp(new MaterialApp(
@@ -34,9 +36,13 @@ class _State extends State<MyApp> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final player = AudioCache();
-          player.play('Base E.mp3');
+          final player = AudioPlayer();
+          var bytes = await (await AudioCache().load('Base A.mp3')).readAsBytes();
+
+          int x = await player.playBytes(bytes);
+
         },
+
         child: Icon(Icons.audiotrack),
         backgroundColor: Colors.black26,
       ),
