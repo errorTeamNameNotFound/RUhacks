@@ -19,18 +19,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Key> keys = [
-    Key(keyLabel: "E", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
-    Key(keyLabel: "F", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
-    Key(keyLabel: "G", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
-    Key(keyLabel: "A", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
-    Key(keyLabel: "B", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
-    Key(keyLabel: "C", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
-    Key(keyLabel: "D", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
-    Key(keyLabel: "E", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
-    Key(keyLabel: "F", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
-    Key(keyLabel: "G", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
-    Key(keyLabel: "A", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
-    Key(keyLabel: "B", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
+    Key(keyLabel: "E", keyColor: kOffWhite, soundFileName: "Base E.mp3"),
+    Key(keyLabel: "F", keyColor: kOffWhite, soundFileName: "Base F.mp3"),
+    Key(keyLabel: "G", keyColor: kOffWhite, soundFileName: "Base G.mp3"),
+    Key(keyLabel: "A", keyColor: kOffWhite, soundFileName: "Base A.mp3"),
+    Key(keyLabel: "B", keyColor: kOffWhite, soundFileName: "Base B.mp3"),
+    Key(keyLabel: "C", keyColor: kOffWhite, soundFileName: "Base C.mp3"),
+    Key(keyLabel: "D", keyColor: kOffWhite, soundFileName: "Treble D.mp3"),
+    Key(keyLabel: "E", keyColor: kOffWhite, soundFileName: "Treble E.mp3"),
+    Key(keyLabel: "F", keyColor: kOffWhite, soundFileName: "Treble F.mp3"),
+    Key(keyLabel: "G", keyColor: kOffWhite, soundFileName: "Treble G.mp3"),
+    Key(keyLabel: "A", keyColor: kOffWhite, soundFileName: "Treble A.mp3"),
+    Key(keyLabel: "B", keyColor: kOffWhite, soundFileName: "Treble B.mp3"),
   ];
 
   bool _isPressed = false;
