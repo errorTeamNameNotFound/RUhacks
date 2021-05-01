@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ru_hacks/constants.dart';
 
 class BlackKeys extends StatelessWidget {
+  Color blackKeyColor = kSemiBlack;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -9,7 +11,7 @@ class BlackKeys extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width / kBlackKeyHeight,
           height: MediaQuery.of(context).size.height / kBlackKeyWidth,
-          color: Colors.black,
+          color: blackKeyColor,
         ),
         SizedBox(
           width: 98,
@@ -17,7 +19,7 @@ class BlackKeys extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width / kBlackKeyHeight,
           height: MediaQuery.of(context).size.height / kBlackKeyWidth,
-          color: Colors.black,
+          color: blackKeyColor,
         ),
         SizedBox(
           width: 23,
@@ -25,7 +27,7 @@ class BlackKeys extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width / kBlackKeyHeight,
           height: MediaQuery.of(context).size.height / kBlackKeyWidth,
-          color: Colors.black,
+          color: blackKeyColor,
         ),
         SizedBox(
           width: 23,
@@ -33,7 +35,7 @@ class BlackKeys extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width / kBlackKeyHeight,
           height: MediaQuery.of(context).size.height / kBlackKeyWidth,
-          color: Colors.black,
+          color: blackKeyColor,
         ),
         SizedBox(
           width: 98,
@@ -41,7 +43,7 @@ class BlackKeys extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width / kBlackKeyHeight,
           height: MediaQuery.of(context).size.height / kBlackKeyWidth,
-          color: Colors.black,
+          color: blackKeyColor,
         ),
         SizedBox(
           width: 23,
@@ -49,7 +51,7 @@ class BlackKeys extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width / kBlackKeyHeight,
           height: MediaQuery.of(context).size.height / kBlackKeyWidth,
-          color: Colors.black,
+          color: blackKeyColor,
         ),
         SizedBox(
           width: 98,
@@ -57,7 +59,7 @@ class BlackKeys extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width / kBlackKeyHeight,
           height: MediaQuery.of(context).size.height / kBlackKeyWidth,
-          color: Colors.black,
+          color: blackKeyColor,
         ),
         SizedBox(
           width: 23,
@@ -65,7 +67,7 @@ class BlackKeys extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width / kBlackKeyHeight,
           height: MediaQuery.of(context).size.height / kBlackKeyWidth,
-          color: Colors.black,
+          color: blackKeyColor,
         ),
         SizedBox(
           width: 23,
@@ -73,7 +75,7 @@ class BlackKeys extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width / kBlackKeyHeight,
           height: MediaQuery.of(context).size.height / kBlackKeyWidth,
-          color: Colors.black,
+          color: blackKeyColor,
         ),
         SizedBox(
           width: 98,
@@ -81,7 +83,7 @@ class BlackKeys extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width / kBlackKeyHeight,
           height: MediaQuery.of(context).size.height / kBlackKeyWidth,
-          color: Colors.black,
+          color: blackKeyColor,
         ),
       ],
     );

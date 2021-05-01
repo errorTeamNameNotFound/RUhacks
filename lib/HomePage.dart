@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'constants.dart';
+import 'dart:async';
 import 'CustomWidgets/BlackKeys.dart';
 
 class Key {
   String keyLabel;
+  Color keyColor;
   //Add Piano Sound later
 
-  Key({this.keyLabel});
+  Key({this.keyLabel, this.keyColor});
 }
 
 class HomePage extends StatefulWidget {
@@ -17,22 +19,31 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Key> keys = [
-    Key(keyLabel: "D"),
-    Key(keyLabel: "E"),
-    Key(keyLabel: "F"),
-    Key(keyLabel: "G"),
-    Key(keyLabel: "A"),
-    Key(keyLabel: "B"),
-    Key(keyLabel: "C"),
-    Key(keyLabel: "D"),
-    Key(keyLabel: "E"),
-    Key(keyLabel: "F"),
-    Key(keyLabel: "G"),
-    Key(keyLabel: "A"),
-    Key(keyLabel: "B"),
-    Key(keyLabel: "C"),
-    Key(keyLabel: "D"),
+    Key(keyLabel: "D", keyColor: kOffWhite),
+    Key(keyLabel: "E", keyColor: kOffWhite),
+    Key(keyLabel: "F", keyColor: kOffWhite),
+    Key(keyLabel: "G", keyColor: kOffWhite),
+    Key(keyLabel: "A", keyColor: kOffWhite),
+    Key(keyLabel: "B", keyColor: kOffWhite),
+    Key(keyLabel: "C", keyColor: kOffWhite),
+    Key(keyLabel: "D", keyColor: kOffWhite),
+    Key(keyLabel: "E", keyColor: kOffWhite),
+    Key(keyLabel: "F", keyColor: kOffWhite),
+    Key(keyLabel: "G", keyColor: kOffWhite),
+    Key(keyLabel: "A", keyColor: kOffWhite),
+    Key(keyLabel: "B", keyColor: kOffWhite),
+    Key(keyLabel: "C", keyColor: kOffWhite),
+    Key(keyLabel: "D", keyColor: kOffWhite),
   ];
+
+  Timer _timer;
+  bool _isPressed = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +66,20 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: Stack(
               children: <Widget>[
-                Positioned(left: 49, child: BlackKeys()),
                 ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemCount: keys.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return makePiano(keys[index].keyLabel);
+                    return makePiano(
+                      keys[index].keyLabel,
+                      index,
+                    );
                   },
+                ),
+                Positioned(
+                  left: 49,
+                  child: BlackKeys(),
                 ),
               ],
             ),
@@ -72,11 +90,21 @@ class _HomePageState extends State<HomePage> {
   }
 
   //Skeleton code for Piano Keys
-  Widget makePiano(String label) {
+  Widget makePiano(String label, int index) {
     return GestureDetector(
       onTap: () {
         //TODO: create feedback by changing container color upon press
-        print("$label Pressed");
+        setState(() {
+          _isPressed = true;
+          keys[index].keyColor = Colors.grey[400];
+        });
+
+        Future.delayed(const Duration(milliseconds: 100), () {
+          setState(() {
+            _isPressed = false;
+            keys[index].keyColor = kOffWhite;
+          });
+        });
       },
       child: Container(
         padding: EdgeInsets.only(
@@ -84,7 +112,10 @@ class _HomePageState extends State<HomePage> {
         ),
         width: MediaQuery.of(context).size.width / keys.length,
         decoration: BoxDecoration(
-          border: Border.all(),
+          color: keys[index].keyColor,
+          border: Border.all(
+            color: kSemiBlack,
+          ),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
