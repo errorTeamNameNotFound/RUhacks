@@ -1,4 +1,5 @@
 import 'package:validators/validators.dart';
+import 'package:ru_hacks/data/globals.dart' as globals;
 
 Future<void> songLoop(String song) async {
   int tempo = int.parse(song.substring(0, 3));
@@ -24,6 +25,9 @@ Future<void> songLoop(String song) async {
     num = (beat) * 1000;
     await new Future.delayed(Duration(milliseconds: num.toInt()));
 
+    print("user note:" + globals.currentNote);
+    print("note to play: " + currentNoteLetter);
+
     //TODO get user input
     if (true) {
       //user got it right
@@ -36,7 +40,7 @@ Future<void> songLoop(String song) async {
     if (song.length > 0) {
       lastNoteValue = currentNoteValue;
       currentNoteValue = int.parse(song[1]);
-     // print(currentNoteValue);
+      //print(currentNoteValue);
       currentNoteLetter = song[0];
       //print(currentNoteLetter);
       song = song.substring(2, song.length);
@@ -53,24 +57,30 @@ Future<void> songLoop(String song) async {
       }
 
       //pic 2
-      if (isUppercase(song[2]) && song.length > 1) {
-        //print("2: " + song[2] + song[2] + ".png");
-      } else {
-        //print("2: " + song[2] + ".png");
+      if (song.length > 2) {
+        if (isUppercase(song[2])) {
+          //print("2: " + song[2] + song[2] + ".png");
+        } else {
+          //print("2: " + song[2] + ".png");
+        }
       }
 
       //pic 3
-      if (isUppercase(song[4]) && song.length > 3) {
-        //print("3: " + song[4] + song[4] + ".png");
-      } else {
-        //print("3: " + song[4] + ".png");
+      if (song.length > 4) {
+        if (isUppercase(song[4])) {
+          //print("3: " + song[4] + song[4] + ".png");
+        } else {
+          //print("3: " + song[4] + ".png");
+        }
       }
 
       //pic 4
-      if (isUppercase(song[6]) && song.length > 5) {
-        //print("4: " + song[4] + song[4] + ".png");
-      } else {
-        //print("4: " + song[4] + ".png");
+      if (song.length > 6) {
+        if (isUppercase(song[6])) {
+          //print("4: " + song[4] + song[4] + ".png");
+        } else {
+          //print("4: " + song[4] + ".png");
+        }
       }
     }
   }
