@@ -82,6 +82,8 @@ Future<void> songLoop(String song) async {
         } else {
           globals.pics[1] = "staffPics/" + song[2] + song[3] + ".PNG";
         }
+      }else {
+        globals.pics[1] = "endStaff.PNG";
       }
 
       //pic 3
@@ -91,6 +93,8 @@ Future<void> songLoop(String song) async {
         } else {
           globals.pics[2] = "staffPics/" + song[4] + song[5] + ".PNG";
         }
+      }else {
+        globals.pics[2] = "endStaff.PNG";
       }
 
       //pic 4
@@ -100,6 +104,8 @@ Future<void> songLoop(String song) async {
         } else {
           globals.pics[3] = "staffPics/" + song[6] + song[7] + ".PNG";
         }
+      } else {
+        globals.pics[3] = "endStaff.PNG";
       }
 
       //get next note and value
@@ -111,6 +117,8 @@ Future<void> songLoop(String song) async {
         print(currentNoteLetter);
         song = song.substring(2, song.length);
       }
+    } else {
+      globals.pics[0] = "endStaff.PNG";
     }
   }
 }

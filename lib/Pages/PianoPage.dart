@@ -31,22 +31,22 @@ class _PianoPageState extends State<PianoPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           //This is where the game area will go
-          Stack(
-            children: [
-              SideScroller(),
-              //debugging purposes
-              ListView.builder(
-                itemCount: 4,
-                itemBuilder: (BuildContext context, int index) {
-                  return globals.pics[index] != ""
-                      ? Container(
-                    color: Colors.red,
-                  )
-                      : Image.asset(globals.pics[index]);
-                },
-              ),
-            ],
-          ),
+
+
+          SideScroller(),
+          //debugging purposes
+          // ListView.builder(
+          //   itemCount: 4,
+          //   itemBuilder: (BuildContext context, int index) {
+          //     return globals.pics[index] != ""
+          //         ? Container(
+          //       color: Colors.red,
+          //     )
+          //         : Image.asset(globals.pics[index]);
+          //   },
+          // ),
+
+
           Expanded(
               flex: 3,
               child: GestureDetector(
