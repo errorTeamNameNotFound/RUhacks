@@ -51,14 +51,21 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: Container(
                   child: Center(
-                    child: Text("(App Name)"),
+                    child: Text(
+                      "Play with Melody",
+                      style: kTitleTextStyle,
+                    ),
                   ),
                 ),
               ),
               Expanded(
+                flex: 2,
                 child: Container(
                   child: Center(
-                    child: Text("(Character Picture)"),
+                    child: Image.asset(
+                      "assets/birdy/logo.png",
+                    ),
+                    //child: Text("(Character Picture)"),
                   ),
                 ),
               ),
@@ -73,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                         CustomMenuButton(
                           buttonLabel: "Freestyle",
                           whenPressed: () {
-                            playSound("uiClick.wav");
+                            //playSound("uiClick.wav");
                             Navigator.push(
                               context,
                               MaterialPageRoute(

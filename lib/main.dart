@@ -11,6 +11,7 @@ void main() {
       theme: ThemeData(
         scaffoldBackgroundColor: kOffWhite,
         primaryColor: kRoyalBlue,
+        fontFamily: "PTSans",
       ),
       home: new HomePage(),
     ),
