@@ -8,7 +8,36 @@ Future<void> songLoop(String song) async {
   double num;
 
   double beat = 60 / tempo;
-  print(beat);
+  //print(beat);
+
+  //TODO get first 4 pictures to display on screen
+  //pic 1
+  if (isUppercase(song[0])) {
+    print("1: " + song[0] + song[0] + ".png");
+  } else {
+    print("1: " + song[0] + ".png");
+  }
+
+  //pic 2
+  if (isUppercase(song[2])) {
+    //print("2: " + song[2] + song[2] + ".png");
+  } else {
+    //print("2: " + song[2] + ".png");
+  }
+
+  //pic 3
+  if (isUppercase(song[4])) {
+    //print("3: " + song[4] + song[4] + ".png");
+  } else {
+    //print("3: " + song[4] + ".png");
+  }
+
+  //pic 4
+  if (isUppercase(song[6])) {
+    //print("4: " + song[4] + song[4] + ".png");
+  } else {
+    //print("4: " + song[4] + ".png");
+  }
 
   int lastNoteValue = 0;
   int currentNoteValue = int.parse(song[1]);
@@ -17,7 +46,7 @@ Future<void> songLoop(String song) async {
 
   //TODO call a clik 4 times for countoff after start is pressed
 
-  while (strikes < 3 || song.length == 0) {
+  while (strikes < 3 || song.length <= 0) {
     num = (beat * lastNoteValue) * 1000;
     await new Future.delayed(Duration(milliseconds: num.toInt()));
 
@@ -36,24 +65,13 @@ Future<void> songLoop(String song) async {
       //add a strike
     }
 
-    //get next note and value
-    if (song.length > 0) {
-      lastNoteValue = currentNoteValue;
-      currentNoteValue = int.parse(song[1]);
-      //print(currentNoteValue);
-      currentNoteLetter = song[0];
-      //print(currentNoteLetter);
-      song = song.substring(2, song.length);
-    }
-
-    //TODO shift picture
     //get next 4 note pictures
     if (song.isNotEmpty) {
       //pic 1
       if (isUppercase(song[0])) {
-        //print("1: " + song[0] + song[0] + ".png");
+        print("1: " + song[0] + song[0] + ".png");
       } else {
-        //print("1: " + song[0] + ".png");
+        print("1: " + song[0] + ".png");
       }
 
       //pic 2
@@ -81,6 +99,16 @@ Future<void> songLoop(String song) async {
         } else {
           //print("4: " + song[4] + ".png");
         }
+      }
+
+      //get next note and value
+      if (song.length > 0) {
+        lastNoteValue = currentNoteValue;
+        currentNoteValue = int.parse(song[1]);
+        //print(currentNoteValue);
+        currentNoteLetter = song[0];
+        //print(currentNoteLetter);
+        song = song.substring(2, song.length);
       }
     }
   }
