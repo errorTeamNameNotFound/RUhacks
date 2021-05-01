@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ru_hacks/HomePage.dart';
+import 'package:ru_hacks/Pages/HomePage.dart';
 
 import 'package:ru_hacks/main.dart';
 
