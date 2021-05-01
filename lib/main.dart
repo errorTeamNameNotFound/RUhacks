@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:ru_hacks/HomePage.dart';
+import 'constants.dart';
 import 'package:ru_hacks/database/database.dart';
+import 'package:audioplayers/audio_cache.dart';
 
 void main() {
-  runApp(new MaterialApp(
-    home: new MyApp(),
-  ));
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(scaffoldBackgroundColor: kOffWhite),
+      home: new HomePage(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -22,16 +29,16 @@ class _State extends State<MyApp> {
       body: new Container(
         padding: new EdgeInsets.all(32.0),
         child: new Column(
-          children: <Widget>[
-            FloatingActionButton(
-              onPressed: () {
-                sendData("test");
-              },
-              child: const Icon(Icons.navigation),
-              backgroundColor: Colors.green,
-            ),
-          ],
+          children: <Widget>[new Text('Add Widgets Here')],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final player = AudioCache();
+          player.play('Base E.mp3');
+        },
+        child: Icon(Icons.audiotrack),
+        backgroundColor: Colors.black26,
       ),
     );
   }
