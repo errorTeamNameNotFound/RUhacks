@@ -13,30 +13,30 @@ Future<void> songLoop(String song) async {
   //TODO get first 4 pictures to display on screen
   //pic 1
   if (isUppercase(song[0])) {
-    print("1: " + song[0] + song[0] + ".png");
+    globals.pics[0] = "staffPics/" + song[0] + song[0] + ".png";
   } else {
-    print("1: " + song[0] + ".png");
+    globals.pics[0] = "staffPics/" + song[0] + ".png";
   }
 
   //pic 2
   if (isUppercase(song[2])) {
-    //print("2: " + song[2] + song[2] + ".png");
+    globals.pics[1] = "staffPics/" + song[2] + song[2] + ".png";
   } else {
-    //print("2: " + song[2] + ".png");
+    globals.pics[1] = "staffPics/" + song[2] + ".png";
   }
 
   //pic 3
   if (isUppercase(song[4])) {
-    //print("3: " + song[4] + song[4] + ".png");
+    globals.pics[2] = "staffPics/" + song[4] + song[4] + ".png";
   } else {
-    //print("3: " + song[4] + ".png");
+    globals.pics[2] = "staffPics/" + song[4] + ".png";
   }
 
   //pic 4
   if (isUppercase(song[6])) {
-    //print("4: " + song[4] + song[4] + ".png");
+    globals.pics[3] = "staffPics/" + song[6] + song[6] + ".png";
   } else {
-    //print("4: " + song[4] + ".png");
+    globals.pics[3] = "staffPics/" + song[6] + ".png";
   }
 
   int lastNoteValue = 0;
@@ -54,50 +54,51 @@ Future<void> songLoop(String song) async {
     num = (beat) * 1000;
     await new Future.delayed(Duration(milliseconds: num.toInt()));
 
-    print("user note:" + globals.currentNote);
-    print("note to play: " + currentNoteLetter);
+    //Testing info
+    //print("user note:" + globals.currentNote);
+    //print("note to play: " + currentNoteLetter);
 
-    //TODO get user input
-    if (true) {
+    //check if user played right note
+    if (globals.currentNote == currentNoteLetter) {
       //user got it right
-    } else if (false) {
-      //user got it wrong
-      //add a strike
+    } else {
+      //user got it wrong so add a strike
+      //strikes++;
     }
 
     //get next 4 note pictures
     if (song.isNotEmpty) {
       //pic 1
       if (isUppercase(song[0])) {
-        print("1: " + song[0] + song[0] + ".png");
+        globals.pics[0] = "staffPics/" + song[0] + song[0] + ".png";
       } else {
-        print("1: " + song[0] + ".png");
+        globals.pics[0] = "staffPics/" + song[0] + ".png";
       }
 
       //pic 2
       if (song.length > 2) {
         if (isUppercase(song[2])) {
-          //print("2: " + song[2] + song[2] + ".png");
+          globals.pics[1] = "staffPics/" + song[2] + song[2] + ".png";
         } else {
-          //print("2: " + song[2] + ".png");
+          globals.pics[1] = "staffPics/" + song[2] + ".png";
         }
       }
 
       //pic 3
       if (song.length > 4) {
         if (isUppercase(song[4])) {
-          //print("3: " + song[4] + song[4] + ".png");
+          globals.pics[2] = "staffPics/" + song[4] + song[4] + ".png";
         } else {
-          //print("3: " + song[4] + ".png");
+          globals.pics[2] = "staffPics/" + song[4] + ".png";
         }
       }
 
       //pic 4
       if (song.length > 6) {
         if (isUppercase(song[6])) {
-          //print("4: " + song[4] + song[4] + ".png");
+          globals.pics[3] = "staffPics/" + song[6] + song[6] + ".png";
         } else {
-          //print("4: " + song[4] + ".png");
+          globals.pics[3] = "staffPics/" + song[6] + ".png";
         }
       }
 
