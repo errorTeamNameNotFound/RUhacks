@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
+import 'package:ru_hacks/functions/songLoop.dart';
+import 'package:ru_hacks/data/globals.dart' as globals;
 
 class PianoPage extends StatefulWidget {
   @override
@@ -21,11 +23,16 @@ class _PianoPageState extends State<PianoPage> {
           //This is where the game area will go
           Expanded(
             flex: 2,
-            child: Container(
-              color: Colors.grey,
-              child: Center(
-                child: Text("Side Scroller"),
+            child: GestureDetector(
+              child: Container(
+                color: Colors.grey,
+                child: Center(
+                  child: Text("Side Scroller"),
+                ),
               ),
+              onTap: () {
+                songLoop(globals.easySongs.first);
+              },
             ),
           ),
 

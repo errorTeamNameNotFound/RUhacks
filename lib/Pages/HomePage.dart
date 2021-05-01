@@ -3,7 +3,9 @@ import 'package:ru_hacks/CustomWidgets/CustomMenuButton.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/Pages/FreestylePage.dart';
 import 'package:ru_hacks/Pages/PianoPage.dart';
+import 'package:ru_hacks/Pages/LevelsPage.dart';
 import '../constants.dart';
+import 'package:ru_hacks/database/database.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -77,11 +79,12 @@ class _HomePageState extends State<HomePage> {
                         CustomMenuButton(
                           buttonLabel: "Levels",
                           whenPressed: () {
+                            getSongs();
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return PianoPage();
+                                  return LevelsPage();
                                 },
                               ),
                             );
