@@ -35,6 +35,22 @@ class _PianoPageState extends State<PianoPage> {
 
           //debugging purposes
           Expanded(
+            flex: 1,
+            child: ListView.builder(
+              itemCount: 4,
+                itemBuilder: (BuildContext context,int index){
+                return globals.pics[index] != "" ? Container(color: Colors.red,) :  Image.asset(globals.pics[index]) ;
+                },
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: GestureDetector(
+              child: Container(
+                color: Colors.grey,
+                child: Center(
+                  child: Text("Side Scroller"),
+                ),
             child: Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -74,6 +90,7 @@ class _PianoPageState extends State<PianoPage> {
           //     ],
           //   ),
           // ),
+
         ],
       ),
     );

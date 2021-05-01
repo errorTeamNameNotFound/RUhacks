@@ -106,9 +106,9 @@ Future<void> songLoop(String song) async {
       if (song.length > 0) {
         lastNoteValue = currentNoteValue;
         currentNoteValue = int.parse(song[1]);
-        //print(currentNoteValue);
+        print(currentNoteValue);
         currentNoteLetter = song[0];
-        //print(currentNoteLetter);
+        print(currentNoteLetter);
         song = song.substring(2, song.length);
       }
     }
