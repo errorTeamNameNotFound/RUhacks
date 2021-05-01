@@ -13,30 +13,30 @@ Future<void> songLoop(String song) async {
   //TODO get first 4 pictures to display on screen
   //pic 1
   if (isUppercase(song[0])) {
-    globals.pics[0] = "staffPics/" + song[0] + song[0] + ".png";
+    globals.pics[0] = "assets/staffPics/" + song[0] + song[0] + ".png";
   } else {
-    globals.pics[0] = "staffPics/" + song[0] + ".png";
+    globals.pics[0] = "assets/staffPics/" + song[0] + ".png";
   }
 
   //pic 2
   if (isUppercase(song[2])) {
-    globals.pics[1] = "staffPics/" + song[2] + song[2] + ".png";
+    globals.pics[1] = "assets/staffPics/" + song[2] + song[2] + ".png";
   } else {
-    globals.pics[1] = "staffPics/" + song[2] + ".png";
+    globals.pics[1] = "assets/staffPics/" + song[2] + ".png";
   }
 
   //pic 3
   if (isUppercase(song[4])) {
-    globals.pics[2] = "staffPics/" + song[4] + song[4] + ".png";
+    globals.pics[2] = "assets/staffPics/" + song[4] + song[4] + ".png";
   } else {
-    globals.pics[2] = "staffPics/" + song[4] + ".png";
+    globals.pics[2] = "assets/staffPics/" + song[4] + ".png";
   }
 
   //pic 4
   if (isUppercase(song[6])) {
-    globals.pics[3] = "staffPics/" + song[6] + song[6] + ".png";
+    globals.pics[3] = "assets/staffPics/" + song[6] + song[6] + ".png";
   } else {
-    globals.pics[3] = "staffPics/" + song[6] + ".png";
+    globals.pics[3] = "assets/staffPics/" + song[6] + ".png";
   }
 
   int lastNoteValue = 0;
@@ -106,9 +106,9 @@ Future<void> songLoop(String song) async {
       if (song.length > 0) {
         lastNoteValue = currentNoteValue;
         currentNoteValue = int.parse(song[1]);
-        //print(currentNoteValue);
+        print(currentNoteValue);
         currentNoteLetter = song[0];
-        //print(currentNoteLetter);
+        print(currentNoteLetter);
         song = song.substring(2, song.length);
       }
     }

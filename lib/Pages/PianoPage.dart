@@ -22,7 +22,16 @@ class _PianoPageState extends State<PianoPage> {
         children: <Widget>[
           //This is where the game area will go
           Expanded(
-            flex: 2,
+            flex: 1,
+            child: ListView.builder(
+              itemCount: 4,
+                itemBuilder: (BuildContext context,int index){
+                return globals.pics[index] != "" ? Container(color: Colors.red,) :  Image.asset(globals.pics[index]) ;
+                },
+            ),
+          ),
+          Expanded(
+            flex: 3,
             child: GestureDetector(
               child: Container(
                 color: Colors.grey,
@@ -38,6 +47,7 @@ class _PianoPageState extends State<PianoPage> {
 
           //This is where the piano will go
           Expanded(
+            flex: 2,
             child: Stack(
               children: <Widget>[
                 PianoKeys(),
