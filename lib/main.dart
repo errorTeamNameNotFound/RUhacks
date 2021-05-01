@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:ru_hacks/HomePage.dart';
+import 'constants.dart';
+import 'package:ru_hacks/database/database.dart';
 import 'package:audioplayers/audio_cache.dart';
 
 void main() {
-  runApp(new MaterialApp(
-    home: new MyApp(),
-  ));
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(scaffoldBackgroundColor: kOffWhite),
+      home: new HomePage(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
