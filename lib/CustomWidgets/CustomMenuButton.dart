@@ -37,7 +37,7 @@ class _CustomMenuButtonState extends State<CustomMenuButton> {
                 fontSize: 45,
                 color: kDarkBlue,
                 letterSpacing: 2,
-                fontWeight: FontWeight.w500),
+                fontWeight: FontWeight.w600),
           ),
         ),
       ),

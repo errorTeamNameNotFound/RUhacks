@@ -13,30 +13,30 @@ Future<void> songLoop(String song) async {
   //TODO get first 4 pictures to display on screen
   //pic 1
   if (isUppercase(song[0])) {
-    globals.pics[0] = "assets/staffPics/" + song[0] + song[0] + ".png";
+    globals.pics[0] = "staffPics/" + song[0] + song[0] + song[1] + ".PNG";
   } else {
-    globals.pics[0] = "assets/staffPics/" + song[0] + ".png";
+    globals.pics[0] = "staffPics/" + song[0] + song[1] + ".PNG";
   }
 
   //pic 2
   if (isUppercase(song[2])) {
-    globals.pics[1] = "assets/staffPics/" + song[2] + song[2] + ".png";
+    globals.pics[1] = "staffPics/" + song[2] + song[2] + song[3] + ".PNG";
   } else {
-    globals.pics[1] = "assets/staffPics/" + song[2] + ".png";
+    globals.pics[1] = "staffPics/" + song[2] + song[3] + ".PNG";
   }
 
   //pic 3
   if (isUppercase(song[4])) {
-    globals.pics[2] = "assets/staffPics/" + song[4] + song[4] + ".png";
+    globals.pics[2] = "staffPics/" + song[4] + song[4] + song[5] + ".PNG";
   } else {
-    globals.pics[2] = "assets/staffPics/" + song[4] + ".png";
+    globals.pics[2] = "staffPics/" + song[4] + song[5] + ".PNG";
   }
 
   //pic 4
   if (isUppercase(song[6])) {
-    globals.pics[3] = "assets/staffPics/" + song[6] + song[6] + ".png";
+    globals.pics[3] = "staffPics/" + song[6] + song[6] + song[7] + ".PNG";
   } else {
-    globals.pics[3] = "assets/staffPics/" + song[6] + ".png";
+    globals.pics[3] = "staffPics/" + song[6] + song[7] + ".PNG";
   }
 
   int lastNoteValue = 0;
@@ -70,35 +70,35 @@ Future<void> songLoop(String song) async {
     if (song.isNotEmpty) {
       //pic 1
       if (isUppercase(song[0])) {
-        globals.pics[0] = "staffPics/" + song[0] + song[0] + ".png";
+        globals.pics[0] = "staffPics/" + song[0] + song[0] + song[1] + ".PNG";
       } else {
-        globals.pics[0] = "staffPics/" + song[0] + ".png";
+        globals.pics[0] = "staffPics/" + song[0] + song[1] + ".PNG";
       }
 
       //pic 2
       if (song.length > 2) {
         if (isUppercase(song[2])) {
-          globals.pics[1] = "staffPics/" + song[2] + song[2] + ".png";
+          globals.pics[1] = "staffPics/" + song[2] + song[2] + song[3] + ".PNG";
         } else {
-          globals.pics[1] = "staffPics/" + song[2] + ".png";
+          globals.pics[1] = "staffPics/" + song[2] + song[3] + ".PNG";
         }
       }
 
       //pic 3
       if (song.length > 4) {
         if (isUppercase(song[4])) {
-          globals.pics[2] = "staffPics/" + song[4] + song[4] + ".png";
+          globals.pics[2] = "staffPics/" + song[4] + song[4] + song[5] + ".PNG";
         } else {
-          globals.pics[2] = "staffPics/" + song[4] + ".png";
+          globals.pics[2] = "staffPics/" + song[4] + song[5] + ".PNG";
         }
       }
 
       //pic 4
       if (song.length > 6) {
         if (isUppercase(song[6])) {
-          globals.pics[3] = "staffPics/" + song[6] + song[6] + ".png";
+          globals.pics[3] = "staffPics/" + song[6] + song[6] + song[7] + ".PNG";
         } else {
-          globals.pics[3] = "staffPics/" + song[6] + ".png";
+          globals.pics[3] = "staffPics/" + song[6] + song[7] + ".PNG";
         }
       }
 
