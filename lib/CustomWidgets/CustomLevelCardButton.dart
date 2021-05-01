@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../constants.dart';
+import 'package:ru_hacks/constants.dart';
 
 class CustomLevelCardButton extends StatelessWidget {
   final Image songImage;
@@ -79,3 +78,4 @@ class CustomLevelCardButton extends StatelessWidget {
     );
   }
 }
+

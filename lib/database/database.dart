@@ -27,15 +27,18 @@ Future<void> getSongs() async {
   String result;
   result = (await FirebaseDatabase.instance.reference().child("Songs/Hard/Russian Dance").once()).value;
   globals.hardSongs.add(result);
-  print(result);
+  globals.hardSongs.length++;
+  //print(result);
 
   result = (await FirebaseDatabase.instance.reference().child("Songs/Easy/Twinkle Twinkle Little Star").once()).value;
   globals.easySongs.add(result);
-  print(result);
+  globals.easySongs.length++;
+  //print(result);
 
   result = (await FirebaseDatabase.instance.reference().child("Songs/Medium/Long Long Ago").once()).value;
   globals.mediumSongs.add(result);
-  print(result);
+  globals.mediumSongs.length++;
+  //print(result);
 }
 
 
