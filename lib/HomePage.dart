@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/PianoPage.dart';
+import 'database/database.dart';
 import 'constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,6 +22,7 @@ class _HomePageState extends State<HomePage> {
             context,
             MaterialPageRoute(
               builder: (context) {
+                getSongs();
                 return PianoPage();
               },
             ),
