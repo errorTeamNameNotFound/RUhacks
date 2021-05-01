@@ -27,6 +27,7 @@ dependencies:
   # google_sign_in: ^4.4.4
   firebase_database:
   audioplayers: ^0.18.3
+  validators:
 
   # Add the dependency for the FlutterFire plugin for Google Analytics
   # firebase_analytics: ^7.1.0
