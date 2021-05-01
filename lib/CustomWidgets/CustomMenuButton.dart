@@ -20,7 +20,7 @@ class _CustomMenuButtonState extends State<CustomMenuButton> {
         width: MediaQuery.of(context).size.width / kMenuButtonWidth,
         height: MediaQuery.of(context).size.height / kMenuButtonHeight,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40),
+          borderRadius: BorderRadius.circular(60),
           // boxShadow: [
           //   BoxShadow(
           //     color: Colors.blue[900],

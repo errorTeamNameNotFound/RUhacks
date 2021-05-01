@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:ru_hacks/constants.dart';
 
 class CustomLevelCardButton extends StatelessWidget {
@@ -79,3 +78,4 @@ class CustomLevelCardButton extends StatelessWidget {
     );
   }
 }
+
