@@ -1,7 +1,9 @@
+import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:ru_hacks/CustomWidgets/CustomMenuButton.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/Pages/FreestylePage.dart';
+import 'package:ru_hacks/Pages/LevelsPage.dart';
 import 'package:ru_hacks/Pages/PianoPage.dart';
 import 'package:ru_hacks/constants.dart';
 
@@ -11,6 +13,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void playSound(String fileName) {
+    final player = AudioCache();
+    player.play(fileName);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,14 +49,14 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: Container(
                   child: Center(
-                    child: Text("(App Logo)"),
+                    child: Text("(App Name)"),
                   ),
                 ),
               ),
               Expanded(
                 child: Container(
                   child: Center(
-                    child: Text("(App Name)"),
+                    child: Text("(Character Picture)"),
                   ),
                 ),
               ),
@@ -64,6 +71,7 @@ class _HomePageState extends State<HomePage> {
                         CustomMenuButton(
                           buttonLabel: "Freestyle",
                           whenPressed: () {
+                            playSound("uiClick.wav");
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -77,11 +85,12 @@ class _HomePageState extends State<HomePage> {
                         CustomMenuButton(
                           buttonLabel: "Levels",
                           whenPressed: () {
+                            playSound("uiClick.wav");
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return PianoPage();
+                                  return LevelsPage();
                                 },
                               ),
                             );
