@@ -5,7 +5,7 @@ import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/Pages/FreestylePage.dart';
 import 'package:ru_hacks/Pages/LevelsPage.dart';
 import 'package:ru_hacks/Pages/PianoPage.dart';
-import '../constants.dart';
+import 'package:ru_hacks/constants.dart';
 
 class HomePage extends StatefulWidget {
   @override
