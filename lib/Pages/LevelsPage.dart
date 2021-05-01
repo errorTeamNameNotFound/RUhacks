@@ -5,7 +5,7 @@ import 'package:ru_hacks/constants.dart';
 
 //debugging purposes
 String url =
-    "https://lh3.googleusercontent.com/proxy/O_QYQIS3BbFgWxD03P4g78svhQuxLQl8poFz4PHIsuhgNyuRmb3SBaYhg1mDH4Jr4dFc1Fh-DrPs7BkOFvnRqsWN4aZR48e8PIZ_jya8WnBJ9ZtebHV7nBD2L9zMAfh_-CpLb_7f7zbuq9he";
+    "https://static.vecteezy.com/system/resources/previews/001/200/798/non_2x/music-note-png.png";
 
 class LevelsPage extends StatefulWidget {
   @override
@@ -117,6 +117,8 @@ class _LevelsPageState extends State<LevelsPage> {
       ),
     ];
 
+    double sidePadding = MediaQuery.of(context).size.width / 12;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Levels"),
@@ -135,9 +137,9 @@ class _LevelsPageState extends State<LevelsPage> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(
+        padding: EdgeInsets.only(
           //horizontal: 80.0,
-          left: 90,
+          left: sidePadding,
           top: 40.0,
           bottom: 20.0,
         ),
@@ -207,4 +209,3 @@ class _LevelsPageState extends State<LevelsPage> {
     );
   }
 }
-

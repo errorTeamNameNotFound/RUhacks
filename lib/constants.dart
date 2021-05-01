@@ -25,3 +25,9 @@ const kCardHeaderTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+TextStyle kTitleTextStyle = TextStyle(
+  color: kBlueyWhite,
+  fontSize: 80,
+  fontWeight: FontWeight.bold,
+  letterSpacing: 2,
+);
