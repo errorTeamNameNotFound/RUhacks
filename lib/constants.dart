@@ -24,3 +24,4 @@ const kCardHeaderTextStyle = TextStyle(
   color: kSemiBlack,
   fontWeight: FontWeight.bold,
 );
+
