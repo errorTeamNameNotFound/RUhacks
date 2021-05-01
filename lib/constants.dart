@@ -13,5 +13,14 @@ const kBlueyWhite = Color(0xffE5F0F3);
 //Measurements
 const kBlackKeyWidth = 17;
 const kBlackKeyHeight = 5;
-const kMenuButtonHeight = 7;
+const kMenuButtonHeight = 10;
 const kMenuButtonWidth = 3;
+const kLevelCardHeight = 3;
+const kLevelCardWidth = 4;
+
+//TextStyles
+const kCardHeaderTextStyle = TextStyle(
+  fontSize: 30.0,
+  color: kSemiBlack,
+  fontWeight: FontWeight.bold,
+);

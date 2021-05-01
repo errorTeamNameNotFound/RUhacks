@@ -14,6 +14,19 @@ class _FreestylePageState extends State<FreestylePage> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text("Freestyle"),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment
+                  .bottomRight, // 10% of the width, so there are ten blinds.
+              colors: <Color>[
+                Colors.purple[900],
+                kRoyalBlue,
+              ], // one color to another
+            ),
+          ),
+        ),
       ),
       body: PianoKeys(),
     );
