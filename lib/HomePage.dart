@@ -1,5 +1,5 @@
+import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'constants.dart';
 import 'dart:async';
 import 'CustomWidgets/BlackKeys.dart';
@@ -7,9 +7,9 @@ import 'CustomWidgets/BlackKeys.dart';
 class Key {
   String keyLabel;
   Color keyColor;
-  //Add Piano Sound later
+  String soundFileName;
 
-  Key({this.keyLabel, this.keyColor});
+  Key({this.keyLabel, this.keyColor, this.soundFileName});
 }
 
 class HomePage extends StatefulWidget {
@@ -19,30 +19,25 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Key> keys = [
-    Key(keyLabel: "D", keyColor: kOffWhite),
-    Key(keyLabel: "E", keyColor: kOffWhite),
-    Key(keyLabel: "F", keyColor: kOffWhite),
-    Key(keyLabel: "G", keyColor: kOffWhite),
-    Key(keyLabel: "A", keyColor: kOffWhite),
-    Key(keyLabel: "B", keyColor: kOffWhite),
-    Key(keyLabel: "C", keyColor: kOffWhite),
-    Key(keyLabel: "D", keyColor: kOffWhite),
-    Key(keyLabel: "E", keyColor: kOffWhite),
-    Key(keyLabel: "F", keyColor: kOffWhite),
-    Key(keyLabel: "G", keyColor: kOffWhite),
-    Key(keyLabel: "A", keyColor: kOffWhite),
-    Key(keyLabel: "B", keyColor: kOffWhite),
-    Key(keyLabel: "C", keyColor: kOffWhite),
-    Key(keyLabel: "D", keyColor: kOffWhite),
+    Key(keyLabel: "E", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
+    Key(keyLabel: "F", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
+    Key(keyLabel: "G", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
+    Key(keyLabel: "A", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
+    Key(keyLabel: "B", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
+    Key(keyLabel: "C", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
+    Key(keyLabel: "D", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
+    Key(keyLabel: "E", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
+    Key(keyLabel: "F", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
+    Key(keyLabel: "G", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
+    Key(keyLabel: "A", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
+    Key(keyLabel: "B", keyColor: kOffWhite, soundFileName: "Base_E.mp3"),
   ];
 
-  Timer _timer;
   bool _isPressed = false;
 
-  @override
-  void dispose() {
-    super.dispose();
-    _timer.cancel();
+  void playSound(String note) {
+    final player = AudioCache();
+    player.play(note);
   }
 
   @override
@@ -74,6 +69,7 @@ class _HomePageState extends State<HomePage> {
                     return makePiano(
                       keys[index].keyLabel,
                       index,
+                      keys[index].soundFileName,
                     );
                   },
                 ),
@@ -90,12 +86,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   //Skeleton code for Piano Keys
-  Widget makePiano(String label, int index) {
+  Widget makePiano(String label, int index, String soundFileName) {
     return GestureDetector(
       onTap: () {
         //TODO: create feedback by changing container color upon press
         setState(() {
           _isPressed = true;
+          playSound(soundFileName);
           keys[index].keyColor = Colors.grey[400];
         });
 
