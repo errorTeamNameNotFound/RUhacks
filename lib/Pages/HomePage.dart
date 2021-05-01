@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                         CustomMenuButton(
                           buttonLabel: "Freestyle",
                           whenPressed: () {
-                            //playSound("uiClick.wav");
+                            playSound("uiClick.wav");
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -97,6 +97,20 @@ class _HomePageState extends State<HomePage> {
                             playSound("uiClick.wav");
 
                             getSongs();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return LevelsPage();
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                        CustomMenuButton(
+                          buttonLabel: "Tutorials",
+                          whenPressed: () {
+                            playSound("uiClick.wav");
                             Navigator.push(
                               context,
                               MaterialPageRoute(
