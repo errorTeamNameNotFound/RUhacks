@@ -17,8 +17,8 @@ Future<void> songLoop(String song) async {
   double beat = 60 / tempo;
   //print(beat);
 
-  int lastNoteValue = 0;
   int currentNoteValue = int.parse(song[1]);
+  int lastNoteValue = currentNoteValue;
   String currentNoteLetter = song[0];
   //song = song.substring(2, song.length);
   i += 2;
@@ -33,8 +33,9 @@ Future<void> songLoop(String song) async {
   }
 
   print("starting play loop");
-
-  while (song.length <= 0) {
+  while (i <= song.length.toInt()) {
+    print("$i: " + lastNoteValue.toString());
+    print("$i: " + currentNoteLetter);
     tempNum = (beat * lastNoteValue) * 1000;
     await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
 
@@ -47,17 +48,18 @@ Future<void> songLoop(String song) async {
     //print("note to play: " + currentNoteLetter);
 
     //check if user played right note
-    if (globals.currentNote == currentNoteLetter) {
+    if (/*globals.currentNote == currentNoteLetter*/ true) {
       //user got it right
       globals.rightNotePlayed = true;
       //get next note and value
       if (song.length > 0) {
         lastNoteValue = currentNoteValue;
-        currentNoteValue = int.parse(song[i + 1]);
-        //print(currentNoteValue);
-        currentNoteLetter = song[i];
-        //print(currentNoteLetter);
-        //song = song.substring(2, song.length);
+        if (i < song.length - 1){
+          currentNoteValue = int.parse(song[i + 1]);
+          //print(currentNoteValue);
+          currentNoteLetter = song[i];
+          //print(currentNoteLetter);
+        }
         i += 2;
       }
 
