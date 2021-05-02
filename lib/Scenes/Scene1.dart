@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ru_hacks/CustomWidgets/BlackKeys.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/Scenes/EndScene.dart';
 import 'package:ru_hacks/Scenes/Scene2.dart';
@@ -23,7 +24,6 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
   int counter = 1;
   var rng = new Random();
   int randInt;
-  bool playButtonDisplayed = true;
 
   AnimationController _birdController;
 
@@ -267,200 +267,179 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Stack(
+      body: Column(
         children: <Widget>[
-          Column(
-            children: <Widget>[
-              Expanded(
-                flex: 12, //TODO: FLEX
-                child: GestureDetector(
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                              "assets/birdy/background.png",
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 50,
-                        bottom: 10 + (verticalDistance + 0),
-                        child: Container(
-                          width: _imageSize,
-                          height: _imageSize,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                "assets/birdy/branch.png",
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                      //TODO: make these branches into a list and output with list view builder
-                      //TODO: possible make into its own custom widget
-                      Positioned(
-                        left: 50 + horizontalDistance,
-                        bottom: 10 + (verticalDistance + 0),
-                        child: Container(
-                          width: _imageSize,
-                          height: _imageSize,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                "assets/birdy/branch.png",
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 50 + (horizontalDistance * 3),
-                        bottom: 10 + (verticalDistance + 300),
-                        child: Container(
-                          width: _imageSize,
-                          height: _imageSize,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                "assets/birdy/branch.png",
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 50 + (horizontalDistance * 2),
-                        bottom: 10 + (verticalDistance + 200),
-                        child: Container(
-                          width: _imageSize,
-                          height: _imageSize,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                "assets/birdy/branch.png",
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      ValueListenableBuilder(
-                          valueListenable: globals.rightNotePlayed,
-                          builder: (context, value, widget) {
-                            //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                            WidgetsBinding.instance.addPostFrameCallback(
-                                (_) => {rightCheckCorrect(value)});
-                            //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                            return Container();
-                          }),
-                      ValueListenableBuilder(
-                          valueListenable: globals.wrongNotePlayed,
-                          builder: (context, value, widget) {
-                            //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                            WidgetsBinding.instance.addPostFrameCallback(
-                                (_) => {wrongCheckCorrect(value)});
-                            //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                            return Container();
-                          }),
-
-                      AnimatedBuilder(
-                        animation: _birdController,
-                        builder: (BuildContext context, _) {
-                          return Transform.translate(
-                            // Get animated offset
-                            offset: Offset(
-                                50 + _horizontalMovement.value,
-                                335 -
-                                    _verticalMovement.value -
-                                    MediaQuery.of(context).size.width *
-                                        0.10), //Animate this
-                            child: Container(
-                              width: _imageSize,
-                              height: _imageSize,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    "assets/birdy/$_imageDisplayed.png",
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                  // onTap: () {
-                  //   songLoop(globals.currSong);
-                  // },
-                ),
-              ),
-              Expanded(
-                  flex: 5, //TODO: FLEX
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        flex: 1,
-                        child:
-                            Image.asset(globals.staffPics[globals.PicsCurSpot]),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Image.asset(
-                            globals.staffPics[globals.PicsCurSpot + 1]),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Image.asset(
-                            globals.staffPics[globals.PicsCurSpot + 2]),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Image.asset(
-                            globals.staffPics[globals.PicsCurSpot + 3]),
-                      ),
-                    ],
-                  )),
-              Expanded(
-                flex: 7, //TODO: FLEX
-                child: PianoKeys(),
-              ),
-            ],
-          ),
-          //TODO: Add Play button
-          playButtonDisplayed
-              ? Center(
-                  child: Container(
+          Expanded(
+            flex: 12, //TODO: FLEX
+            child: GestureDetector(
+              child: Stack(
+                children: <Widget>[
+                  Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(60),
-                      color: Colors.grey[400].withOpacity(0.8),
-                    ),
-                    child: IconButton(
-                      onPressed: () {
-                        songLoop(globals.easySongs.first);
-                        setState(() {
-                          playButtonDisplayed = false;
-                        });
-                      },
-                      iconSize: 100,
-                      icon: Icon(
-                        Icons.play_arrow,
-                        color: Colors.grey[700],
+                      image: DecorationImage(
+                        image: AssetImage(
+                          "assets/birdy/background.png",
+                        ),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
-                )
-              : SizedBox(),
+                  Positioned(
+                    left: 50,
+                    bottom: 10 + (verticalDistance + 0),
+                    child: Container(
+                      width: _imageSize,
+                      height: _imageSize,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            "assets/birdy/branch.png",
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                  //TODO: make these branches into a list and output with list view builder
+                  //TODO: possible make into its own custom widget
+                  Positioned(
+                    left: 50 + horizontalDistance,
+                    bottom: 10 + (verticalDistance + 0),
+                    child: Container(
+                      width: _imageSize,
+                      height: _imageSize,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            "assets/birdy/branch.png",
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 50 + (horizontalDistance * 3),
+                    bottom: 10 + (verticalDistance + 300),
+                    child: Container(
+                      width: _imageSize,
+                      height: _imageSize,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            "assets/birdy/branch.png",
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 50 + (horizontalDistance * 2),
+                    bottom: 10 + (verticalDistance + 200),
+                    child: Container(
+                      width: _imageSize,
+                      height: _imageSize,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            "assets/birdy/branch.png",
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  ValueListenableBuilder(
+                      valueListenable: globals.rightNotePlayed,
+                      builder: (context, value, widget) {
+                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        WidgetsBinding.instance.addPostFrameCallback(
+                            (_) => {rightCheckCorrect(value)});
+                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        return Container();
+                      }),
+                  ValueListenableBuilder(
+                      valueListenable: globals.wrongNotePlayed,
+                      builder: (context, value, widget) {
+                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        WidgetsBinding.instance.addPostFrameCallback(
+                            (_) => {wrongCheckCorrect(value)});
+                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        return Container();
+                      }),
+
+                  AnimatedBuilder(
+                    animation: _birdController,
+                    builder: (BuildContext context, _) {
+                      return Transform.translate(
+                        // Get animated offset
+                        offset: Offset(
+                            50 + _horizontalMovement.value,
+                            335 -
+                                _verticalMovement.value -
+                                MediaQuery.of(context).size.width *
+                                    0.10), //Animate this
+                        child: Container(
+                          width: _imageSize,
+                          height: _imageSize,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "assets/birdy/$_imageDisplayed.png",
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              // onTap: () {
+              //   songLoop(globals.easySongs.first);
+              // },
+            ),
+          ),
+          Expanded(
+              flex: 5, //TODO: FLEX
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: Image.asset(globals.staffPics[globals.PicsCurSpot]),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child:
+                        Image.asset(globals.staffPics[globals.PicsCurSpot + 1]),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child:
+                        Image.asset(globals.staffPics[globals.PicsCurSpot + 2]),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child:
+                        Image.asset(globals.staffPics[globals.PicsCurSpot + 3]),
+                  ),
+                ],
+              )),
+          Expanded(
+            flex: 7, //TODO: FLEX
+            child: Stack(
+              children: <Widget>[
+                PianoKeys(),
+                BlackKeys(
+                  width: 21,
+                  height: 5.6,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
