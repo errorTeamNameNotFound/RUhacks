@@ -6,6 +6,7 @@ import 'package:ru_hacks/Pages/FreestylePage.dart';
 import 'package:ru_hacks/Pages/LevelsPage.dart';
 import 'package:ru_hacks/Pages/PianoPage.dart';
 import 'package:ru_hacks/Pages/LevelsPage.dart';
+import 'package:ru_hacks/Pages/TutorialsPage.dart';
 import '../constants.dart';
 import 'package:ru_hacks/database/database.dart';
 
@@ -158,7 +159,7 @@ class _HomePageState extends State<HomePage>
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return LevelsPage();
+                                  return TutorialsPage();
                                 },
                               ),
                             );
