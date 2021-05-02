@@ -78,12 +78,13 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
   }
 
   void rightCheckCorrect(value){
-    print("${value} -- ${globals.rightPrevNotif}");
-    if (value == globals.rightPrevNotif)
+    print("right: ${value} -- ${globals.rightPrevNotif}");
+    if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0)
     {
       return;
     }
     if (value > globals.rightPrevNotif) {
+      isRight = true;
       if (counter == 1) {
         _horizontalMovement = xFirstRightJump();
         _verticalMovement = yFirstRightJump();
@@ -143,6 +144,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
       counter++;
     }
     print(counter);
+    print("rightPrevNotif ${globals.rightPrevNotif} => ${globals.rightNotePlayed.value}");
     globals.rightPrevNotif = globals.rightNotePlayed.value;
   }
 
@@ -293,12 +295,12 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
 
                   ValueListenableBuilder(valueListenable: globals.rightNotePlayed,
                       builder: (context, value, widget) {
-                       // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
                         WidgetsBinding.instance
                             .addPostFrameCallback((_) => {
                           rightCheckCorrect(value)
                         });
-                       // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
                         return Container();
                       }
                   ),
@@ -361,17 +363,17 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                   Expanded(
                     flex: 1,
                     child:
-                        Image.asset(globals.staffPics[globals.PicsCurSpot + 1]),
+                    Image.asset(globals.staffPics[globals.PicsCurSpot + 1]),
                   ),
                   Expanded(
                     flex: 1,
                     child:
-                        Image.asset(globals.staffPics[globals.PicsCurSpot + 2]),
+                    Image.asset(globals.staffPics[globals.PicsCurSpot + 2]),
                   ),
                   Expanded(
                     flex: 1,
                     child:
-                        Image.asset(globals.staffPics[globals.PicsCurSpot + 3]),
+                    Image.asset(globals.staffPics[globals.PicsCurSpot + 3]),
                   ),
                 ],
               )),

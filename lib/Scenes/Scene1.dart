@@ -28,8 +28,8 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
     {
       return;
     }
-if (value < globals.wrongPrevNotif){
-  isRight = false;
+    if (value < globals.wrongPrevNotif){
+      isRight = false;
       if (counter == 1) {
         _horizontalMovement = xFirstRightJump();
         _verticalMovement = yFirstWrongJump();
@@ -80,9 +80,9 @@ if (value < globals.wrongPrevNotif){
   void rightCheckCorrect(value){
     print("right: ${value} -- ${globals.rightPrevNotif}");
     if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0)
-      {
-        return;
-      }
+    {
+      return;
+    }
     if (value > globals.rightPrevNotif) {
       isRight = true;
       if (counter == 1) {
@@ -358,17 +358,17 @@ if (value < globals.wrongPrevNotif){
                   Expanded(
                     flex: 1,
                     child:
-                        Image.asset(globals.staffPics[globals.PicsCurSpot + 1]),
+                    Image.asset(globals.staffPics[globals.PicsCurSpot + 1]),
                   ),
                   Expanded(
                     flex: 1,
                     child:
-                        Image.asset(globals.staffPics[globals.PicsCurSpot + 2]),
+                    Image.asset(globals.staffPics[globals.PicsCurSpot + 2]),
                   ),
                   Expanded(
                     flex: 1,
                     child:
-                        Image.asset(globals.staffPics[globals.PicsCurSpot + 3]),
+                    Image.asset(globals.staffPics[globals.PicsCurSpot + 3]),
                   ),
                 ],
               )),

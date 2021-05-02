@@ -42,6 +42,7 @@ void songPicture(String song) {
   int endRests = 4 - (staffPics.length % 4);
   for (int i = 0; i < endRests; i++) {
     staffPics.add("assets/staffPics/endStaff.PNG");
+    noteDurations.add(1);
   }
 
   //modify global values

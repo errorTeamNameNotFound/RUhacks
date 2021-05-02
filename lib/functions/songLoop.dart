@@ -8,6 +8,7 @@ void playSound(String note) {
 }
 
 Future<void> songLoop(String song) async {
+  globals.breakOut = false;
   int tempo = int.parse(song.substring(0, 3));
   song = song.substring(3, song.length);
   //globals.numOfStrikes = 0;
@@ -15,6 +16,7 @@ Future<void> songLoop(String song) async {
   int notesCorrectSoFar = 0;
   int i = 0;
   int timeCheck;
+  int tempNotifier;
 
   double beat = 60 / tempo;
   //print(beat);
@@ -38,7 +40,7 @@ Future<void> songLoop(String song) async {
   //globals.timerAmount = tempNum.toInt();
 
   print("starting play loop");
-  while (i <= song.length.toInt()) {
+  while (i <= song.length.toInt() && !globals.breakOut) {
     timeCheck = 0;
     // print("$i: " + currentNoteValue.toString());
     // print("$i: " + currentNoteLetter);
@@ -59,13 +61,11 @@ Future<void> songLoop(String song) async {
     //print("note to play: " + currentNoteLetter);
 
     //check if user played right note
-    if (globals.currentNote == currentNoteLetter) {
+    if (/*globals.currentNote == currentNoteLetter*/ true) {
       //user got it right
-      if(globals.rightNotePlayed.value == globals.rightPrevNotif)
-        {
-          globals.rightNotePlayed.value++;
-        }
-
+      if (globals.rightNotePlayed.value == globals.rightPrevNotif) {
+        globals.rightNotePlayed.value++;
+      }
       //get next note and value
       if (song.length > 0) {
         //lastNoteValue = currentNoteValue;
@@ -80,12 +80,12 @@ Future<void> songLoop(String song) async {
 
       notesCorrectSoFar++;
     } else {
-      if(globals.wrongNotePlayed.value == globals.wrongPrevNotif)
-      {
-        globals.wrongNotePlayed.value--;
+      if (globals.wrongNotePlayed.value == globals.wrongPrevNotif) {
+        globals.rightNotePlayed.value--;
       }
       //user got it wrong so reset measure
       i -= notesCorrectSoFar * 2;
+      globals.notesCorrectSoFar = notesCorrectSoFar;
       notesCorrectSoFar = 0;
     }
 
@@ -96,9 +96,11 @@ Future<void> songLoop(String song) async {
   }
 
   //correct note till end of song is reached
-  if(globals.rightNotePlayed.value == globals.rightPrevNotif)
-  {
+
+  for (int i = 0; i < 4 - notesCorrectSoFar; i++) {
+    tempNum = (beat * currentNoteValue) * 1000;
+    timeCheck += tempNum.toInt();
+    await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
     globals.rightNotePlayed.value++;
   }
-
 }
