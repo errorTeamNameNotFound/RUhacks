@@ -8,7 +8,7 @@ import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/data/globals.dart' as globals;
 import 'package:rnd/rnd.dart';
 
-const kBirdSize = 3.0;
+const kBirdSize = 4.0;
 
 class playAlong extends StatefulWidget {
   String bOrT;
@@ -47,7 +47,6 @@ class _PlayAlongState extends State<playAlong> {
       image: AssetImage(image_name),
       fit: BoxFit.fitHeight,
     );
-    return Image.asset(image_name);
   }
 
   void refresh() {
@@ -57,13 +56,19 @@ class _PlayAlongState extends State<playAlong> {
     if (globals.currentNote == globals.tutorialNote) {
       setState(() {
         imageDisplayed = "singing";
-        bottomPadding = 30.0;
+        bottomPadding = 20.0;
       });
+
+      globals.displayText = "Correct! The note was ${globals.tutorialNote}";
+      globals.textColor = Colors.green;
     } else {
       setState(() {
         imageDisplayed = "shocked";
-        bottomPadding = 30.0;
+        bottomPadding = 20.0;
       });
+
+      globals.displayText = "Wrong! The note was ${globals.tutorialNote}";
+      globals.textColor = Colors.red;
     }
 
     setState(() {});
@@ -96,21 +101,48 @@ class _PlayAlongState extends State<playAlong> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: AnimatedContainer(
-                      margin: EdgeInsets.only(left: 50, bottom: bottomPadding),
-                      duration: Duration(milliseconds: 80),
-                      onEnd: () {
-                        setState(() {
-                          bottomPadding =
-                              0.0; //Brings back to original position
-                        });
-                      },
-                      width: MediaQuery.of(context).size.width / kBirdSize,
-                      height: MediaQuery.of(context).size.height / kBirdSize,
-                      child: Image(
-                        image: AssetImage("assets/birdy/$imageDisplayed.png"),
-                        fit: BoxFit.contain,
-                      ),
+                    child: Column(
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            child: Text(
+                              globals.displayText,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 30,
+                                color: globals.textColor,
+                              ),
+                            ),
+                            padding: EdgeInsets.only(
+                              left: 50,
+                              top: 20,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: AnimatedContainer(
+                            margin: EdgeInsets.only(
+                                left: 50, bottom: bottomPadding),
+                            duration: Duration(milliseconds: 80),
+                            onEnd: () {
+                              setState(() {
+                                bottomPadding =
+                                    0.0; //Brings back to original position
+                              });
+                            },
+                            width:
+                                MediaQuery.of(context).size.width / kBirdSize,
+                            height:
+                                MediaQuery.of(context).size.height / kBirdSize,
+                            child: Image(
+                              image: AssetImage(
+                                  "assets/birdy/$imageDisplayed.png"),
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
