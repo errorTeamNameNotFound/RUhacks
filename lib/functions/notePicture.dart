@@ -18,13 +18,13 @@ void songPicture(String song) {
       staffPics.add("assets/staffPics/" + song[0] + song[0] + song[1] + ".PNG");
       tempNum = double.parse(song[1]);
       tempNum *= 1000 * beat;
-      tempNum += (beat / 4) * 1000;
+      tempNum += (beat / 2) * 1000;
       noteDurations.add(tempNum.toInt());
     } else {
       staffPics.add("assets/staffPics/" + song[0] + song[1] + ".PNG");
       tempNum = double.parse(song[1]);
       tempNum *= 1000 * beat;
-      tempNum += (beat / 4) * 1000;
+      tempNum += (beat / 2) * 1000;
       noteDurations.add(tempNum.toInt());
     }
 

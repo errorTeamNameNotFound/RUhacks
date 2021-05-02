@@ -20,7 +20,7 @@ Future<void> songLoop(String song) async {
   //print(beat);
 
   int currentNoteValue = int.parse(song[1]);
-  int lastNoteValue = currentNoteValue;
+  //int lastNoteValue = 0;
   String currentNoteLetter = song[0];
   //song = song.substring(2, song.length);
   i += 2;
@@ -30,7 +30,7 @@ Future<void> songLoop(String song) async {
     playSound("uiClick.wav");
     print(i.toString());
     tempNum = (beat) * 1000;
-    tempNum += (beat / 4) * 1000;
+    tempNum += (beat / 2) * 1000;
     await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
   }
 
@@ -40,14 +40,14 @@ Future<void> songLoop(String song) async {
   print("starting play loop");
   while (i <= song.length.toInt()) {
     timeCheck = 0;
-    //print("$i: " + lastNoteValue.toString());
-    //print("$i: " + currentNoteLetter);
-    tempNum = (beat * lastNoteValue) * 1000;
+    // print("$i: " + currentNoteValue.toString());
+    // print("$i: " + currentNoteLetter);
+    tempNum = (beat * currentNoteValue) * 1000;
     timeCheck += tempNum.toInt();
     await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
 
     //check/ wait for user input
-    tempNum = (beat / 4) * 1000;
+    tempNum = (beat / 2) * 1000;
     timeCheck += tempNum.toInt();
     await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
 
@@ -59,7 +59,7 @@ Future<void> songLoop(String song) async {
     //print("note to play: " + currentNoteLetter);
 
     //check if user played right note
-    if (/*globals.currentNote == currentNoteLetter*/ true) {
+    if (globals.currentNote == currentNoteLetter) {
       //user got it right
       if(globals.rightNotePlayed.value == globals.rightPrevNotif)
         {
@@ -68,8 +68,8 @@ Future<void> songLoop(String song) async {
 
       //get next note and value
       if (song.length > 0) {
-        lastNoteValue = currentNoteValue;
-        if (i < song.length - 1){
+        //lastNoteValue = currentNoteValue;
+        if (i < song.length - 1) {
           currentNoteValue = int.parse(song[i + 1]);
           print(currentNoteValue);
           currentNoteLetter = song[i];
