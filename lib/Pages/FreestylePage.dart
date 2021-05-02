@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ru_hacks/CustomWidgets/BlackKeys.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import '../constants.dart';
 
@@ -28,7 +29,15 @@ class _FreestylePageState extends State<FreestylePage> {
           ),
         ),
       ),
-      body: PianoKeys(),
+      body: Stack(
+        children: <Widget>[
+          PianoKeys(),
+          BlackKeys(
+            width: 18,
+            height: 2,
+          ),
+        ],
+      ),
     );
   }
 }
