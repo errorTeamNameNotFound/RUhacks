@@ -96,11 +96,15 @@ Future<void> songLoop(String song) async {
   }
 
   //correct note till end of song is reached
-
-  for (int i = 0; i < 4 - notesCorrectSoFar; i++) {
-    tempNum = (beat * currentNoteValue) * 1000;
-    timeCheck += tempNum.toInt();
-    await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
-    globals.rightNotePlayed.value++;
+if(!globals.breakOut)
+  {
+    for (int i = 0; i < 4 - notesCorrectSoFar; i++) {
+      tempNum = (beat * currentNoteValue) * 1000;
+      timeCheck += tempNum.toInt();
+      await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
+      globals.rightNotePlayed.value++;
+    }
   }
+
+  globals.breakOut = false;
 }

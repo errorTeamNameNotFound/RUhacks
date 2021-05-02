@@ -199,6 +199,13 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: BackButton(
+          onPressed: (){
+            globals.breakOut=true;
+            Navigator.pop(context);
+          },
+        ),
         title: Text(
            "(Song Title)",
            style: TextStyle(
