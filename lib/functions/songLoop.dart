@@ -1,4 +1,10 @@
+import 'package:audioplayers/audio_cache.dart';
 import 'package:ru_hacks/data/globals.dart' as globals;
+
+void playSound(String note) {
+  final player = AudioCache();
+  player.play(note);
+}
 
 Future<void> songLoop(String song) async {
   int tempo = int.parse(song.substring(0, 3));
@@ -18,13 +24,22 @@ Future<void> songLoop(String song) async {
   i+=2;
 
   //TODO call a clik 4 times for countoff after start is pressed
+  for(int i = 0; i < 4; i++){
+    playSound("uiClick.wav");
+    print(i.toString());
+    tempNum = (beat) * 1000;
+    tempNum += (beat / 8) * 1000;
+    await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
+  }
+
+  print("starting play loop");
 
   while ( song.length <= 0) {
     tempNum = (beat * lastNoteValue) * 1000;
     await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
 
     //check/ wait for user input
-    tempNum = (beat) * 1000;
+    tempNum = (beat / 4) * 1000;
     await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
 
     //Testing info
