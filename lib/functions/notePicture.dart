@@ -5,6 +5,7 @@ import 'package:ru_hacks/data/globals.dart' as globals;
 void songPicture(String song) {
   int tempo = int.parse(song.substring(0, 3));
   int num = 0;
+  double tempNum;
   double beat = 60 / tempo;
 
   //cut off tempo
@@ -15,10 +16,16 @@ void songPicture(String song) {
   while (song.length > 1) {
     if (isUppercase(song[0])) {
       staffPics.add("assets/staffPics/" + song[0] + song[0] + song[1] + ".PNG");
-      noteDurations.add(int.parse(song[1]));
+      tempNum = double.parse(song[1]);
+      tempNum *= 1000 * beat;
+      tempNum += (beat / 4) * 1000;
+      noteDurations.add(tempNum.toInt());
     } else {
       staffPics.add("assets/staffPics/" + song[0] + song[1] + ".PNG");
-      noteDurations.add(int.parse(song[1]));
+      tempNum = double.parse(song[1]);
+      tempNum *= 1000 * beat;
+      tempNum += (beat / 4) * 1000;
+      noteDurations.add(tempNum.toInt());
     }
 
     num += int.parse(song[1]);
@@ -27,7 +34,7 @@ void songPicture(String song) {
   }
 
   for (int i = 0; i < staffPics.length; i++) {
-    print("${i + 1}: " + staffPics[i]);
+    //print("${i + 1}: " + staffPics[i]);
     print("${i + 1}: " + noteDurations[i].toString());
   }
 
