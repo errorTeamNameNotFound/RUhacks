@@ -23,6 +23,8 @@ const kMenuButtonHeight = 9.5;
 const kMenuButtonWidth = 3.5;
 const kLevelCardHeight = 3;
 const kLevelCardWidth = 4;
+const kTutorialCardWidth = 3;
+const kTutorialCardHeight = 3;
 
 //TextStyles
 const kCardHeaderTextStyle = TextStyle(
