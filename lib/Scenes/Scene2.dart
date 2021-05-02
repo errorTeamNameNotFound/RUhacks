@@ -23,6 +23,111 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
   Animation<double> _horizontalMovement;
   Animation<double> _verticalMovement;
 
+  Future<void> checkCorrect(value) async {
+    if (value) {
+      if (counter == 1) {
+        _horizontalMovement = xFirstRightJump();
+        _verticalMovement = yFirstRightJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+      }
+      if (counter == 2) {
+        _horizontalMovement = xSecondRightJump();
+        _verticalMovement = ySecondRightJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+      }
+
+      if (counter == 3) {
+        _horizontalMovement = xThirdRightJump();
+        _verticalMovement = yThirdRightJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+      }
+      if (counter == 4) {
+        globals.PicsCurSpot += 4;
+        print("${globals.PicsCurSpot} - ${globals.staffPics.length}");
+        if (globals.staffPics.length - globals.PicsCurSpot == 4) {
+          print("Next Scene is Final Scene");
+          globals.lastScene = true;
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return Scene1();
+              },
+            ),
+          );
+        } else if (globals.lastScene) {
+          print("Last Scene!!!!!");
+          Navigator.pop(context);
+        } else {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return Scene1();
+              },
+            ),
+          );
+        }
+      }
+    } else {
+      if (counter == 1) {
+        _horizontalMovement = xFirstRightJump();
+        _verticalMovement = yFirstWrongJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+
+        counter = 1;
+      }
+      if (counter == 2) {
+        _horizontalMovement = xSecondRightJump();
+        _verticalMovement = ySecondWrongJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+
+        counter = 1;
+      }
+
+      if (counter == 3) {
+        _horizontalMovement = xThirdRightJump();
+        _verticalMovement = yThirdWrongJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+
+        counter = 1;
+      }
+      if (counter == 4) {
+        setState(() {
+          _imageDisplayed = "shocked";
+        });
+
+        counter = 1;
+      }
+    }
+    print(counter);
+    counter++;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -166,6 +271,19 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                       ),
                     ),
                   ),
+
+                  ValueListenableBuilder(valueListenable: globals.rightNotePlayed,
+                      builder: (context, value, widget) {
+                        print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        WidgetsBinding.instance
+                            .addPostFrameCallback((_) => {
+                          checkCorrect(value)
+                        });
+                        print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        return Container();
+                      }
+                  ),
+
 
                   AnimatedBuilder(
                     animation: _birdController,

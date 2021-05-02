@@ -1,4 +1,6 @@
 //lists of song strings
+import 'package:flutter/cupertino.dart';
+
 List<String> easySongs = [];
 List<String> mediumSongs = [];
 List<String> hardSongs = [];
@@ -13,7 +15,7 @@ List<String> pics = [
 
 //current note being played
 String currentNote = "";
-bool rightNotePlayed = true;
+ValueNotifier rightNotePlayed = ValueNotifier(false);
 //int timerAmount;
 
 //int numOfStrikes;
