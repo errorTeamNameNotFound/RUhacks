@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ru_hacks/functions/songLoop.dart';
 import 'package:ru_hacks/data/globals.dart' as globals;
 
+import 'Scene1.dart';
+
 class Scene2 extends StatefulWidget {
   @override
   _Scene2State createState() => _Scene2State();
@@ -164,7 +166,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                       return Transform.translate(
                         // Get animated offset
                         offset: Offset(50 + _horizontalMovement.value,
-                            335 - _verticalMovement.value), //Animate this
+                            335 - _verticalMovement.value - MediaQuery.of(context).size.width*0.11), //Animate this
                         child: Container(
                           width: _imageSize,
                           height: _imageSize,
@@ -188,6 +190,30 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
             ),
           ),
           Expanded(
+              flex: 1,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: Image.asset(globals.staffPics[globals.PicsCurSpot]),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Image.asset(globals.staffPics[globals.PicsCurSpot+1]),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Image.asset(globals.staffPics[globals.PicsCurSpot+2]),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Image.asset(globals.staffPics[globals.PicsCurSpot+3]),
+                  ),
+                ],
+              )
+          ),
+          Expanded(
+            flex: 1,
             child: GestureDetector(
               child: Center(
                 child: Container(
@@ -227,7 +253,17 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                               _birdController.forward();
                             });
                           }
-
+                          if (counter == 4) {
+                            globals.PicsCurSpot+=4;
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return Scene1();
+                                },
+                              ),
+                            );
+                          }
                           print(counter);
                           counter++;
                         },

@@ -24,12 +24,15 @@ class _PianoPageState extends State<PianoPage> {
 
   @override
   Widget build(BuildContext context) {
-    PicList.clear();
+    /*PicList.clear();
     songPicture(globals.easySongs.first).forEach((element) {
       PicList.add(
         Image.asset(element),
       );
-    });
+    });*/
+
+    songPicture(globals.easySongs.first);
+    globals.PicsCurSpot=0;
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
