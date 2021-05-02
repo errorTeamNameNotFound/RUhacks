@@ -33,6 +33,14 @@ void songPicture(String song) {
     print("${i+1}: " + noteDurations[i].toString() );
   }
 
+
+  //add till staffPics is a multiple of 4
+  int endRests = 4 - (staffPics.length % 4);
+  for(int i = 0; i < endRests; i++){
+    staffPics.add("assets/staffPics/endStaff.PNG");
+  }
+
+
   //modify global values
   globals.timeToPlay = ((beat * num) * 1000).toInt();
   globals.staffPics = staffPics;
