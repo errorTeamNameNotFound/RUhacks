@@ -10,6 +10,7 @@ void playSound(String note) {
 Future<void> songLoop(String song) async {
   globals.breakOut = false;
   int tempo = int.parse(song.substring(0, 3));
+  tempo = 50;
   song = song.substring(3, song.length);
   //globals.numOfStrikes = 0;
   double tempNum;
@@ -42,8 +43,8 @@ Future<void> songLoop(String song) async {
   print("starting play loop");
   while (i <= song.length.toInt() && !globals.breakOut) {
     timeCheck = 0;
-    // print("$i: " + currentNoteValue.toString());
-    // print("$i: " + currentNoteLetter);
+     print("$i: " + currentNoteValue.toString());
+     print("$i: " + currentNoteLetter);
     tempNum = (beat * currentNoteValue) * 1000;
     timeCheck += tempNum.toInt();
     await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
@@ -61,7 +62,7 @@ Future<void> songLoop(String song) async {
     //print("note to play: " + currentNoteLetter);
 
     //check if user played right note
-    if (/*globals.currentNote == currentNoteLetter*/ true) {
+    if (globals.currentNote == currentNoteLetter /*true*/) {
       //user got it right
       if (globals.rightNotePlayed.value == globals.rightPrevNotif) {
         globals.rightNotePlayed.value++;
@@ -80,14 +81,23 @@ Future<void> songLoop(String song) async {
 
       notesCorrectSoFar++;
     } else {
+      print("before: ${globals.wrongNotePlayed.value} == ${globals.wrongPrevNotif}");
       if (globals.wrongNotePlayed.value == globals.wrongPrevNotif) {
-        globals.rightNotePlayed.value--;
+        globals.wrongNotePlayed.value--;
       }
+      print("after: ${globals.wrongNotePlayed.value} == ${globals.wrongPrevNotif}");
+
       //user got it wrong so reset measure
       i -= notesCorrectSoFar * 2;
+      print("i = ${i}");
       globals.notesCorrectSoFar = notesCorrectSoFar;
       notesCorrectSoFar = 0;
+      currentNoteValue = int.parse(song[i + 1]);
+      print(currentNoteValue);
+      currentNoteLetter = song[i];
+      print(currentNoteLetter);
     }
+    globals.currentNote = 'z';
 
     //check correct sequence
     if (notesCorrectSoFar >= 4) {
