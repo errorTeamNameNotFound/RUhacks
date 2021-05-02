@@ -32,6 +32,9 @@ Future<void> songLoop(String song) async {
     await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
   }
 
+  //timer for animation
+  globals.timerAmount = tempNum.toInt();
+
   print("starting play loop");
   while (i <= song.length.toInt()) {
     print("$i: " + lastNoteValue.toString());
