@@ -14,6 +14,10 @@ import 'package:ru_hacks/functions/notePicture.dart';
 import 'package:ru_hacks/data/globals.dart' as globals;
 
 class PianoPage extends StatefulWidget {
+  String songString;
+
+  PianoPage({this.songString});
+
   @override
   _PianoPageState createState() => _PianoPageState();
 }
@@ -32,7 +36,9 @@ class _PianoPageState extends State<PianoPage> {
       );
     });*/
 
-    songPicture(globals.easySongs.first);
+    print("why? " + widget.songString.toString());
+    songPicture(widget.songString);
+    globals.currSong = widget.songString;
     globals.lastScene = false;
     globals.PicsCurSpot = 0;
     globals.placement = 0;

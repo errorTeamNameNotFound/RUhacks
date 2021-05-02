@@ -23,31 +23,51 @@ DatabaseReference sendData(String test) {
 }
 
 Future<void> getSongs() async {
-  String result;
-  result = (await FirebaseDatabase.instance
-          .reference()
-          .child("Songs/Hard/Russian Dance")
-          .once())
-      .value;
-  globals.hardSongs.add(result);
-  globals.hardSongs.length++;
-  //print(result);
 
-  result = (await FirebaseDatabase.instance
-          .reference()
-          .child("Songs/Easy/Twinkle Twinkle Little Star")
-          .once())
-      .value;
-  globals.easySongs.add(result);
-  globals.easySongs.length++;
-  //print(result);
+  //Easy
+  await FirebaseDatabase.instance
+      .reference()
+      .child("Songs/Easy/")
+      .once()
+      .then((DataSnapshot snapshot) {
+    //pulls titles in order and triples them
+    //print(snapshot.value);
+    //snapshot.value
+    (Map<dynamic, dynamic>.from(snapshot.value)).forEach((key, value) {
+      globals.easySongs.add(value.toString());
+      globals.easyTitles.add(key.toString());
+    });
+  });
 
-  result = (await FirebaseDatabase.instance
-          .reference()
-          .child("Songs/Medium/Long Long Ago")
-          .once())
-      .value;
-  globals.mediumSongs.add(result);
-  globals.mediumSongs.length++;
-  //print(result);
+  //Medium
+  await FirebaseDatabase.instance
+      .reference()
+      .child("Songs/Medium/")
+      .once()
+      .then((DataSnapshot snapshot) {
+    //pulls titles in order and triples them
+    //print(snapshot.value);
+    //snapshot.value
+    (Map<dynamic, dynamic>.from(snapshot.value)).forEach((key, value) {
+      globals.mediumSongs.add(value.toString());
+      globals.mediumTitles.add(key.toString());
+    });
+  });
+
+  //Hard
+  await FirebaseDatabase.instance
+      .reference()
+      .child("Songs/Hard/")
+      .once()
+      .then((DataSnapshot snapshot) {
+    //pulls titles in order and triples them
+    //print(snapshot.value);
+    //snapshot.value
+    (Map<dynamic, dynamic>.from(snapshot.value)).forEach((key, value) {
+      globals.hardSongs.add(value.toString());
+      globals.hardTitles.add(key.toString());
+    });
+  });
+
+  await new Future.delayed(const Duration(seconds: 3));
 }
