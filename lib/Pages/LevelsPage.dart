@@ -30,7 +30,7 @@ class _LevelsPageState extends State<LevelsPage> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return PianoPage(songString: globals.easySongs[0]);
+                return PianoPage(songString: globals.easySongs[0], songName: globals.easyTitles[0]);
               },
             ),
           );
@@ -49,7 +49,7 @@ class _LevelsPageState extends State<LevelsPage> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return PianoPage(songString: globals.easySongs[1]);
+                return PianoPage(songString: globals.easySongs[1], songName: globals.easyTitles[1]);
               },
             ),
           );
@@ -68,7 +68,7 @@ class _LevelsPageState extends State<LevelsPage> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return PianoPage(songString: globals.easySongs[2]);
+                return PianoPage(songString: globals.easySongs[2], songName: globals.easyTitles[2]);
               },
             ),
           );
@@ -83,13 +83,15 @@ class _LevelsPageState extends State<LevelsPage> {
           fit: BoxFit.contain,
         ),
         songTitle: globals.mediumTitles[0],
+
         toSongLevel: () {
           playSound("levelSelected.wav");
+          globals.CurSongName = globals.mediumTitles[0];
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return PianoPage(songString: globals.mediumSongs[0]);
+                return PianoPage(songString: globals.mediumSongs[0], songName: globals.mediumTitles[0]);
               },
             ),
           );
@@ -103,11 +105,12 @@ class _LevelsPageState extends State<LevelsPage> {
         songTitle: globals.mediumTitles[1],
         toSongLevel: () {
           playSound("levelSelected.wav");
+          globals.CurSongName = globals.mediumTitles[1];
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return PianoPage(songString: globals.mediumSongs[1]);
+                return PianoPage(songString: globals.mediumSongs[1], songName: globals.mediumTitles[1]);
               },
             ),
           );
@@ -120,12 +123,13 @@ class _LevelsPageState extends State<LevelsPage> {
         ),
         songTitle: globals.mediumTitles[2],
         toSongLevel: () {
+          globals.CurSongName = globals.mediumTitles[2];
           playSound("levelSelected.wav");
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return PianoPage(songString: globals.mediumSongs[2]);
+                return PianoPage(songString: globals.mediumSongs[2], songName: globals.mediumTitles[2]);
               },
             ),
           );
@@ -142,12 +146,12 @@ class _LevelsPageState extends State<LevelsPage> {
         songTitle: globals.hardTitles[0],
         toSongLevel: () {
           playSound("levelSelected.wav");
-
+          globals.CurSongName = globals.hardTitles[0];
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return PianoPage(songString: globals.hardSongs[0]);
+                return PianoPage(songString: globals.hardSongs[0], songName: globals.hardTitles[0]);
               },
             ),
           );
@@ -161,12 +165,12 @@ class _LevelsPageState extends State<LevelsPage> {
         songTitle: globals.hardTitles[1],
         toSongLevel: () {
           playSound("levelSelected.wav");
-
+          globals.CurSongName = globals.hardTitles[1];
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return PianoPage(songString: globals.hardSongs[1]);
+                return PianoPage(songString: globals.hardSongs[1], songName: globals.hardTitles[1]);
               },
             ),
           );
@@ -180,12 +184,12 @@ class _LevelsPageState extends State<LevelsPage> {
         songTitle: globals.hardTitles[2],
         toSongLevel: () {
           playSound("levelSelected.wav");
-
+          globals.CurSongName = globals.hardTitles[2];
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return PianoPage(songString: globals.hardSongs[2]);
+                return PianoPage(songString: globals.hardSongs[2], songName: globals.hardTitles[2]);
               },
             ),
           );
