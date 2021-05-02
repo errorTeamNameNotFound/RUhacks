@@ -49,6 +49,7 @@ Future<void> songLoop(String song) async {
     //check if user played right note
     if (globals.currentNote == currentNoteLetter) {
       //user got it right
+      globals.rightNotePlayed = true;
       //get next note and value
       if (song.length > 0) {
         lastNoteValue = currentNoteValue;
@@ -62,6 +63,7 @@ Future<void> songLoop(String song) async {
 
       notesCorrectSoFar++;
     } else {
+      globals.rightNotePlayed = false;
       //user got it wrong so reset measure
       i -= notesCorrectSoFar * 2;
       notesCorrectSoFar = 0;
@@ -72,4 +74,9 @@ Future<void> songLoop(String song) async {
       notesCorrectSoFar = 0;
     }
   }
+
+  //correct note till end of song is reached
+  globals.rightNotePlayed = true;
+
+
 }
