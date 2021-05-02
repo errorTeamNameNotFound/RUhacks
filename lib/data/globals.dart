@@ -14,7 +14,7 @@ List<String> pics = [
 //current note being played
 String currentNote = "";
 bool rightNotePlayed = true;
-int timerAmount;
+//int timerAmount;
 
 //int numOfStrikes;
 
