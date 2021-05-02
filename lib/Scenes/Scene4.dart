@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:ru_hacks/CustomWidgets/BlackKeys.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/Scenes/EndScene.dart';
 import 'package:ru_hacks/Scenes/Scene1.dart';
@@ -29,13 +30,12 @@ class _Scene4State extends State<Scene4> with SingleTickerProviderStateMixin {
   Animation<double> _horizontalMovement;
   Animation<double> _verticalMovement;
 
-  void wrongCheckCorrect(value){
+  void wrongCheckCorrect(value) {
     print("wrong: ${value} -- ${globals.wrongPrevNotif}");
-    if (value == globals.wrongPrevNotif)
-    {
+    if (value == globals.wrongPrevNotif) {
       return;
     }
-    if (value < globals.wrongPrevNotif){
+    if (value < globals.wrongPrevNotif) {
       isRight = false;
       if (counter == 1) {
         _horizontalMovement = xFirstRightJump();
@@ -84,10 +84,9 @@ class _Scene4State extends State<Scene4> with SingleTickerProviderStateMixin {
     globals.wrongPrevNotif = globals.wrongNotePlayed.value;
   }
 
-  void rightCheckCorrect(value){
+  void rightCheckCorrect(value) {
     // print("right: ${value} -- ${globals.rightPrevNotif}");
-    if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0)
-    {
+    if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0) {
       return;
     }
     if (value > globals.rightPrevNotif) {
@@ -140,54 +139,58 @@ class _Scene4State extends State<Scene4> with SingleTickerProviderStateMixin {
         } else {
           randInt = rng.nextInt(4);
           //print("Next Scene => ${randInt}");
-          switch(randInt){
-            case 0: {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Scene1();
-                  },
-                ),
-              );
-            }
-            break;
+          switch (randInt) {
+            case 0:
+              {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Scene1();
+                    },
+                  ),
+                );
+              }
+              break;
 
-            case 1: {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Scene2();
-                  },
-                ),
-              );
-            }
-            break;
+            case 1:
+              {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Scene2();
+                    },
+                  ),
+                );
+              }
+              break;
 
-            case 2: {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Scene3();
-                  },
-                ),
-              );
-            }
-            break;
+            case 2:
+              {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Scene3();
+                    },
+                  ),
+                );
+              }
+              break;
 
-            case 3: {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Scene4();
-                  },
-                ),
-              );
-            }
-            break;
+            case 3:
+              {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Scene4();
+                    },
+                  ),
+                );
+              }
+              break;
           }
         }
       }
@@ -251,8 +254,8 @@ class _Scene4State extends State<Scene4> with SingleTickerProviderStateMixin {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: BackButton(
-          onPressed: (){
-            globals.breakOut=true;
+          onPressed: () {
+            globals.breakOut = true;
             Navigator.pop(context);
           },
         ),
@@ -345,31 +348,24 @@ class _Scene4State extends State<Scene4> with SingleTickerProviderStateMixin {
                       ),
                     ),
                   ),
-
-
-                  ValueListenableBuilder(valueListenable: globals.rightNotePlayed,
+                  ValueListenableBuilder(
+                      valueListenable: globals.rightNotePlayed,
                       builder: (context, value, widget) {
                         //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                        WidgetsBinding.instance
-                            .addPostFrameCallback((_) => {
-                          rightCheckCorrect(value)
-                        });
+                        WidgetsBinding.instance.addPostFrameCallback(
+                            (_) => {rightCheckCorrect(value)});
                         //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
                         return Container();
-                      }
-                  ),
-                  ValueListenableBuilder(valueListenable: globals.wrongNotePlayed,
+                      }),
+                  ValueListenableBuilder(
+                      valueListenable: globals.wrongNotePlayed,
                       builder: (context, value, widget) {
                         //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                        WidgetsBinding.instance
-                            .addPostFrameCallback((_) => {
-                          wrongCheckCorrect(value)
-                        });
+                        WidgetsBinding.instance.addPostFrameCallback(
+                            (_) => {wrongCheckCorrect(value)});
                         //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
                         return Container();
-                      }
-                  ),
-
+                      }),
                   AnimatedBuilder(
                     animation: _birdController,
                     builder: (BuildContext context, _) {
@@ -430,7 +426,15 @@ class _Scene4State extends State<Scene4> with SingleTickerProviderStateMixin {
               )),
           Expanded(
             flex: 7, //TODO: FLEX
-            child: PianoKeys(),
+            child: Stack(
+              children: <Widget>[
+                PianoKeys(),
+                BlackKeys(
+                  width: 21,
+                  height: 5.6,
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:ru_hacks/CustomWidgets/BlackKeys.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/Scenes/EndScene.dart';
 import 'package:ru_hacks/Scenes/Scene3.dart';
@@ -436,7 +437,15 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
               )),
           Expanded(
             flex: 7, //TODO: FLEX
-            child: PianoKeys(),
+            child: Stack(
+              children: <Widget>[
+                PianoKeys(),
+                BlackKeys(
+                  width: 21,
+                  height: 5.6,
+                ),
+              ],
+            ),
           ),
         ],
       ),
