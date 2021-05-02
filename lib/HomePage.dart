@@ -84,12 +84,14 @@ class _HomePageState extends State<HomePage> {
                         ),
                         CustomMenuButton(
                           buttonLabel: "Levels",
-                          whenPressed: () {
+                          whenPressed: () async {
                             playSound("uiClick.wav");
+                            await new Future.delayed(const Duration(milliseconds: 50));
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
+
                                   return LevelsPage();
                                 },
                               ),
