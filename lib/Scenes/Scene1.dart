@@ -380,7 +380,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                             335 -
                                 _verticalMovement.value -
                                 MediaQuery.of(context).size.width *
-                                    0.11), //Animate this
+                                    0.10), //Animate this
                         child: Container(
                           width: _imageSize,
                           height: _imageSize,
@@ -520,7 +520,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
         TweenSequenceItem<double>(
             tween: Tween<double>(begin: 200, end: 400), weight: 50),
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 400, end: 200), weight: 50),
+            tween: Tween<double>(begin: 400, end: 300), weight: 50),
       ],
     ).animate(_birdController);
   }

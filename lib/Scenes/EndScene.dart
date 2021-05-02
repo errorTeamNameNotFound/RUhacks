@@ -334,7 +334,7 @@ class _EndSceneState extends State<EndScene>
                             335 -
                                 _verticalMovement.value -
                                 MediaQuery.of(context).size.width *
-                                    0.11), //Animate this
+                                    0.10), //Animate this
                         child: Container(
                           width: _imageSize,
                           height: _imageSize,
@@ -473,7 +473,7 @@ class _EndSceneState extends State<EndScene>
         TweenSequenceItem<double>(
             tween: Tween<double>(begin: 100, end: 200), weight: 50),
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 200, end: 0), weight: 50),
+            tween: Tween<double>(begin: 200, end: -10), weight: 50),
       ],
     ).animate(_birdController);
   }

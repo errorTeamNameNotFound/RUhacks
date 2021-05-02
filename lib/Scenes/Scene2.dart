@@ -386,7 +386,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                             335 -
                                 _verticalMovement.value -
                                 MediaQuery.of(context).size.width *
-                                    0.11), //Animate this
+                                    0.10), //Animate this
                         child: Container(
                           width: _imageSize,
                           height: _imageSize,
