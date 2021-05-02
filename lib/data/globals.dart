@@ -2,8 +2,12 @@
 import 'package:flutter/cupertino.dart';
 
 List<String> easySongs = [];
+List<String> easyTitles = [];
 List<String> mediumSongs = [];
+List<String> mediumTitles = [];
 List<String> hardSongs = [];
+List<String> hardTitles = [];
+String currSong;
 
 //Current Song Name
 String CurSongName = "(Song Title)";

@@ -22,15 +22,15 @@ class _LevelsPageState extends State<LevelsPage> {
           image: NetworkImage(url),
           fit: BoxFit.contain,
         ),
-        songTitle: "Twinkle Twinkle Little Star",
+        songTitle: globals.easyTitles[0],
         toSongLevel: () {
-          globals.CurSongName = "Twinkle Twinkle Little Star";
+          globals.CurSongName = globals.easyTitles[0];
           playSound("levelSelected.wav");
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return PianoPage();
+                return PianoPage(songString: globals.easySongs[0]);
               },
             ),
           );
@@ -41,14 +41,38 @@ class _LevelsPageState extends State<LevelsPage> {
           image: NetworkImage(url),
           fit: BoxFit.contain,
         ),
-        songTitle: "(Easy song)",
+        songTitle: globals.easyTitles[1],
+        toSongLevel: () {
+          globals.CurSongName = globals.easyTitles[1];
+          playSound("levelSelected.wav");
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return PianoPage(songString: globals.easySongs[1]);
+              },
+            ),
+          );
+        },
       ),
       CustomLevelCardButton(
         songImage: Image(
           image: NetworkImage(url),
           fit: BoxFit.contain,
         ),
-        songTitle: "(Easy song)",
+        songTitle: globals.easyTitles[2],
+        toSongLevel: () {
+          globals.CurSongName = globals.easyTitles[2];
+          playSound("levelSelected.wav");
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return PianoPage(songString: globals.easySongs[2]);
+              },
+            ),
+          );
+        },
       ),
     ];
 
@@ -58,14 +82,14 @@ class _LevelsPageState extends State<LevelsPage> {
           image: NetworkImage(url),
           fit: BoxFit.contain,
         ),
-        songTitle: "Long, Long Ago",
+        songTitle: globals.mediumTitles[0],
         toSongLevel: () {
           playSound("levelSelected.wav");
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
-                return PianoPage();
+                return PianoPage(songString: globals.mediumSongs[0]);
               },
             ),
           );
@@ -76,14 +100,36 @@ class _LevelsPageState extends State<LevelsPage> {
           image: NetworkImage(url),
           fit: BoxFit.contain,
         ),
-        songTitle: "(Medium song)",
+        songTitle: globals.mediumTitles[1],
+        toSongLevel: () {
+          playSound("levelSelected.wav");
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return PianoPage(songString: globals.mediumSongs[1]);
+              },
+            ),
+          );
+        },
       ),
       CustomLevelCardButton(
         songImage: Image(
           image: NetworkImage(url),
           fit: BoxFit.contain,
         ),
-        songTitle: "(Medium song)",
+        songTitle: globals.mediumTitles[2],
+        toSongLevel: () {
+          playSound("levelSelected.wav");
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return PianoPage(songString: globals.mediumSongs[2]);
+              },
+            ),
+          );
+        },
       ),
     ];
 
@@ -93,7 +139,7 @@ class _LevelsPageState extends State<LevelsPage> {
           image: NetworkImage(url),
           fit: BoxFit.contain,
         ),
-        songTitle: "Russian Dance",
+        songTitle: globals.hardTitles[0],
         toSongLevel: () {
           playSound("levelSelected.wav");
 
@@ -101,7 +147,7 @@ class _LevelsPageState extends State<LevelsPage> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return PianoPage();
+                return PianoPage(songString: globals.hardSongs[0]);
               },
             ),
           );
@@ -112,14 +158,38 @@ class _LevelsPageState extends State<LevelsPage> {
           image: NetworkImage(url),
           fit: BoxFit.contain,
         ),
-        songTitle: "(Hard song)",
+        songTitle: globals.hardTitles[1],
+        toSongLevel: () {
+          playSound("levelSelected.wav");
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return PianoPage(songString: globals.hardSongs[1]);
+              },
+            ),
+          );
+        },
       ),
       CustomLevelCardButton(
         songImage: Image(
           image: NetworkImage(url),
           fit: BoxFit.contain,
         ),
-        songTitle: "(Hard song)",
+        songTitle: globals.hardTitles[2],
+        toSongLevel: () {
+          playSound("levelSelected.wav");
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return PianoPage(songString: globals.hardSongs[2]);
+              },
+            ),
+          );
+        },
       ),
     ];
 

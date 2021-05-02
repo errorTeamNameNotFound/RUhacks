@@ -138,9 +138,10 @@ class _HomePageState extends State<HomePage>
                         ),
                         CustomMenuButton(
                           buttonLabel: "Levels",
-                          whenPressed: () {
+                          whenPressed: () async {
                             playSound("uiClick.wav");
                             getSongs();
+                            await new Future.delayed(Duration(milliseconds: 1000));
                             Navigator.push(
                               context,
                               MaterialPageRoute(
