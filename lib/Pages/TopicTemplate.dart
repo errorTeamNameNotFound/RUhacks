@@ -1,3 +1,6 @@
+import 'dart:math';
+import 'package:flip_card/flip_card.dart';
+import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:ru_hacks/constants.dart';
 import 'package:ru_hacks/data/TutorialTopicLists.dart';
@@ -16,24 +19,41 @@ class TopicTemplate extends StatefulWidget {
   _TopicTemplateState createState() => _TopicTemplateState();
 }
 
-class _TopicTemplateState extends State<TopicTemplate> {
+class _TopicTemplateState extends State<TopicTemplate>
+    with SingleTickerProviderStateMixin {
   int index = 0;
 
-  //TODO: BUG when it's at the end
+  FlipCardController _cardController;
+
   void addIndex() {
-    if (index <= widget.topicList.length) {
+    playSound("flipSFX.wav");
+    if (index < widget.topicList.length - 1) {
       setState(() {
         index++;
+        _cardController.controller.reverse();
       });
     }
   }
 
   void subIndex() {
+    playSound("flipSFX.wav");
     if (index > 0) {
       setState(() {
         index--;
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _cardController = FlipCardController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _cardController.controller.dispose();
   }
 
   @override
@@ -83,24 +103,53 @@ class _TopicTemplateState extends State<TopicTemplate> {
                     child: Icon(Icons.arrow_back),
                   ),
                 ),
-                Container(
-                  width: MediaQuery.of(context).size.width / kCardHeight,
-                  height: MediaQuery.of(context).size.height / kCardWidth,
-                  decoration: BoxDecoration(
-                    color: kOffWhite,
-                    borderRadius: BorderRadius.circular(20.0),
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 2,
-                        offset: Offset(1, 1),
-                        color: Colors.grey,
+                FlipCard(
+                  controller: _cardController,
+                  direction: FlipDirection.VERTICAL,
+                  front: Container(
+                    width: MediaQuery.of(context).size.width / kCardHeight,
+                    height: MediaQuery.of(context).size.height / kCardWidth,
+                    decoration: BoxDecoration(
+                      color: kOffWhite,
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 2,
+                          offset: Offset(1, 1),
+                          color: Colors.grey,
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: widget.topicList[index].topicImage,
                       ),
-                    ],
+                    ),
                   ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(30.0),
-                      child: widget.topicList[index].topicImage,
+                  back: Container(
+                    width: MediaQuery.of(context).size.width / kCardHeight,
+                    height: MediaQuery.of(context).size.height / kCardWidth,
+                    decoration: BoxDecoration(
+                      color: kOffWhite,
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 2,
+                          offset: Offset(1, 1),
+                          color: Colors.grey,
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: Text(
+                          widget.topicList[index].cardBack,
+                          style: TextStyle(fontSize: 40),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ),
                   ),
                 ),

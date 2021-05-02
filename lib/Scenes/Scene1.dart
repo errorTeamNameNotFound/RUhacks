@@ -4,6 +4,7 @@ import 'package:ru_hacks/Scenes/EndScene.dart';
 import 'package:ru_hacks/Scenes/Scene2.dart';
 import 'package:ru_hacks/Scenes/Scene3.dart';
 import 'package:ru_hacks/Scenes/Scene4.dart';
+import 'package:ru_hacks/constants.dart';
 import 'package:ru_hacks/functions/songLoop.dart';
 import 'dart:math';
 import 'package:ru_hacks/data/globals.dart' as globals;
@@ -22,19 +23,19 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
   int counter = 1;
   var rng = new Random();
   int randInt;
+  bool playButtonDisplayed = true;
 
   AnimationController _birdController;
 
   Animation<double> _horizontalMovement;
   Animation<double> _verticalMovement;
 
-  void wrongCheckCorrect(value){
+  void wrongCheckCorrect(value) {
     print("wrong: ${value} -- ${globals.wrongPrevNotif}");
-    if (value == globals.wrongPrevNotif)
-    {
+    if (value == globals.wrongPrevNotif) {
       return;
     }
-    if (value < globals.wrongPrevNotif){
+    if (value < globals.wrongPrevNotif) {
       isRight = false;
       if (counter == 1) {
         _horizontalMovement = xFirstRightJump();
@@ -83,10 +84,9 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
     globals.wrongPrevNotif = globals.wrongNotePlayed.value;
   }
 
-  void rightCheckCorrect(value){
-   // print("right: ${value} -- ${globals.rightPrevNotif}");
-    if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0)
-    {
+  void rightCheckCorrect(value) {
+    // print("right: ${value} -- ${globals.rightPrevNotif}");
+    if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0) {
       return;
     }
     if (value > globals.rightPrevNotif) {
@@ -139,60 +139,64 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
         } else {
           randInt = rng.nextInt(4);
           //print("Next Scene => ${randInt}");
-          switch(randInt){
-            case 0: {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Scene1();
-                  },
-                ),
-              );
-            }
-            break;
+          switch (randInt) {
+            case 0:
+              {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Scene1();
+                    },
+                  ),
+                );
+              }
+              break;
 
-            case 1: {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Scene2();
-                  },
-                ),
-              );
-            }
-            break;
+            case 1:
+              {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Scene2();
+                    },
+                  ),
+                );
+              }
+              break;
 
-            case 2: {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Scene3();
-                  },
-                ),
-              );
-            }
-            break;
+            case 2:
+              {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Scene3();
+                    },
+                  ),
+                );
+              }
+              break;
 
-            case 3: {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Scene4();
-                  },
-                ),
-              );
-            }
-            break;
+            case 3:
+              {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Scene4();
+                    },
+                  ),
+                );
+              }
+              break;
           }
         }
       }
       counter++;
     }
-   // print(counter);
+    // print(counter);
     //print("rightPrevNotif ${globals.rightPrevNotif} => ${globals.rightNotePlayed.value}");
     globals.rightPrevNotif = globals.rightNotePlayed.value;
   }
@@ -250,189 +254,213 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: BackButton(
-          onPressed: (){
-            globals.breakOut=true;
+          onPressed: () {
+            globals.breakOut = true;
             Navigator.pop(context);
           },
         ),
         title: Text(
-           globals.CurSongName,
-           style: TextStyle(
-               fontSize: 25, fontWeight: FontWeight.bold, letterSpacing: 2),
-         ),
-         backgroundColor: Colors.transparent,
-         elevation: 0,
-       ),
-      body: Column(
+          globals.CurSongName,
+          style: TextStyle(
+              fontSize: 25, fontWeight: FontWeight.bold, letterSpacing: 2),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Stack(
         children: <Widget>[
-          Expanded(
-            flex: 12, //TODO: FLEX
-            child: GestureDetector(
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          "assets/birdy/background.png",
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 50,
-                    bottom: 10 + (verticalDistance + 0),
-                    child: Container(
-                      width: _imageSize,
-                      height: _imageSize,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "assets/birdy/branch.png",
+          Column(
+            children: <Widget>[
+              Expanded(
+                flex: 12, //TODO: FLEX
+                child: GestureDetector(
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                              "assets/birdy/background.png",
+                            ),
+                            fit: BoxFit.cover,
                           ),
-                          fit: BoxFit.cover,
                         ),
                       ),
-                    ),
-                  ),
-                  //TODO: make these branches into a list and output with list view builder
-                  //TODO: possible make into its own custom widget
-                  Positioned(
-                    left: 50 + horizontalDistance,
-                    bottom: 10 + (verticalDistance + 0),
-                    child: Container(
-                      width: _imageSize,
-                      height: _imageSize,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "assets/birdy/branch.png",
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 50 + (horizontalDistance * 3),
-                    bottom: 10 + (verticalDistance + 300),
-                    child: Container(
-                      width: _imageSize,
-                      height: _imageSize,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "assets/birdy/branch.png",
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 50 + (horizontalDistance * 2),
-                    bottom: 10 + (verticalDistance + 200),
-                    child: Container(
-                      width: _imageSize,
-                      height: _imageSize,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "assets/birdy/branch.png",
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  ValueListenableBuilder(valueListenable: globals.rightNotePlayed,
-                      builder: (context, value, widget) {
-                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                        WidgetsBinding.instance
-                            .addPostFrameCallback((_) => {
-                          rightCheckCorrect(value)
-                        });
-                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                        return Container();
-                      }
-                  ),
-                  ValueListenableBuilder(valueListenable: globals.wrongNotePlayed,
-                      builder: (context, value, widget) {
-                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                        WidgetsBinding.instance
-                            .addPostFrameCallback((_) => {
-                          wrongCheckCorrect(value)
-                        });
-                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                        return Container();
-                      }
-                  ),
-
-                  AnimatedBuilder(
-                    animation: _birdController,
-                    builder: (BuildContext context, _) {
-                      return Transform.translate(
-                        // Get animated offset
-                        offset: Offset(
-                            50 + _horizontalMovement.value,
-                            335 -
-                                _verticalMovement.value -
-                                MediaQuery.of(context).size.width *
-                                    0.10), //Animate this
+                      Positioned(
+                        left: 50,
+                        bottom: 10 + (verticalDistance + 0),
                         child: Container(
                           width: _imageSize,
                           height: _imageSize,
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
-                                "assets/birdy/$_imageDisplayed.png",
+                                "assets/birdy/branch.png",
                               ),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-              onTap: () {
-                songLoop(globals.currSong);
-              },
-            ),
-          ),
-          Expanded(
-              flex: 5, //TODO: FLEX
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Image.asset(globals.staffPics[globals.PicsCurSpot]),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child:
-                    Image.asset(globals.staffPics[globals.PicsCurSpot + 1]),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child:
-                    Image.asset(globals.staffPics[globals.PicsCurSpot + 2]),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child:
-                    Image.asset(globals.staffPics[globals.PicsCurSpot + 3]),
-                  ),
-                ],
-              )),
+                      ),
+                      //TODO: make these branches into a list and output with list view builder
+                      //TODO: possible make into its own custom widget
+                      Positioned(
+                        left: 50 + horizontalDistance,
+                        bottom: 10 + (verticalDistance + 0),
+                        child: Container(
+                          width: _imageSize,
+                          height: _imageSize,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "assets/birdy/branch.png",
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 50 + (horizontalDistance * 3),
+                        bottom: 10 + (verticalDistance + 300),
+                        child: Container(
+                          width: _imageSize,
+                          height: _imageSize,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "assets/birdy/branch.png",
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 50 + (horizontalDistance * 2),
+                        bottom: 10 + (verticalDistance + 200),
+                        child: Container(
+                          width: _imageSize,
+                          height: _imageSize,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "assets/birdy/branch.png",
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
 
-          Expanded(
-            flex: 7, //TODO: FLEX
-            child: PianoKeys(),
+                      ValueListenableBuilder(
+                          valueListenable: globals.rightNotePlayed,
+                          builder: (context, value, widget) {
+                            //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                            WidgetsBinding.instance.addPostFrameCallback(
+                                (_) => {rightCheckCorrect(value)});
+                            //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                            return Container();
+                          }),
+                      ValueListenableBuilder(
+                          valueListenable: globals.wrongNotePlayed,
+                          builder: (context, value, widget) {
+                            //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                            WidgetsBinding.instance.addPostFrameCallback(
+                                (_) => {wrongCheckCorrect(value)});
+                            //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                            return Container();
+                          }),
+
+                      AnimatedBuilder(
+                        animation: _birdController,
+                        builder: (BuildContext context, _) {
+                          return Transform.translate(
+                            // Get animated offset
+                            offset: Offset(
+                                50 + _horizontalMovement.value,
+                                335 -
+                                    _verticalMovement.value -
+                                    MediaQuery.of(context).size.width *
+                                        0.10), //Animate this
+                            child: Container(
+                              width: _imageSize,
+                              height: _imageSize,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    "assets/birdy/$_imageDisplayed.png",
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  // onTap: () {
+                  //   songLoop(globals.currSong);
+                  // },
+                ),
+              ),
+              Expanded(
+                  flex: 5, //TODO: FLEX
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 1,
+                        child:
+                            Image.asset(globals.staffPics[globals.PicsCurSpot]),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Image.asset(
+                            globals.staffPics[globals.PicsCurSpot + 1]),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Image.asset(
+                            globals.staffPics[globals.PicsCurSpot + 2]),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Image.asset(
+                            globals.staffPics[globals.PicsCurSpot + 3]),
+                      ),
+                    ],
+                  )),
+              Expanded(
+                flex: 7, //TODO: FLEX
+                child: PianoKeys(),
+              ),
+            ],
           ),
+          //TODO: Add Play button
+          playButtonDisplayed
+              ? Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(60),
+                      color: Colors.grey[400].withOpacity(0.8),
+                    ),
+                    child: IconButton(
+                      onPressed: () {
+                        songLoop(globals.easySongs.first);
+                        setState(() {
+                          playButtonDisplayed = false;
+                        });
+                      },
+                      iconSize: 100,
+                      icon: Icon(
+                        Icons.play_arrow,
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                  ),
+                )
+              : SizedBox(),
         ],
       ),
     );

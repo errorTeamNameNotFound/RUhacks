@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+    playSound("homepageMusic.mp3");
     _logoController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 800),
@@ -44,8 +45,8 @@ class _HomePageState extends State<HomePage>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
+    _logoController.dispose();
   }
 
   @override
@@ -105,15 +106,6 @@ class _HomePageState extends State<HomePage>
                     );
                   },
                 ),
-
-                // child: Container(
-                //   child: Center(
-                //     child: Image.asset(
-                //       "assets/birdy/logo.png",
-                //     ),
-                //     //child: Text("(Character Picture)"),
-                //   ),
-                // ),
               ),
               //Buttons
               Expanded(
@@ -134,6 +126,7 @@ class _HomePageState extends State<HomePage>
                                 },
                               ),
                             );
+                            stopSound();
                           },
                         ),
                         CustomMenuButton(
@@ -150,6 +143,7 @@ class _HomePageState extends State<HomePage>
                                 },
                               ),
                             );
+                            stopSound();
                           },
                         ),
                         CustomMenuButton(
@@ -164,6 +158,7 @@ class _HomePageState extends State<HomePage>
                                 },
                               ),
                             );
+                            stopSound();
                           },
                         ),
                       ],
