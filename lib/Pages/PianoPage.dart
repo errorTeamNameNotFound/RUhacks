@@ -32,7 +32,8 @@ class _PianoPageState extends State<PianoPage> {
     });*/
 
     songPicture(globals.easySongs.first);
-    globals.PicsCurSpot = 0;
+    globals.lastScene = false;
+    globals.PicsCurSpot=0;
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(

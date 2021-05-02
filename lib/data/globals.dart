@@ -19,6 +19,7 @@ String currentNote = "";
 //time to play in milliseconds
 int timeToPlay;
 int PicsCurSpot = 0;
+bool lastScene = false;
 
 //list for slider
 List<String> staffPics = [];

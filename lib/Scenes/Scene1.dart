@@ -242,14 +242,34 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                           }
                           if (counter == 4) {
                             globals.PicsCurSpot+=4;
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return Scene2();
-                                },
-                              ),
-                            );
+                            print("${globals.PicsCurSpot} - ${globals.staffPics.length}");
+                            if(globals.staffPics.length - globals.PicsCurSpot == 4)
+                              {
+                                print("Next Scene is Final Scene");
+                                globals.lastScene = true;
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return Scene2();
+                                    },
+                                  ),
+                                );
+                              }else if(globals.lastScene)
+                              {
+                                print("Last Scene!!!!!");
+                                Navigator.pop(context);
+                              } else
+                                {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return Scene2();
+                                      },
+                                    ),
+                                  );
+                                }
                           }
                           print(counter);
                           counter++;

@@ -255,14 +255,34 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                           }
                           if (counter == 4) {
                             globals.PicsCurSpot+=4;
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return Scene1();
-                                },
-                              ),
-                            );
+                            print("${globals.PicsCurSpot} - ${globals.staffPics.length}");
+                            if(globals.staffPics.length - globals.PicsCurSpot == 4)
+                            {
+                              print("Next Scene is Final Scene");
+                              globals.lastScene = true;
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return Scene2();
+                                  },
+                                ),
+                              );
+                            }else if(globals.lastScene)
+                            {
+                              print("Last Scene!!!!!");
+                              Navigator.pop(context);
+                            } else
+                            {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return Scene1();
+                                  },
+                                ),
+                              );
+                            }
                           }
                           print(counter);
                           counter++;
