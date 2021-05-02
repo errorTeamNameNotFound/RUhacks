@@ -9,4 +9,13 @@ List<String> pics = ["assets/staffPics/a1.PNG", "assets/staffPics/a1.PNG", "asse
 
 //current note being played
 String currentNote = "";
+
 int numOfStrikes;
+
+//time to play in milliseconds
+int timeToPlay;
+
+
+//list for slider
+List<String> staffPics = [];
+List<int> noteDurations = [];
