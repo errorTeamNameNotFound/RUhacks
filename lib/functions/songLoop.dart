@@ -79,6 +79,7 @@ Future<void> songLoop(String song) async {
       globals.rightNotePlayed = false;
       //user got it wrong so reset measure
       i -= notesCorrectSoFar * 2;
+      globals.notesCorrectSoFar = notesCorrectSoFar;
       notesCorrectSoFar = 0;
     }
 

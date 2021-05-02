@@ -26,3 +26,7 @@ bool lastScene = false;
 //list for slider
 List<String> staffPics = [];
 List<int> noteDurations = [];
+
+//scene animation variables
+int placement;
+int notesCorrectSoFar;
