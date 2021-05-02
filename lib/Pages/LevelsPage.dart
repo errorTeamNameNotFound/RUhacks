@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ru_hacks/CustomWidgets/CustomLevelCardButton.dart';
 import 'package:ru_hacks/Pages/PianoPage.dart';
 import 'package:ru_hacks/constants.dart';
+import 'package:ru_hacks/data/globals.dart' as globals;
 
 //debugging purposes
 String url =
@@ -23,6 +24,7 @@ class _LevelsPageState extends State<LevelsPage> {
         ),
         songTitle: "Twinkle Twinkle Little Star",
         toSongLevel: () {
+          globals.CurSongName = "Twinkle Twinkle Little Star";
           playSound("levelSelected.wav");
           Navigator.push(
             context,
