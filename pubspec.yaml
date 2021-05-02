@@ -41,6 +41,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   simple_animations: ^3.1.1
   supercharged: ^2.0.0
+  rnd: ^0.1.0
   flip_card: ^0.5.0
 
 dev_dependencies:

@@ -226,6 +226,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.1"
+  rnd:
+    dependency: "direct main"
+    description:
+      name: rnd
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   simple_animations:
     dependency: "direct main"
     description:
