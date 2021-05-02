@@ -78,12 +78,13 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
   }
 
   void rightCheckCorrect(value){
-    print("${value} -- ${globals.rightPrevNotif}");
-    if (value == globals.rightPrevNotif)
+    print("right: ${value} -- ${globals.rightPrevNotif}");
+    if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0)
     {
       return;
     }
     if (value > globals.rightPrevNotif) {
+      isRight = true;
       if (counter == 1) {
         _horizontalMovement = xFirstRightJump();
         _verticalMovement = yFirstRightJump();
@@ -143,6 +144,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
       counter++;
     }
     print(counter);
+    print("rightPrevNotif ${globals.rightPrevNotif} => ${globals.rightNotePlayed.value}");
     globals.rightPrevNotif = globals.rightNotePlayed.value;
   }
 
