@@ -13,6 +13,7 @@ List<String> pics = [
 
 //current note being played
 String currentNote = "";
+bool rightNotePlayed = true;
 
 //int numOfStrikes;
 
