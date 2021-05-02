@@ -369,7 +369,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
         TweenSequenceItem<double>(
             tween: Tween<double>(begin: 0, end: 200), weight: 60),
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 200, end: -20), weight: 40),
+            tween: Tween<double>(begin: 200, end: -28), weight: 40),
       ],
     ).animate(_birdController);
   }
@@ -400,7 +400,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
         TweenSequenceItem<double>(
             tween: Tween<double>(begin: 0, end: 300), weight: 40),
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 300, end: -20), weight: 60),
+            tween: Tween<double>(begin: 300, end: -28), weight: 60),
       ],
     ).animate(_birdController);
   }
@@ -431,7 +431,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
         TweenSequenceItem<double>(
             tween: Tween<double>(begin: 200, end: 400), weight: 40),
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 400, end: -20), weight: 60),
+            tween: Tween<double>(begin: 400, end: -28), weight: 60),
       ],
     ).animate(_birdController);
   }
