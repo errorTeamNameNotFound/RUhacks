@@ -21,10 +21,7 @@ class PianoPage extends StatefulWidget {
 class _PianoPageState extends State<PianoPage> {
   List<Widget> PicList = [];
   final scrollController = ScrollController();
-
-  // String _imageDisplayed = "default";
-  // double _imageSize = 200;
-  // double distanceBetween = 50;
+  bool playButtonDisplayed = true;
 
   @override
   Widget build(BuildContext context) {
@@ -41,138 +38,34 @@ class _PianoPageState extends State<PianoPage> {
     globals.placement = 0;
 
     return Scaffold(
-
-      body: Scene1(),
-      // body: Column(
-      //   crossAxisAlignment: CrossAxisAlignment.stretch,
-      //   children: <Widget>[
-      //     SideScroller(),
-      //     // Expanded(
-      //     //   child: GestureDetector(
-      //     //     child: Center(
-      //     //       child: Container(
-      //     //         child: Row(
-      //     //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //     //           crossAxisAlignment: CrossAxisAlignment.center,
-      //     //           children: <Widget>[
-      //     //             ElevatedButton(
-      //     //               onPressed: () {},
-      //     //               child: Text(
-      //     //                 "Right",
-      //     //                 style: TextStyle(fontSize: 50),
-      //     //               ),
-      //     //             ),
-      //     //             ElevatedButton(
-      //     //               onPressed: () {},
-      //     //               child: Text(
-      //     //                 "Wrong",
-      //     //                 style: TextStyle(fontSize: 50),
-      //     //               ),
-      //     //             ),
-      //     //           ],
-      //     //         ),
-      //     //       ),
-      //     //     ),
-      //     //   ),
-      //     // ),
-      //
-      //     //This is where the piano will go
-      //     // Expanded(
-      //     //   child: Stack(
-      //     //     children: <Widget>[
-      //     //       //TODO: Uncomment later
-      //     //       //PianoKeys(),
-      //     //
-      //     //       //TODO: Uncomment this after everything has been finalized
-      //     //       // Positioned(
-      //     //       //   left: 49,
-      //     //       //   child: BlackKeys(),
-      //     //       // ),
-      //     //     ],
-      //     //   ),
-      //     // ),
-      //   ],
-      // ),
-// =======
-//       body: Column(
-//         crossAxisAlignment: CrossAxisAlignment.stretch,
-//         children: <Widget>[
-//           Expanded(
-//             flex: 5,
-//             child: Column(
-//               children: <Widget>[
-//                 //This is where the game area will go
-//                 SideScroller(),
-//                 //debugging purposes
-
-//                 Container(
-//                   width: 2000,
-//                   height: 200,
-//                   child: ListView(
-//                     controller: scrollController,
-//                     scrollDirection: Axis.horizontal,
-//                     children: PicList
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//           Expanded(
-//             flex: 2,
-//             child: GestureDetector(
-//               //color: Colors.grey,
-//               child: Center(
-//                 //   child: Text("Side Scroller"),
-//                 // ),
-
-//                 child: Container(
-//                   child: Row(
-//                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                     crossAxisAlignment: CrossAxisAlignment.center,
-//                     children: <Widget>[
-//                       ElevatedButton(
-//                         onPressed: () {
-//                           songLoop(globals.easySongs.first);
-//                         },
-//                         child: Text(
-//                           "Right",
-//                           style: TextStyle(fontSize: 50),
-//                         ),
-//                       ),
-//                       ElevatedButton(
-//                         onPressed: () {
-//                           songPicture(globals.easySongs.first);
-//                         },
-//                         child: Text(
-//                           "Wrong",
-//                           style: TextStyle(fontSize: 50),
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ),
-
-//               //This is where the piano will go
-//               // Expanded(
-//               //   child: Stack(
-//               //     children: <Widget>[
-//               //       //TODO: Uncomment later
-//               //       //PianoKeys(),
-//               //
-//               //       //TODO: Uncomment this after everything has been finalized
-//               //       // Positioned(
-//               //       //   left: 49,
-//               //       //   child: BlackKeys(),
-//               //       // ),
-//               //     ],
-//               //   ),
-//               // ),
-//             ),
-//           ),
-//         ],
-//       ),
-// >>>>>>> master
+      body: Stack(
+        children: [
+          Scene1(),
+          playButtonDisplayed
+              ? Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(60),
+                      color: Colors.grey[400].withOpacity(0.8),
+                    ),
+                    child: IconButton(
+                      onPressed: () {
+                        songLoop(globals.easySongs.first);
+                        setState(() {
+                          playButtonDisplayed = false;
+                        });
+                      },
+                      iconSize: 100,
+                      icon: Icon(
+                        Icons.play_arrow,
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                  ),
+                )
+              : SizedBox(),
+        ],
+      ),
     );
   }
 }
