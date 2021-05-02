@@ -13,18 +13,66 @@ class PianoKeys extends StatefulWidget {
 
 class _PianoKeysState extends State<PianoKeys> {
   List<KeyClass> keys = [
-    KeyClass(keyLabel: "E", keyColor: kOffWhite, soundFileName: "Base E.mp3", keyValue: "e"),
-    KeyClass(keyLabel: "F", keyColor: kOffWhite, soundFileName: "Base F.mp3", keyValue: "f"),
-    KeyClass(keyLabel: "G", keyColor: kOffWhite, soundFileName: "Base G.mp3", keyValue: "g"),
-    KeyClass(keyLabel: "A", keyColor: kOffWhite, soundFileName: "Base A.mp3", keyValue: "a"),
-    KeyClass(keyLabel: "B", keyColor: kOffWhite, soundFileName: "Base B.mp3", keyValue: "b"),
-    KeyClass(keyLabel: "C", keyColor: kOffWhite, soundFileName: "Base C.mp3", keyValue: "C"),
-    KeyClass(keyLabel: "D", keyColor: kOffWhite, soundFileName: "Treble D.mp3", keyValue: "D"),
-    KeyClass(keyLabel: "E", keyColor: kOffWhite, soundFileName: "Treble E.mp3", keyValue: "E"),
-    KeyClass(keyLabel: "F", keyColor: kOffWhite, soundFileName: "Treble F.mp3", keyValue: "F"),
-    KeyClass(keyLabel: "G", keyColor: kOffWhite, soundFileName: "Treble G.mp3", keyValue: "G"),
-    KeyClass(keyLabel: "A", keyColor: kOffWhite, soundFileName: "Treble A.mp3", keyValue: "A"),
-    KeyClass(keyLabel: "B", keyColor: kOffWhite, soundFileName: "Treble B.mp3", keyValue: "B"),
+    KeyClass(
+        keyLabel: "E",
+        keyColor: kOffWhite,
+        soundFileName: "Base E.mp3",
+        keyValue: "e"),
+    KeyClass(
+        keyLabel: "F",
+        keyColor: kOffWhite,
+        soundFileName: "Base F.mp3",
+        keyValue: "f"),
+    KeyClass(
+        keyLabel: "G",
+        keyColor: kOffWhite,
+        soundFileName: "Base G.mp3",
+        keyValue: "g"),
+    KeyClass(
+        keyLabel: "A",
+        keyColor: kOffWhite,
+        soundFileName: "Base A.mp3",
+        keyValue: "a"),
+    KeyClass(
+        keyLabel: "B",
+        keyColor: kOffWhite,
+        soundFileName: "Base B.mp3",
+        keyValue: "b"),
+    KeyClass(
+        keyLabel: "C",
+        keyColor: kOffWhite,
+        soundFileName: "Base C.mp3",
+        keyValue: "C"),
+    KeyClass(
+        keyLabel: "D",
+        keyColor: kOffWhite,
+        soundFileName: "Treble D.mp3",
+        keyValue: "D"),
+    KeyClass(
+        keyLabel: "E",
+        keyColor: kOffWhite,
+        soundFileName: "Treble E.mp3",
+        keyValue: "E"),
+    KeyClass(
+        keyLabel: "F",
+        keyColor: kOffWhite,
+        soundFileName: "Treble F.mp3",
+        keyValue: "F"),
+    KeyClass(
+        keyLabel: "G",
+        keyColor: kOffWhite,
+        soundFileName: "Treble G.mp3",
+        keyValue: "G"),
+    KeyClass(
+        keyLabel: "A",
+        keyColor: kOffWhite,
+        soundFileName: "Treble A.mp3",
+        keyValue: "A"),
+    KeyClass(
+        keyLabel: "B",
+        keyColor: kOffWhite,
+        soundFileName: "Treble B.mp3",
+        keyValue: "B"),
   ];
 
   bool _isPressed = false;

@@ -21,10 +21,10 @@ Future<void> songLoop(String song) async {
   int currentNoteValue = int.parse(song[1]);
   String currentNoteLetter = song[0];
   //song = song.substring(2, song.length);
-  i+=2;
+  i += 2;
 
   //TODO call a clik 4 times for countoff after start is pressed
-  for(int i = 0; i < 4; i++){
+  for (int i = 0; i < 4; i++) {
     playSound("uiClick.wav");
     print(i.toString());
     tempNum = (beat) * 1000;
@@ -34,7 +34,7 @@ Future<void> songLoop(String song) async {
 
   print("starting play loop");
 
-  while ( song.length <= 0) {
+  while (song.length <= 0) {
     tempNum = (beat * lastNoteValue) * 1000;
     await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
 
@@ -52,12 +52,12 @@ Future<void> songLoop(String song) async {
       //get next note and value
       if (song.length > 0) {
         lastNoteValue = currentNoteValue;
-        currentNoteValue = int.parse(song[i+1]);
+        currentNoteValue = int.parse(song[i + 1]);
         //print(currentNoteValue);
         currentNoteLetter = song[i];
         //print(currentNoteLetter);
         //song = song.substring(2, song.length);
-        i+=2;
+        i += 2;
       }
 
       notesCorrectSoFar++;
@@ -68,9 +68,8 @@ Future<void> songLoop(String song) async {
     }
 
     //check correct sequence
-    if(notesCorrectSoFar >= 4){
+    if (notesCorrectSoFar >= 4) {
       notesCorrectSoFar = 0;
     }
-
-    }
   }
+}
