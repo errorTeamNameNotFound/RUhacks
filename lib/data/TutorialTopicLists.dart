@@ -74,4 +74,54 @@ List<TopicItem> rhythmTopicList = [
   ),
 ];
 
-List<TopicItem> trebleNotesTopicList = [];
+List<TopicItem> trebleNotesTopicList = [
+  TopicItem(
+    topicLabel: "E",
+    topicImage: Image(
+      image: AssetImage("assets/trebleNotes/trebleNoteE.png"),
+      fit: BoxFit.contain,
+    ),
+  ),
+  TopicItem(
+    topicLabel: "F",
+    topicImage: Image(
+      image: AssetImage("assets/trebleNotes/trebleNoteF.png"),
+      fit: BoxFit.contain,
+    ),
+  ),
+  TopicItem(
+    topicLabel: "G",
+    topicImage: Image(
+      image: AssetImage("assets/trebleNotes/trebleNoteG.png"),
+      fit: BoxFit.contain,
+    ),
+  ),
+  TopicItem(
+    topicLabel: "A",
+    topicImage: Image(
+      image: AssetImage("assets/trebleNotes/trebleNoteA.png"),
+      fit: BoxFit.contain,
+    ),
+  ),
+  TopicItem(
+    topicLabel: "B",
+    topicImage: Image(
+      image: AssetImage("assets/trebleNotes/trebleNoteB.png"),
+      fit: BoxFit.contain,
+    ),
+  ),
+  TopicItem(
+    topicLabel: "C",
+    topicImage: Image(
+      image: AssetImage("assets/trebleNotes/trebleNoteC.png"),
+      fit: BoxFit.contain,
+    ),
+  ),
+  TopicItem(
+    topicLabel: "D",
+    topicImage: Image(
+      image: AssetImage("assets/trebleNotes/trebleNoteD.png"),
+      fit: BoxFit.contain,
+    ),
+  ),
+];
