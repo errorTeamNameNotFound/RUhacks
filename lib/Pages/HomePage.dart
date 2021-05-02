@@ -14,10 +14,37 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  void playSound(String fileName) {
-    final player = AudioCache();
-    player.play(fileName);
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  AnimationController _logoController;
+  Animation<double> _rotate;
+
+  @override
+  void initState() {
+    super.initState();
+    _logoController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 800),
+    );
+
+    _rotate = TweenSequence(
+      <TweenSequenceItem<double>>[
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: -0.1, end: 0.1),
+          weight: 50,
+        ),
+      ],
+    ).animate(_logoController);
+
+    _logoController.repeat(
+      reverse: true,
+    );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -60,14 +87,32 @@ class _HomePageState extends State<HomePage> {
               ),
               Expanded(
                 flex: 2,
-                child: Container(
-                  child: Center(
-                    child: Image.asset(
-                      "assets/birdy/logo.png",
-                    ),
-                    //child: Text("(Character Picture)"),
-                  ),
+                child: AnimatedBuilder(
+                  animation: _logoController,
+                  builder: (BuildContext context, _) {
+                    return Transform.rotate(
+                      // Get animated offset
+                      angle: _rotate.value,
+                      child: Container(
+                        child: Center(
+                          child: Image.asset(
+                            "assets/birdy/logo.png",
+                          ),
+                          //child: Text("(Character Picture)"),
+                        ),
+                      ),
+                    );
+                  },
                 ),
+
+                // child: Container(
+                //   child: Center(
+                //     child: Image.asset(
+                //       "assets/birdy/logo.png",
+                //     ),
+                //     //child: Text("(Character Picture)"),
+                //   ),
+                // ),
               ),
               //Buttons
               Expanded(
@@ -79,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                         CustomMenuButton(
                           buttonLabel: "Freestyle",
                           whenPressed: () {
-                            //playSound("uiClick.wav");
+                            playSound("uiClick.wav");
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -93,8 +138,7 @@ class _HomePageState extends State<HomePage> {
                         CustomMenuButton(
                           buttonLabel: "Levels",
                           whenPressed: () {
-                            //playSound("uiClick.wav");
-
+                            playSound("uiClick.wav");
                             getSongs();
                             Navigator.push(
                               context,
@@ -109,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                         CustomMenuButton(
                           buttonLabel: "Tutorials",
                           whenPressed: () {
-                            //playSound("uiClick.wav");
+                            playSound("uiClick.wav");
                             Navigator.push(
                               context,
                               MaterialPageRoute(

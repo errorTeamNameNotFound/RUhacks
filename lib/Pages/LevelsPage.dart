@@ -23,6 +23,7 @@ class _LevelsPageState extends State<LevelsPage> {
         ),
         songTitle: "Twinkle Twinkle Little Star",
         toSongLevel: () {
+          playSound("levelSelected.wav");
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -57,6 +58,7 @@ class _LevelsPageState extends State<LevelsPage> {
         ),
         songTitle: "Long, Long Ago",
         toSongLevel: () {
+          playSound("levelSelected.wav");
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -91,6 +93,8 @@ class _LevelsPageState extends State<LevelsPage> {
         ),
         songTitle: "Russian Dance",
         toSongLevel: () {
+          playSound("levelSelected.wav");
+
           Navigator.push(
             context,
             MaterialPageRoute(
