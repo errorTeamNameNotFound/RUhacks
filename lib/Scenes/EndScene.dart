@@ -63,6 +63,12 @@ class _EndSceneState extends State<EndScene>
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _birdController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
