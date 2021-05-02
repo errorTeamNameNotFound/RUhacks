@@ -3,73 +3,82 @@ import 'package:ru_hacks/constants.dart';
 
 class BlackKeys extends StatelessWidget {
   Color blackKeyColor = kSemiBlack;
+  final width;
+  final height;
+
+  BlackKeys({this.width, this.height});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        SizedBox(
-          width: 98,
-        ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
-          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
+          width: MediaQuery.of(context).size.width / 30,
+          height: MediaQuery.of(context).size.height / height,
           color: blackKeyColor,
         ),
         SizedBox(
-          width: 23,
+          width: 130,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
-          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
+          width: MediaQuery.of(context).size.width / width,
+          height: MediaQuery.of(context).size.height / height,
           color: blackKeyColor,
         ),
         SizedBox(
-          width: 23,
+          width: 30,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
-          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
+          width: MediaQuery.of(context).size.width / width,
+          height: MediaQuery.of(context).size.height / height,
+          color: blackKeyColor,
+        ),
+        SizedBox(
+          width: 30,
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width / width,
+          height: MediaQuery.of(context).size.height / height,
           color: blackKeyColor,
         ),
         SizedBox(
           width: 135,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
-          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
+          width: MediaQuery.of(context).size.width / width,
+          height: MediaQuery.of(context).size.height / height,
           color: blackKeyColor,
         ),
         SizedBox(
-          width: 23,
+          width: 30,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
-          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
+          width: MediaQuery.of(context).size.width / width,
+          height: MediaQuery.of(context).size.height / height,
           color: blackKeyColor,
         ),
         SizedBox(
-          width: 125,
+          width: 135,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
-          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
+          width: MediaQuery.of(context).size.width / width,
+          height: MediaQuery.of(context).size.height / height,
           color: blackKeyColor,
         ),
         SizedBox(
-          width: 25,
+          width: 30,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
-          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
+          width: MediaQuery.of(context).size.width / width,
+          height: MediaQuery.of(context).size.height / height,
           color: blackKeyColor,
         ),
         SizedBox(
-          width: 25,
+          width: 30,
         ),
         Container(
-          width: MediaQuery.of(context).size.width / kBlackKeyWidth,
-          height: MediaQuery.of(context).size.height / kBlackKeyHeight,
+          width: MediaQuery.of(context).size.width / width,
+          height: MediaQuery.of(context).size.height / height,
           color: blackKeyColor,
         ),
       ],
