@@ -14,9 +14,6 @@ class PianoKeys extends StatefulWidget {
 }
 
 class _PianoKeysState extends State<PianoKeys> {
-
-
-
   List<KeyClass> keys = [
     KeyClass(
         keyLabel: "E",
@@ -109,16 +106,14 @@ class _PianoKeysState extends State<PianoKeys> {
   Widget makePiano(String label, int index, String soundFileName) {
     return GestureDetector(
       onTap: () {
-        //TODO: create feedback by changing container color upon press
         setState(() {
           _isPressed = true;
           playSound(soundFileName);
           keys[index].keyColor = Colors.grey[400];
           globals.currentNote = keys[index].keyValue;
-          if(widget.notifyParent != null){
+          if (widget.notifyParent != null) {
             widget.notifyParent();
           }
-
         });
 
         Future.delayed(const Duration(milliseconds: 100), () {

@@ -30,14 +30,12 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
   Animation<double> _horizontalMovement;
   Animation<double> _verticalMovement;
 
-
-  void wrongCheckCorrect(value){
+  void wrongCheckCorrect(value) {
     print("wrong: ${value} -- ${globals.wrongPrevNotif}");
-    if (value == globals.wrongPrevNotif)
-    {
+    if (value == globals.wrongPrevNotif) {
       return;
     }
-    if (value < globals.wrongPrevNotif){
+    if (value < globals.wrongPrevNotif) {
       isRight = false;
       if (counter == 1) {
         _horizontalMovement = xFirstRightJump();
@@ -86,10 +84,9 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
     globals.wrongPrevNotif = globals.wrongNotePlayed.value;
   }
 
-  void rightCheckCorrect(value){
+  void rightCheckCorrect(value) {
     // print("right: ${value} -- ${globals.rightPrevNotif}");
-    if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0)
-    {
+    if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0) {
       return;
     }
     if (value > globals.rightPrevNotif) {
@@ -142,54 +139,58 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
         } else {
           randInt = rng.nextInt(4);
           //print("Next Scene => ${randInt}");
-          switch(randInt){
-            case 0: {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Scene1();
-                  },
-                ),
-              );
-            }
-            break;
+          switch (randInt) {
+            case 0:
+              {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Scene1();
+                    },
+                  ),
+                );
+              }
+              break;
 
-            case 1: {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Scene2();
-                  },
-                ),
-              );
-            }
-            break;
+            case 1:
+              {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Scene2();
+                    },
+                  ),
+                );
+              }
+              break;
 
-            case 2: {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Scene3();
-                  },
-                ),
-              );
-            }
-            break;
+            case 2:
+              {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Scene3();
+                    },
+                  ),
+                );
+              }
+              break;
 
-            case 3: {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Scene4();
-                  },
-                ),
-              );
-            }
-            break;
+            case 3:
+              {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Scene4();
+                    },
+                  ),
+                );
+              }
+              break;
           }
         }
       }
@@ -199,8 +200,6 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
     //print("rightPrevNotif ${globals.rightPrevNotif} => ${globals.rightNotePlayed.value}");
     globals.rightPrevNotif = globals.rightNotePlayed.value;
   }
-
-
 
   @override
   void initState() {
@@ -256,8 +255,8 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: BackButton(
-          onPressed: (){
-            globals.breakOut=true;
+          onPressed: () {
+            globals.breakOut = true;
             Navigator.pop(context);
           },
         ),
@@ -273,143 +272,141 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
         children: <Widget>[
           Expanded(
             flex: 12, //TODO: FLEX
-            child: GestureDetector(
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          "assets/birdy/background.png",
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 50,
-                    bottom: 10 + (verticalDistance + 200),
-                    child: Container(
-                      width: _imageSize,
-                      height: _imageSize,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "assets/birdy/branch.png",
+            child: Stack(
+              children: <Widget>[
+                GestureDetector(
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                              "assets/birdy/background.png",
+                            ),
+                            fit: BoxFit.cover,
                           ),
-                          fit: BoxFit.cover,
                         ),
                       ),
-                    ),
-                  ),
-                  //TODO: make these branches into a list and output with list view builder
-                  //TODO: possible make into its own custom widget
-                  Positioned(
-                    left: 50 + horizontalDistance,
-                    bottom: 10 + (verticalDistance),
-                    child: Container(
-                      width: _imageSize,
-                      height: _imageSize,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "assets/birdy/branch.png",
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 50 + (horizontalDistance * 3),
-                    bottom: 10 + (verticalDistance + 300),
-                    child: Container(
-                      width: _imageSize,
-                      height: _imageSize,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "assets/birdy/branch.png",
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 50 + (horizontalDistance * 2),
-                    bottom: 10 + (verticalDistance + 200),
-                    child: Container(
-                      width: _imageSize,
-                      height: _imageSize,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            "assets/birdy/branch.png",
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  ValueListenableBuilder(valueListenable: globals.rightNotePlayed,
-                      builder: (context, value, widget) {
-                        // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                        WidgetsBinding.instance
-                            .addPostFrameCallback((_) => {
-                          rightCheckCorrect(value)
-                        });
-                        // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                        return Container();
-                      }
-                  ),
-
-                  ValueListenableBuilder(valueListenable: globals.rightNotePlayed,
-                      builder: (context, value, widget) {
-                        // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                        WidgetsBinding.instance
-                            .addPostFrameCallback((_) => {
-                          wrongCheckCorrect(value)
-                        });
-                        // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
-                        return Container();
-                      }
-                  ),
-
-
-
-                  AnimatedBuilder(
-                    animation: _birdController,
-                    builder: (BuildContext context, _) {
-                      return Transform.translate(
-                        // Get animated offset
-                        offset: Offset(
-                            50 + _horizontalMovement.value,
-                            335 -
-                                _verticalMovement.value -
-                                MediaQuery.of(context).size.width *
-                                    0.10), //Animate this
+                      Positioned(
+                        left: 50,
+                        bottom: 10 + (verticalDistance + 200),
                         child: Container(
                           width: _imageSize,
                           height: _imageSize,
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
-                                "assets/birdy/$_imageDisplayed.png",
+                                "assets/birdy/branch.png",
                               ),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                      );
-                    },
+                      ),
+                      //TODO: make these branches into a list and output with list view builder
+                      //TODO: possible make into its own custom widget
+                      Positioned(
+                        left: 50 + horizontalDistance,
+                        bottom: 10 + (verticalDistance),
+                        child: Container(
+                          width: _imageSize,
+                          height: _imageSize,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "assets/birdy/branch.png",
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 50 + (horizontalDistance * 3),
+                        bottom: 10 + (verticalDistance + 300),
+                        child: Container(
+                          width: _imageSize,
+                          height: _imageSize,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "assets/birdy/branch.png",
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 50 + (horizontalDistance * 2),
+                        bottom: 10 + (verticalDistance + 200),
+                        child: Container(
+                          width: _imageSize,
+                          height: _imageSize,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "assets/birdy/branch.png",
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      ValueListenableBuilder(
+                          valueListenable: globals.rightNotePlayed,
+                          builder: (context, value, widget) {
+                            // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                            WidgetsBinding.instance.addPostFrameCallback(
+                                (_) => {rightCheckCorrect(value)});
+                            // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                            return Container();
+                          }),
+
+                      ValueListenableBuilder(
+                          valueListenable: globals.rightNotePlayed,
+                          builder: (context, value, widget) {
+                            // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                            WidgetsBinding.instance.addPostFrameCallback(
+                                (_) => {wrongCheckCorrect(value)});
+                            // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                            return Container();
+                          }),
+
+                      AnimatedBuilder(
+                        animation: _birdController,
+                        builder: (BuildContext context, _) {
+                          return Transform.translate(
+                            // Get animated offset
+                            offset: Offset(
+                                50 + _horizontalMovement.value,
+                                335 -
+                                    _verticalMovement.value -
+                                    MediaQuery.of(context).size.width *
+                                        0.10), //Animate this
+                            child: Container(
+                              width: _imageSize,
+                              height: _imageSize,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    "assets/birdy/$_imageDisplayed.png",
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              onTap: () {
-                songLoop(globals.easySongs.first);
-              },
+                  onTap: () {
+                    songLoop(globals.easySongs.first);
+                  },
+                ),
+              ],
             ),
           ),
           Expanded(
@@ -423,21 +420,20 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                   Expanded(
                     flex: 1,
                     child:
-                    Image.asset(globals.staffPics[globals.PicsCurSpot + 1]),
+                        Image.asset(globals.staffPics[globals.PicsCurSpot + 1]),
                   ),
                   Expanded(
                     flex: 1,
                     child:
-                    Image.asset(globals.staffPics[globals.PicsCurSpot + 2]),
+                        Image.asset(globals.staffPics[globals.PicsCurSpot + 2]),
                   ),
                   Expanded(
                     flex: 1,
                     child:
-                    Image.asset(globals.staffPics[globals.PicsCurSpot + 3]),
+                        Image.asset(globals.staffPics[globals.PicsCurSpot + 3]),
                   ),
                 ],
               )),
-
           Expanded(
             flex: 7, //TODO: FLEX
             child: PianoKeys(),
