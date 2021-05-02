@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/Scenes/Scene2.dart';
 import 'package:ru_hacks/functions/songLoop.dart';
 import 'package:ru_hacks/data/globals.dart' as globals;
 
-class Scene1 extends StatefulWidget {
+class Scene3 extends StatefulWidget {
   @override
-  _Scene1State createState() => _Scene1State();
+  _Scene3State createState() => _Scene3State();
 }
 
-class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
+class _Scene3State extends State<Scene3> with SingleTickerProviderStateMixin {
   String _imageDisplayed = "default";
   double _imageSize = 200;
   double horizontalDistance = 250;
@@ -65,20 +64,10 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: Text(
-          "(Song Title)",
-          style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.bold, letterSpacing: 2),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 12,                //TODO: FLEX
+            flex: 2,
             child: GestureDetector(
               child: Stack(
                 children: <Widget>[
@@ -108,11 +97,9 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                       ),
                     ),
                   ),
-                  //TODO: make these branches into a list and output with list view builder
-                  //TODO: possible make into its own custom widget
                   Positioned(
                     left: 50 + horizontalDistance,
-                    bottom: 10 + (verticalDistance + 0),
+                    bottom: 10 + (verticalDistance + 200),
                     child: Container(
                       width: _imageSize,
                       height: _imageSize,
@@ -128,7 +115,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                   ),
                   Positioned(
                     left: 50 + (horizontalDistance * 3),
-                    bottom: 10 + (verticalDistance + 300),
+                    bottom: 10 + (verticalDistance + 200),
                     child: Container(
                       width: _imageSize,
                       height: _imageSize,
@@ -144,7 +131,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                   ),
                   Positioned(
                     left: 50 + (horizontalDistance * 2),
-                    bottom: 10 + (verticalDistance + 200),
+                    bottom: 10 + (verticalDistance + 0),
                     child: Container(
                       width: _imageSize,
                       height: _imageSize,
@@ -158,7 +145,6 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                       ),
                     ),
                   ),
-
                   AnimatedBuilder(
                     animation: _birdController,
                     builder: (BuildContext context, _) {
@@ -193,7 +179,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
             ),
           ),
           Expanded(
-              flex: 5,                //TODO: FLEX
+              flex: 1,
               child: Row(
                 children: <Widget>[
                   Expanded(
@@ -218,7 +204,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                 ],
               )),
           Expanded(
-            flex: 3,
+            flex: 1,
             child: GestureDetector(
               child: Center(
                 child: Container(
@@ -229,7 +215,6 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                       ElevatedButton(
                         onPressed: () {
                           isRight = true;
-
                           if (counter == 1) {
                             _horizontalMovement = xFirstRightJump();
                             _verticalMovement = yFirstRightJump();
@@ -283,7 +268,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return Scene1();
+                                    return Scene2();
                                   },
                                 ),
                               );
@@ -356,10 +341,6 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
               ),
             ),
           ),
-          Expanded(
-            flex: 7,                //TODO: FLEX
-            child: PianoKeys(),
-          ),
         ],
       ),
     );
@@ -379,9 +360,9 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
     return TweenSequence(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 0, end: 200), weight: 50),
+            tween: Tween<double>(begin: 0, end: 300), weight: 50),
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 200, end: 0), weight: 50),
+            tween: Tween<double>(begin: 300, end: 200), weight: 50),
       ],
     ).animate(_birdController);
   }
@@ -390,9 +371,9 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
     return TweenSequence(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 0, end: 200), weight: 60),
+            tween: Tween<double>(begin: 0, end: 300), weight: 60),
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 200, end: -28), weight: 40),
+            tween: Tween<double>(begin: 300, end: -28), weight: 40),
       ],
     ).animate(_birdController);
   }
@@ -412,9 +393,9 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
     return TweenSequence(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 0, end: 300), weight: 50),
+            tween: Tween<double>(begin: 200, end: 350), weight: 50),
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 300, end: 200), weight: 50),
+            tween: Tween<double>(begin: 350, end: 0), weight: 50),
       ],
     ).animate(_birdController);
   }
@@ -423,9 +404,9 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
     return TweenSequence(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 0, end: 300), weight: 40),
+            tween: Tween<double>(begin: 200, end: 350), weight: 40),
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 300, end: -28), weight: 60),
+            tween: Tween<double>(begin: 350, end: -28), weight: 60),
       ],
     ).animate(_birdController);
   }
@@ -445,9 +426,9 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
     return TweenSequence(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 200, end: 400), weight: 50),
+            tween: Tween<double>(begin: 0, end: 300), weight: 50),
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 400, end: 200), weight: 50),
+            tween: Tween<double>(begin: 300, end: 200), weight: 50),
       ],
     ).animate(_birdController);
   }
@@ -456,9 +437,9 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
     return TweenSequence(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 200, end: 400), weight: 40),
+            tween: Tween<double>(begin: 0, end: 300), weight: 40),
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 400, end: -28), weight: 60),
+            tween: Tween<double>(begin: 300, end: -28), weight: 60),
       ],
     ).animate(_birdController);
   }
