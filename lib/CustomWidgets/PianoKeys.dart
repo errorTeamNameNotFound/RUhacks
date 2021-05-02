@@ -109,6 +109,7 @@ class _PianoKeysState extends State<PianoKeys> {
           _isPressed = true;
           playSound(soundFileName);
           keys[index].keyColor = Colors.grey[400];
+          globals.currentNote = keys[index].keyValue;
         });
 
         Future.delayed(const Duration(milliseconds: 100), () {
