@@ -10,7 +10,7 @@ List<String> pics = ["assets/staffPics/a1.PNG", "assets/staffPics/a1.PNG", "asse
 //current note being played
 String currentNote = "";
 
-int numOfStrikes;
+//int numOfStrikes;
 
 //time to play in milliseconds
 int timeToPlay;
