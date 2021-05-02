@@ -36,24 +36,6 @@ class _PianoPageState extends State<PianoPage> {
     globals.PicsCurSpot=0;
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //songLoop(globals.easySongs.first);
-          scrollController.animateTo(PicList.length.toDouble() * 350,
-              duration: Duration(milliseconds: 2000), curve: Curves.ease);
-          //TODO
-        },
-      ),
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: Text(
-          "(Song Title)",
-          style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.bold, letterSpacing: 2),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: Scene1(),
       // body: Column(
       //   crossAxisAlignment: CrossAxisAlignment.stretch,
