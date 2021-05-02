@@ -4,7 +4,7 @@ import 'package:ru_hacks/data/globals.dart' as globals;
 Future<void> songLoop(String song) async {
   int tempo = int.parse(song.substring(0, 3));
   song = song.substring(3, song.length);
-  int strikes = 0;
+  globals.numOfStrikes = 0;
   double num;
 
   double beat = 60 / tempo;
@@ -46,7 +46,7 @@ Future<void> songLoop(String song) async {
 
   //TODO call a clik 4 times for countoff after start is pressed
 
-  while (strikes < 3 || song.length <= 0) {
+  while (globals.numOfStrikes < 3 || song.length <= 0) {
     num = (beat * lastNoteValue) * 1000;
     await new Future.delayed(Duration(milliseconds: num.toInt()));
 
@@ -63,7 +63,7 @@ Future<void> songLoop(String song) async {
       //user got it right
     } else {
       //user got it wrong so add a strike
-      //strikes++;
+      //globals.numOfStrikes++;
     }
 
     //get next 4 note pictures
