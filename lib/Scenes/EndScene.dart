@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/Scenes/Scene2.dart';
+import 'package:ru_hacks/Scenes/Scene4.dart';
 import 'package:ru_hacks/functions/songLoop.dart';
 import 'package:ru_hacks/data/globals.dart' as globals;
 
@@ -21,6 +23,134 @@ class _EndSceneState extends State<EndScene>
 
   Animation<double> _horizontalMovement;
   Animation<double> _verticalMovement;
+
+
+  void wrongCheckCorrect(value){
+    print("wrong: ${value} -- ${globals.wrongPrevNotif}");
+    if (value == globals.wrongPrevNotif)
+    {
+      return;
+    }
+    if (value < globals.wrongPrevNotif){
+      isRight = false;
+      if (counter == 1) {
+        _horizontalMovement = xFirstRightJump();
+        _verticalMovement = yFirstWrongJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+
+        counter = 1;
+      }
+      if (counter == 2) {
+        _horizontalMovement = xSecondRightJump();
+        _verticalMovement = ySecondWrongJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+
+        counter = 1;
+      }
+
+      if (counter == 3) {
+        _horizontalMovement = xThirdRightJump();
+        _verticalMovement = yThirdWrongJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+
+        counter = 1;
+      }
+      if (counter == 4) {
+        setState(() {
+          print("shocked!!!!!!!!!!!!!!!!!!!!!!!");
+          _imageDisplayed = "shocked";
+        });
+
+        counter = 1;
+      }
+    }
+    print(counter);
+    globals.wrongPrevNotif = globals.wrongNotePlayed.value;
+  }
+
+  void rightCheckCorrect(value){
+    print("right: ${value} -- ${globals.rightPrevNotif}");
+    if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0)
+    {
+      return;
+    }
+    if (value > globals.rightPrevNotif) {
+      isRight = true;
+      if (counter == 1) {
+        _horizontalMovement = xFirstRightJump();
+        _verticalMovement = yFirstRightJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+      }
+      if (counter == 2) {
+        _horizontalMovement = xSecondRightJump();
+        _verticalMovement = ySecondRightJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+      }
+
+      if (counter == 3) {
+        _horizontalMovement = xThirdRightJump();
+        _verticalMovement = yThirdRightJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+      }
+      if (counter == 4) {
+        globals.PicsCurSpot += 4;
+        print("${globals.PicsCurSpot} - ${globals.staffPics.length}");
+        if (globals.staffPics.length - globals.PicsCurSpot == 4) {
+          print("Next Scene is Final Scene");
+          globals.lastScene = true;
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return EndScene();
+              },
+            ),
+          );
+        } else if (globals.lastScene) {
+          print("Last Scene!!!!!");
+          Navigator.pop(context);
+        } else {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return EndScene();
+              },
+            ),
+          );
+        }
+      }
+      counter++;
+    }
+    print(counter);
+    print("rightPrevNotif ${globals.rightPrevNotif} => ${globals.rightNotePlayed.value}");
+    globals.rightPrevNotif = globals.rightNotePlayed.value;
+  }
+
 
   @override
   void initState() {
@@ -71,10 +201,27 @@ class _EndSceneState extends State<EndScene>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: BackButton(
+          onPressed: (){
+            globals.breakOut=true;
+            Navigator.pop(context);
+          },
+        ),
+        title: Text(
+          globals.CurSongName,
+          style: TextStyle(
+              fontSize: 25, fontWeight: FontWeight.bold, letterSpacing: 2),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 2,
+            flex: 12,
             child: GestureDetector(
               child: Stack(
                 children: <Widget>[
@@ -152,6 +299,31 @@ class _EndSceneState extends State<EndScene>
                       ),
                     ),
                   ),
+
+                  ValueListenableBuilder(valueListenable: globals.rightNotePlayed,
+                      builder: (context, value, widget) {
+                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        WidgetsBinding.instance
+                            .addPostFrameCallback((_) => {
+                          rightCheckCorrect(value)
+                        });
+                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        return Container();
+                      }
+                  ),
+                  ValueListenableBuilder(valueListenable: globals.wrongNotePlayed,
+                      builder: (context, value, widget) {
+                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        WidgetsBinding.instance
+                            .addPostFrameCallback((_) => {
+                          wrongCheckCorrect(value)
+                        });
+                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        return Container();
+                      }
+                  ),
+
+
                   AnimatedBuilder(
                     animation: _birdController,
                     builder: (BuildContext context, _) {
@@ -186,7 +358,7 @@ class _EndSceneState extends State<EndScene>
             ),
           ),
           Expanded(
-              flex: 1,
+              flex: 5,
               child: Row(
                 children: <Widget>[
                   Expanded(
@@ -211,142 +383,8 @@ class _EndSceneState extends State<EndScene>
                 ],
               )),
           Expanded(
-            flex: 1,
-            child: GestureDetector(
-              child: Center(
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      ElevatedButton(
-                        onPressed: () {
-                          isRight = true;
-                          if (counter == 1) {
-                            _horizontalMovement = xFirstRightJump();
-                            _verticalMovement = yFirstRightJump();
-
-                            setState(() {
-                              _birdController.reset();
-                              _birdController.forward();
-                            });
-                          }
-                          if (counter == 2) {
-                            _horizontalMovement = xSecondRightJump();
-                            _verticalMovement = ySecondRightJump();
-
-                            setState(() {
-                              _birdController.reset();
-                              _birdController.forward();
-                            });
-                          }
-
-                          if (counter == 3) {
-                            _horizontalMovement = xThirdRightJump();
-                            _verticalMovement = yThirdRightJump();
-
-                            setState(() {
-                              _birdController.reset();
-                              _birdController.forward();
-                            });
-                          }
-                          if (counter == 4) {
-                            globals.PicsCurSpot += 4;
-                            print(
-                                "${globals.PicsCurSpot} - ${globals.staffPics.length}");
-                            if (globals.staffPics.length -
-                                    globals.PicsCurSpot ==
-                                4) {
-                              print("Next Scene is Final Scene");
-                              globals.lastScene = true;
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return Scene2();
-                                  },
-                                ),
-                              );
-                            } else if (globals.lastScene) {
-                              print("Last Scene!!!!!");
-                              Navigator.pop(context);
-                            } else {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return Scene2();
-                                  },
-                                ),
-                              );
-                            }
-                          }
-                          print(counter);
-                          counter++;
-                        },
-                        child: Text(
-                          "Right",
-                          style: TextStyle(fontSize: 50),
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          isRight = false;
-
-                          if (counter == 1) {
-                            _horizontalMovement = xFirstRightJump();
-                            _verticalMovement = yFirstWrongJump();
-
-                            setState(() {
-                              _birdController.reset();
-                              _birdController.forward();
-                            });
-
-                            counter = 1;
-                          }
-                          if (counter == 2) {
-                            _horizontalMovement = xSecondRightJump();
-                            _verticalMovement = ySecondWrongJump();
-
-                            setState(() {
-                              _birdController.reset();
-                              _birdController.forward();
-                            });
-
-                            counter = 1;
-                          }
-
-                          if (counter == 3) {
-                            _horizontalMovement = xThirdRightJump();
-                            _verticalMovement = yThirdWrongJump();
-
-                            setState(() {
-                              _birdController.reset();
-                              _birdController.forward();
-                            });
-
-                            counter = 1;
-                          }
-                          if (counter == 4) {
-                            setState(() {
-                              _imageDisplayed = "shocked";
-                            });
-
-                            counter = 1;
-                          }
-                          print(counter);
-                          // counter = 1;
-                        },
-                        child: Text(
-                          "Wrong",
-                          style: TextStyle(fontSize: 50),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            flex: 7, //TODO: FLEX
+            child: PianoKeys(),
           ),
         ],
       ),

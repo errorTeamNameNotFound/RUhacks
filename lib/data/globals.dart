@@ -5,6 +5,9 @@ List<String> easySongs = [];
 List<String> mediumSongs = [];
 List<String> hardSongs = [];
 
+//Current Song Name
+String CurSongName = "(Song Title)";
+
 //pics
 List<String> pics = [
   "assets/staffPics/a1.PNG",

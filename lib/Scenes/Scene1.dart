@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
+import 'package:ru_hacks/Scenes/EndScene.dart';
 import 'package:ru_hacks/Scenes/Scene2.dart';
+import 'package:ru_hacks/Scenes/Scene3.dart';
+import 'package:ru_hacks/Scenes/Scene4.dart';
 import 'package:ru_hacks/functions/songLoop.dart';
+import 'dart:math';
 import 'package:ru_hacks/data/globals.dart' as globals;
 
 class Scene1 extends StatefulWidget {
@@ -16,6 +20,8 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
   double verticalDistance = -15;
   bool isRight = false;
   int counter = 1;
+  var rng = new Random();
+  int randInt;
 
   AnimationController _birdController;
 
@@ -123,7 +129,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return Scene2();
+                return EndScene();
               },
             ),
           );
@@ -131,14 +137,57 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
           print("Last Scene!!!!!");
           Navigator.pop(context);
         } else {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return Scene2();
-              },
-            ),
-          );
+          randInt = rng.nextInt(4);
+          print("Next Scene => ${randInt}");
+          switch(randInt){
+            case 0: {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return Scene1();
+                  },
+                ),
+              );
+            }
+            break;
+
+            case 1: {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return Scene2();
+                  },
+                ),
+              );
+            }
+            break;
+
+            case 2: {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return Scene3();
+                  },
+                ),
+              );
+            }
+            break;
+
+            case 3: {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return Scene4();
+                  },
+                ),
+              );
+            }
+            break;
+          }
         }
       }
       counter++;
@@ -207,7 +256,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
           },
         ),
         title: Text(
-           "(Song Title)",
+           globals.CurSongName,
            style: TextStyle(
                fontSize: 25, fontWeight: FontWeight.bold, letterSpacing: 2),
          ),

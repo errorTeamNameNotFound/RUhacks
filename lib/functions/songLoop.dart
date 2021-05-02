@@ -105,6 +105,9 @@ if(!globals.breakOut)
       globals.rightNotePlayed.value++;
     }
   }
-
+  globals.rightPrevNotif = 1000;
+  globals.wrongPrevNotif = 1000;
+  globals.rightNotePlayed.value = 1000;
+  globals.wrongNotePlayed.value = 1000;
   globals.breakOut = false;
 }
