@@ -10,7 +10,6 @@ void playSound(String note) {
 Future<void> songLoop(String song) async {
   globals.breakOut = false;
   int tempo = int.parse(song.substring(0, 3));
-  tempo = 50;
   song = song.substring(3, song.length);
   //globals.numOfStrikes = 0;
   double tempNum;

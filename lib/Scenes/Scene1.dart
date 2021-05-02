@@ -401,7 +401,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                     ],
                   ),
                   // onTap: () {
-                  //   songLoop(globals.easySongs.first);
+                  //   songLoop(globals.currSong);
                   // },
                 ),
               ),
