@@ -29,6 +29,7 @@ class _Scene3State extends State<Scene3> with SingleTickerProviderStateMixin {
   Animation<double> _horizontalMovement;
   Animation<double> _verticalMovement;
 
+
   void wrongCheckCorrect(value){
     print("wrong: ${value} -- ${globals.wrongPrevNotif}");
     if (value == globals.wrongPrevNotif)
@@ -73,7 +74,7 @@ class _Scene3State extends State<Scene3> with SingleTickerProviderStateMixin {
       }
       if (counter == 4) {
         setState(() {
-          print("shocked!!!!!!!!!!!!!!!!!!!!!!!");
+          //print("shocked!!!!!!!!!!!!!!!!!!!!!!!");
           _imageDisplayed = "shocked";
         });
 
@@ -85,7 +86,7 @@ class _Scene3State extends State<Scene3> with SingleTickerProviderStateMixin {
   }
 
   void rightCheckCorrect(value){
-    print("right: ${value} -- ${globals.rightPrevNotif}");
+    // print("right: ${value} -- ${globals.rightPrevNotif}");
     if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0)
     {
       return;
@@ -139,64 +140,65 @@ class _Scene3State extends State<Scene3> with SingleTickerProviderStateMixin {
           Navigator.pop(context);
         } else {
           randInt = rng.nextInt(4);
+          //print("Next Scene => ${randInt}");
+          switch(randInt){
+            case 0: {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return Scene1();
+                  },
+                ),
+              );
+            }
+            break;
 
-        switch(randInt){
-          case 0: {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return Scene1();
-                },
-              ),
-            );
-          }
-          break;
+            case 1: {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return Scene2();
+                  },
+                ),
+              );
+            }
+            break;
 
-          case 1: {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return Scene2();
-                },
-              ),
-            );
-          }
-          break;
+            case 2: {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return Scene3();
+                  },
+                ),
+              );
+            }
+            break;
 
-          case 2: {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return Scene3();
-                },
-              ),
-            );
+            case 3: {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return Scene4();
+                  },
+                ),
+              );
+            }
+            break;
           }
-          break;
-
-          case 3: {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return Scene4();
-                },
-              ),
-            );
-          }
-          break;
-        }
         }
       }
       counter++;
     }
-    print(counter);
-    print("rightPrevNotif ${globals.rightPrevNotif} => ${globals.rightNotePlayed.value}");
+    // print(counter);
+    //print("rightPrevNotif ${globals.rightPrevNotif} => ${globals.rightNotePlayed.value}");
     globals.rightPrevNotif = globals.rightNotePlayed.value;
   }
+
 
   @override
   void initState() {

@@ -72,7 +72,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
       }
       if (counter == 4) {
         setState(() {
-          print("shocked!!!!!!!!!!!!!!!!!!!!!!!");
+          //print("shocked!!!!!!!!!!!!!!!!!!!!!!!");
           _imageDisplayed = "shocked";
         });
 
@@ -84,7 +84,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
   }
 
   void rightCheckCorrect(value){
-    print("right: ${value} -- ${globals.rightPrevNotif}");
+   // print("right: ${value} -- ${globals.rightPrevNotif}");
     if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0)
     {
       return;
@@ -138,7 +138,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
           Navigator.pop(context);
         } else {
           randInt = rng.nextInt(4);
-          print("Next Scene => ${randInt}");
+          //print("Next Scene => ${randInt}");
           switch(randInt){
             case 0: {
               Navigator.pushReplacement(
@@ -192,8 +192,8 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
       }
       counter++;
     }
-    print(counter);
-    print("rightPrevNotif ${globals.rightPrevNotif} => ${globals.rightNotePlayed.value}");
+   // print(counter);
+    //print("rightPrevNotif ${globals.rightPrevNotif} => ${globals.rightNotePlayed.value}");
     globals.rightPrevNotif = globals.rightNotePlayed.value;
   }
 

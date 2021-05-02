@@ -30,13 +30,15 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
   Animation<double> _horizontalMovement;
   Animation<double> _verticalMovement;
 
+
   void wrongCheckCorrect(value){
-    print("${value} -- ${globals.wrongPrevNotif}");
+    print("wrong: ${value} -- ${globals.wrongPrevNotif}");
     if (value == globals.wrongPrevNotif)
     {
       return;
     }
     if (value < globals.wrongPrevNotif){
+      isRight = false;
       if (counter == 1) {
         _horizontalMovement = xFirstRightJump();
         _verticalMovement = yFirstWrongJump();
@@ -73,7 +75,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
       }
       if (counter == 4) {
         setState(() {
-          print("shocked!!!!!!!!!!!!!!!!!!!!!!!");
+          //print("shocked!!!!!!!!!!!!!!!!!!!!!!!");
           _imageDisplayed = "shocked";
         });
 
@@ -84,8 +86,8 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
     globals.wrongPrevNotif = globals.wrongNotePlayed.value;
   }
 
-  Future<void> rightCheckCorrect(value) async {
-    print("right: ${value} -- ${globals.rightPrevNotif}");
+  void rightCheckCorrect(value){
+    // print("right: ${value} -- ${globals.rightPrevNotif}");
     if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0)
     {
       return;
@@ -139,7 +141,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
           Navigator.pop(context);
         } else {
           randInt = rng.nextInt(4);
-          print("Next Scene => ${randInt}");
+          //print("Next Scene => ${randInt}");
           switch(randInt){
             case 0: {
               Navigator.pushReplacement(
@@ -193,10 +195,11 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
       }
       counter++;
     }
-    print(counter);
-    print("rightPrevNotif ${globals.rightPrevNotif} => ${globals.rightNotePlayed.value}");
+    // print(counter);
+    //print("rightPrevNotif ${globals.rightPrevNotif} => ${globals.rightNotePlayed.value}");
     globals.rightPrevNotif = globals.rightNotePlayed.value;
   }
+
 
 
   @override
