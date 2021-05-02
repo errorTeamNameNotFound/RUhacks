@@ -22,23 +22,13 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
   Animation<double> _horizontalMovement;
   Animation<double> _verticalMovement;
 
-  void checkCorrect(value) {
-    print("value: " +value.toString() +"     prev: " + globals.previousNotifier.toString());
-
-    bool valueBool;
-    if (value == globals.previousNotifier) {
-      return;
-    } else {
-      if (value > globals.previousNotifier) {
-        valueBool = true;
-        globals.previousNotifier = value;
-      } else {
-        valueBool = false;
-        globals.previousNotifier = value;
+  void checkCorrect(value){
+    print("${value} -- ${globals.prevNotif}");
+    if (value == globals.prevNotif)
+      {
+        return;
       }
-    }
-
-    if (valueBool) {
+    if (value > globals.prevNotif) {
       if (counter == 1) {
         _horizontalMovement = xFirstRightJump();
         _verticalMovement = yFirstRightJump();
@@ -95,7 +85,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
           );
         }
       }
-    } else {
+    } else if (value < globals.prevNotif){
       if (counter == 1) {
         _horizontalMovement = xFirstRightJump();
         _verticalMovement = yFirstWrongJump();
@@ -132,6 +122,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
       }
       if (counter == 4) {
         setState(() {
+          print("shocked!!!!!!!!!!!!!!!!!!!!!!!");
           _imageDisplayed = "shocked";
         });
 
@@ -140,6 +131,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
     }
     print(counter);
     counter++;
+    globals.prevNotif = globals.rightNotePlayed.value;
   }
 
   @override
@@ -288,11 +280,12 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                   ValueListenableBuilder(
                       valueListenable: globals.rightNotePlayed,
                       builder: (context, value, widget) {
-                        print("weird print 1");
+                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
                         WidgetsBinding.instance
-                            .addPostFrameCallback((_) => {checkCorrect(value)});
-                        print("weird print 2");
-
+                            .addPostFrameCallback((_) => {
+                              checkCorrect(value)
+                        });
+                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
                         return Container();
                       }),
 
@@ -354,145 +347,6 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                   ),
                 ],
               )),
-          Expanded(
-            flex: 3,
-            child: GestureDetector(
-              child: Center(
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      ElevatedButton(
-                        onPressed: () {
-                          isRight = true;
-
-                          if (counter == 1) {
-                            _horizontalMovement = xFirstRightJump();
-                            _verticalMovement = yFirstRightJump();
-
-                            setState(() {
-                              _birdController.reset();
-                              _birdController.forward();
-                            });
-                          }
-                          if (counter == 2) {
-                            _horizontalMovement = xSecondRightJump();
-                            _verticalMovement = ySecondRightJump();
-
-                            setState(() {
-                              _birdController.reset();
-                              _birdController.forward();
-                            });
-                          }
-
-                          if (counter == 3) {
-                            _horizontalMovement = xThirdRightJump();
-                            _verticalMovement = yThirdRightJump();
-
-                            setState(() {
-                              _birdController.reset();
-                              _birdController.forward();
-                            });
-                          }
-                          if (counter == 4) {
-                            globals.PicsCurSpot += 4;
-                            print(
-                                "${globals.PicsCurSpot} - ${globals.staffPics.length}");
-                            if (globals.staffPics.length -
-                                    globals.PicsCurSpot ==
-                                4) {
-                              print("Next Scene is Final Scene");
-                              globals.lastScene = true;
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return Scene2();
-                                  },
-                                ),
-                              );
-                            } else if (globals.lastScene) {
-                              print("Last Scene!!!!!");
-                              Navigator.pop(context);
-                            } else {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return Scene2();
-                                  },
-                                ),
-                              );
-                            }
-                          }
-                          print(counter);
-                          counter++;
-                        },
-                        child: Text(
-                          "Right",
-                          style: TextStyle(fontSize: 50),
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          isRight = false;
-
-                          if (counter == 1) {
-                            _horizontalMovement = xFirstRightJump();
-                            _verticalMovement = yFirstWrongJump();
-
-                            setState(() {
-                              _birdController.reset();
-                              _birdController.forward();
-                            });
-
-                            counter = 1;
-                          }
-                          if (counter == 2) {
-                            _horizontalMovement = xSecondRightJump();
-                            _verticalMovement = ySecondWrongJump();
-
-                            setState(() {
-                              _birdController.reset();
-                              _birdController.forward();
-                            });
-
-                            counter = 1;
-                          }
-
-                          if (counter == 3) {
-                            _horizontalMovement = xThirdRightJump();
-                            _verticalMovement = yThirdWrongJump();
-
-                            setState(() {
-                              _birdController.reset();
-                              _birdController.forward();
-                            });
-
-                            counter = 1;
-                          }
-                          if (counter == 4) {
-                            setState(() {
-                              _imageDisplayed = "shocked";
-                            });
-
-                            counter = 1;
-                          }
-                          print(counter);
-                          // counter = 1;
-                        },
-                        child: Text(
-                          "Wrong",
-                          style: TextStyle(fontSize: 50),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
           Expanded(
             flex: 7, //TODO: FLEX
             child: PianoKeys(),

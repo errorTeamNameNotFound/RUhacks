@@ -15,8 +15,8 @@ List<String> pics = [
 
 //current note being played
 String currentNote = "";
-int previousNotifier = 100;
-ValueNotifier rightNotePlayed = ValueNotifier(100);
+ValueNotifier rightNotePlayed = ValueNotifier(0);
+int prevNotif = 0;
 //int timerAmount;
 
 //int numOfStrikes;
