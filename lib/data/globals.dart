@@ -19,6 +19,8 @@ ValueNotifier rightNotePlayed = ValueNotifier(1000);
 ValueNotifier wrongNotePlayed = ValueNotifier(1000);
 int rightPrevNotif = 1000;
 int wrongPrevNotif = 1000;
+bool breakOut = false;
+
 //int timerAmount;
 
 //int numOfStrikes;

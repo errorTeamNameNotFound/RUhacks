@@ -8,6 +8,7 @@ void playSound(String note) {
 }
 
 Future<void> songLoop(String song) async {
+  globals.breakOut = false;
   int tempo = int.parse(song.substring(0, 3));
   song = song.substring(3, song.length);
   //globals.numOfStrikes = 0;
@@ -39,7 +40,7 @@ Future<void> songLoop(String song) async {
   //globals.timerAmount = tempNum.toInt();
 
   print("starting play loop");
-  while (i <= song.length.toInt()) {
+  while (i <= song.length.toInt() && !globals.breakOut) {
     timeCheck = 0;
     // print("$i: " + currentNoteValue.toString());
     // print("$i: " + currentNoteLetter);
