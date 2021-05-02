@@ -9,7 +9,6 @@ void playSound(String note) {
 
 Future<void> songLoop(String song) async {
   int tempo = int.parse(song.substring(0, 3));
-  tempo = 60;
   song = song.substring(3, song.length);
   //globals.numOfStrikes = 0;
   double tempNum;
@@ -62,7 +61,7 @@ Future<void> songLoop(String song) async {
     //print("note to play: " + currentNoteLetter);
 
     //check if user played right note
-    if (globals.currentNote == currentNoteLetter) {
+    if (/*globals.currentNote == currentNoteLetter*/ true) {
       //user got it right
       if(globals.rightNotePlayed.value == globals.prevNotif)
         {
@@ -84,7 +83,7 @@ Future<void> songLoop(String song) async {
     } else {
       if(globals.rightNotePlayed.value == globals.prevNotif)
       {
-        globals.rightNotePlayed.value++;
+        globals.rightNotePlayed.value--;
       }
       //user got it wrong so reset measure
       i -= notesCorrectSoFar * 2;
@@ -99,9 +98,8 @@ Future<void> songLoop(String song) async {
   }
 
   //correct note till end of song is reached
-  if(globals.rightNotePlayed.value == globals.prevNotif)
-  {
-    globals.rightNotePlayed.value++;
+  for(int i = 0; i < 4 - notesCorrectSoFar; i++){
+      globals.rightNotePlayed.value++;
   }
 
 }

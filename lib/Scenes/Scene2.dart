@@ -86,6 +86,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
           );
         }
       }
+      counter++;
     } else if (value < globals.prevNotif){
       if (counter == 1) {
         _horizontalMovement = xFirstRightJump();
@@ -131,7 +132,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
       }
     }
     print(counter);
-    counter++;
+    //counter++;
     globals.prevNotif = globals.rightNotePlayed.value;
   }
 
