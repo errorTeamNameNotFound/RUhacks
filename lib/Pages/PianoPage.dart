@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/CustomWidgets/SideScroller.dart';
@@ -11,13 +14,30 @@ class PianoPage extends StatefulWidget {
 }
 
 class _PianoPageState extends State<PianoPage> {
+  List<Widget> PicList = [];
+  final scrollController = ScrollController();
+
   // String _imageDisplayed = "default";
   // double _imageSize = 200;
   // double distanceBetween = 50;
 
   @override
   Widget build(BuildContext context) {
+    PicList.clear();
+    songPicture(globals.easySongs.first).forEach((element) {
+      PicList.add(
+        Image.asset(element),
+      );
+    });
+
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          //songLoop(globals.easySongs.first);
+          scrollController.animateTo(PicList.length.toDouble()* 350, duration: Duration(milliseconds: 2000), curve: Curves.ease);
+          //TODO
+        },
+      ),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(
@@ -39,22 +59,14 @@ class _PianoPageState extends State<PianoPage> {
                 SideScroller(),
                 //debugging purposes
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(flex: 1,
-                        child: Image.asset(globals.pics[0])
-                    ),
-                    Expanded(flex: 1,
-                        child: Image.asset(globals.pics[1])
-                    ),
-                    Expanded(flex: 1,
-                        child: Image.asset(globals.pics[2])
-                    ),
-                    Expanded(flex: 1,
-                        child: Image.asset(globals.pics[3])
-                    ),
-                  ],
+                Container(
+                  width: 2000,
+                  height: 200,
+                  child: ListView(
+                    controller: scrollController,
+                    scrollDirection: Axis.horizontal,
+                    children: PicList
+                  ),
                 ),
               ],
             ),
@@ -115,7 +127,5 @@ class _PianoPageState extends State<PianoPage> {
         ],
       ),
     );
-
   }
-
 }
