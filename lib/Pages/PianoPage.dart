@@ -32,13 +32,14 @@ class _PianoPageState extends State<PianoPage> {
     });*/
 
     songPicture(globals.easySongs.first);
-    globals.PicsCurSpot=0;
+    globals.PicsCurSpot = 0;
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
+        onPressed: () {
           //songLoop(globals.easySongs.first);
-          scrollController.animateTo(PicList.length.toDouble()* 350, duration: Duration(milliseconds: 2000), curve: Curves.ease);
+          scrollController.animateTo(PicList.length.toDouble() * 350,
+              duration: Duration(milliseconds: 2000), curve: Curves.ease);
           //TODO
         },
       ),
