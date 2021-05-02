@@ -40,6 +40,7 @@ class _PianoPageState extends State<PianoPage> {
     globals.PicsCurSpot = 0;
 
     return Scaffold(
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //songLoop(globals.easySongs.first);
@@ -58,8 +59,7 @@ class _PianoPageState extends State<PianoPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: EndScene(),
-      // body: Scene1(),
+      body: Scene1(),
       // body: Column(
       //   crossAxisAlignment: CrossAxisAlignment.stretch,
       //   children: <Widget>[

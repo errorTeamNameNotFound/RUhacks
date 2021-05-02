@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/Scenes/Scene2.dart';
 import 'package:ru_hacks/functions/songLoop.dart';
 import 'package:ru_hacks/data/globals.dart' as globals;
@@ -64,10 +65,20 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: Text(
+          "(Song Title)",
+          style: TextStyle(
+              fontSize: 25, fontWeight: FontWeight.bold, letterSpacing: 2),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 2,
+            flex: 12,                //TODO: FLEX
             child: GestureDetector(
               child: Stack(
                 children: <Widget>[
@@ -117,7 +128,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                   ),
                   Positioned(
                     left: 50 + (horizontalDistance * 3),
-                    bottom: 10 + (verticalDistance + 200),
+                    bottom: 10 + (verticalDistance + 300),
                     child: Container(
                       width: _imageSize,
                       height: _imageSize,
@@ -182,7 +193,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
             ),
           ),
           Expanded(
-              flex: 1,
+              flex: 5,                //TODO: FLEX
               child: Row(
                 children: <Widget>[
                   Expanded(
@@ -207,7 +218,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                 ],
               )),
           Expanded(
-            flex: 1,
+            flex: 3,
             child: GestureDetector(
               child: Center(
                 child: Container(
@@ -218,6 +229,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                       ElevatedButton(
                         onPressed: () {
                           isRight = true;
+
                           if (counter == 1) {
                             _horizontalMovement = xFirstRightJump();
                             _verticalMovement = yFirstRightJump();
@@ -271,7 +283,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return Scene2();
+                                    return Scene1();
                                   },
                                 ),
                               );
@@ -343,6 +355,10 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
+          ),
+          Expanded(
+            flex: 7,                //TODO: FLEX
+            child: PianoKeys(),
           ),
         ],
       ),

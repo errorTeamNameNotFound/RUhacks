@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/functions/songLoop.dart';
 import 'package:ru_hacks/data/globals.dart' as globals;
 
@@ -79,7 +80,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 2,
+            flex: 12,                //TODO: FLEX
             child: GestureDetector(
               child: Stack(
                 children: <Widget>[
@@ -194,7 +195,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
             ),
           ),
           Expanded(
-              flex: 1,
+              flex: 5,                //TODO: FLEX
               child: Row(
                 children: <Widget>[
                   Expanded(
@@ -219,7 +220,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                 ],
               )),
           Expanded(
-            flex: 1,
+            flex: 3,
             child: GestureDetector(
               child: Center(
                 child: Container(
@@ -356,6 +357,10 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
+          ),
+          Expanded(
+            flex: 7,                //TODO: FLEX
+            child: PianoKeys(),
           ),
         ],
       ),
