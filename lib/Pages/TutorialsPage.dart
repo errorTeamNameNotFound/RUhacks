@@ -78,6 +78,7 @@ class _TutorialsPageState extends State<TutorialsPage> {
                         builder: (context) {
                           return TopicTemplate(
                             topicLabel: "Treble Notes",
+                            topicList: trebleNotesTopicList,
                           );
                         },
                       ),
