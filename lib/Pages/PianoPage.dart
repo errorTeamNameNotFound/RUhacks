@@ -15,8 +15,9 @@ import 'package:ru_hacks/data/globals.dart' as globals;
 
 class PianoPage extends StatefulWidget {
   String songString;
+  String songName;
 
-  PianoPage({this.songString});
+  PianoPage({this.songString, this.songName});
 
   @override
   _PianoPageState createState() => _PianoPageState();
