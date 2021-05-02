@@ -69,12 +69,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              
-              Expanded(
-                flex: 1,
-                child: Image.asset("assets/staffPics/b1.PNG"),
-              ),
-
               //Buttons
               Expanded(
                 child: Container(
@@ -85,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                         CustomMenuButton(
                           buttonLabel: "Freestyle",
                           whenPressed: () {
-                            playSound("uiClick.wav");
+                            //playSound("uiClick.wav");
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -99,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                         CustomMenuButton(
                           buttonLabel: "Levels",
                           whenPressed: () {
-                            playSound("uiClick.wav");
+                            //playSound("uiClick.wav");
 
                             getSongs();
                             Navigator.push(
@@ -115,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                         CustomMenuButton(
                           buttonLabel: "Tutorials",
                           whenPressed: () {
-                            playSound("uiClick.wav");
+                            //playSound("uiClick.wav");
                             Navigator.push(
                               context,
                               MaterialPageRoute(
