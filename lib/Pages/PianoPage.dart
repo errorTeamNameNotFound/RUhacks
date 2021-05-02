@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/CustomWidgets/SideScroller.dart';
 import 'package:ru_hacks/functions/songLoop.dart';
+import 'package:ru_hacks/functions/notePicture.dart';
 import 'package:ru_hacks/data/globals.dart' as globals;
 
 class PianoPage extends StatefulWidget {
@@ -41,66 +42,80 @@ class _PianoPageState extends State<PianoPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Expanded(flex: 1, child: Image.asset(globals.pics[0])),
-                    Expanded(flex: 1, child: Image.asset(globals.pics[1])),
-                    Expanded(flex: 1, child: Image.asset(globals.pics[2])),
-                    Expanded(flex: 1, child: Image.asset(globals.pics[3])),
+                    Expanded(flex: 1,
+                        child: Image.asset(globals.pics[0])
+                    ),
+                    Expanded(flex: 1,
+                        child: Image.asset(globals.pics[1])
+                    ),
+                    Expanded(flex: 1,
+                        child: Image.asset(globals.pics[2])
+                    ),
+                    Expanded(flex: 1,
+                        child: Image.asset(globals.pics[3])
+                    ),
                   ],
                 ),
               ],
             ),
           ),
-
           Expanded(
-              flex: 2,
-              child: GestureDetector(
-                //color: Colors.grey,
-                child: Center(
-                  //   child: Text("Side Scroller"),
-                  // ),
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Right",
-                            style: TextStyle(fontSize: 50),
-                          ),
+            flex: 2,
+            child: GestureDetector(
+              //color: Colors.grey,
+              child: Center(
+                //   child: Text("Side Scroller"),
+                // ),
+
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      ElevatedButton(
+                        onPressed: () {
+                          songLoop(globals.easySongs.first);
+                        },
+                        child: Text(
+                          "Right",
+                          style: TextStyle(fontSize: 50),
                         ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Wrong",
-                            style: TextStyle(fontSize: 50),
-                          ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          songPicture(globals.easySongs.first);
+                        },
+                        child: Text(
+                          "Wrong",
+                          style: TextStyle(fontSize: 50),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-
-                //This is where the piano will go
-                // Expanded(
-                //   child: Stack(
-                //     children: <Widget>[
-                //       //TODO: Uncomment later
-                //       //PianoKeys(),
-                //
-                //       //TODO: Uncomment this after everything has been finalized
-                //       // Positioned(
-                //       //   left: 49,
-                //       //   child: BlackKeys(),
-                //       // ),
-                //     ],
-                //   ),
-                // ),
               ),
+
+              //This is where the piano will go
+              // Expanded(
+              //   child: Stack(
+              //     children: <Widget>[
+              //       //TODO: Uncomment later
+              //       //PianoKeys(),
+              //
+              //       //TODO: Uncomment this after everything has been finalized
+              //       // Positioned(
+              //       //   left: 49,
+              //       //   child: BlackKeys(),
+              //       // ),
+              //     ],
+              //   ),
+              // ),
+            ),
           ),
         ],
       ),
     );
+
   }
+
 }
