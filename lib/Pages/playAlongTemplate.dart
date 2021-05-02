@@ -52,10 +52,12 @@ class _PlayAlongState extends State<playAlong> {
     print(globals.tutorialNote);
 
     if (globals.currentNote == globals.tutorialNote){
-      globals.displayText = "good I guess";
+      //got correct note TODO change melody to happy
+      globals.displayText = "good I guess\n";
       globals.textColor = Colors.green;
     } else {
-      globals.displayText = "You're an IDIOT sandwich";
+      //got wrong note TODO change to shocked melody
+      globals.displayText = "You're an IDIOT sandwich\n" + "The correct note was ${globals.tutorialNote}";
       globals.textColor = Colors.red;
     }
 
@@ -89,12 +91,13 @@ class _PlayAlongState extends State<playAlong> {
               height: MediaQuery.of(context).size.height / 4,
             ),
             Text(
-                globals.displayText,
+                "${globals.displayText}",
               style: TextStyle(
                 fontSize: 40,
                 color: globals.textColor,
               ),
     ),
+            //TODO add melody
             img(),
             Expanded(
               flex: 7,
