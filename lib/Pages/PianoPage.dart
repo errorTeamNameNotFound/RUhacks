@@ -56,7 +56,7 @@ class _PianoPageState extends State<PianoPage> {
                     ),
                     child: IconButton(
                       onPressed: () {
-                        songLoop(globals.easySongs.first);
+                        songLoop(globals.currSong);
                         setState(() {
                           playButtonDisplayed = false;
                         });
