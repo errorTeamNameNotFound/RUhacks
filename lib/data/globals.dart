@@ -42,10 +42,23 @@ List<int> noteDurations = [];
 int placement;
 int notesCorrectSoFar;
 
-
 //tutorial variables
-List<String> bassNotes = ["assets/staffPics/a1.PNG","assets/staffPics/b1.PNG","assets/staffPics/CC1.PNG","assets/staffPics/e1.PNG","assets/staffPics/f1.PNG","assets/staffPics/g1.PNG"];
-List<String> trebleNotes = ["assets/staffPics/AA1.PNG","assets/staffPics/CC1.PNG","assets/staffPics/DD1.PNG","assets/staffPics/EE1.PNG","assets/staffPics/FF1.PNG","assets/staffPics/GG1.PNG"];
-String displayText = "what is this?";
+List<String> bassNotes = [
+  "assets/staffPics/a1.PNG",
+  "assets/staffPics/b1.PNG",
+  "assets/staffPics/CC1.PNG",
+  "assets/staffPics/e1.PNG",
+  "assets/staffPics/f1.PNG",
+  "assets/staffPics/g1.PNG"
+];
+List<String> trebleNotes = [
+  "assets/staffPics/AA1.PNG",
+  "assets/staffPics/CC1.PNG",
+  "assets/staffPics/DD1.PNG",
+  "assets/staffPics/EE1.PNG",
+  "assets/staffPics/FF1.PNG",
+  "assets/staffPics/GG1.PNG"
+];
+String displayText = "What is this note?";
 Color textColor = Colors.black;
 String tutorialNote = 'A';
