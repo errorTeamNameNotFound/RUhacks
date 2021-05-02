@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ru_hacks/CustomWidgets/CustomTutorialCardButton.dart';
+import 'package:ru_hacks/Pages/TopicTemplate.dart';
 import 'package:ru_hacks/constants.dart';
+import 'package:ru_hacks/data/TutorialTopicLists.dart';
 
 //debugging purposes
 String url =
@@ -46,6 +48,20 @@ class _TutorialsPageState extends State<TutorialsPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CustomTutorialCardButton(
+                  goTo: () {
+                    playSound("uiClick.wav");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return TopicTemplate(
+                            topicLabel: "Rhythm",
+                            topicList: rhythmTopicList,
+                          );
+                        },
+                      ),
+                    );
+                  },
                   topicImage: Image(
                     image: NetworkImage(
                         "https://www.kindpng.com/picc/m/7-77504_music-notes-png-transparent-music-note-clipart-png.png"),
@@ -54,6 +70,20 @@ class _TutorialsPageState extends State<TutorialsPage> {
                   topicLabel: "Rhythm",
                 ),
                 CustomTutorialCardButton(
+                  goTo: () {
+                    playSound("uiClick.wav");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return TopicTemplate(
+                            topicLabel: "Treble Notes",
+                            topicList: trebleNotesTopicList,
+                          );
+                        },
+                      ),
+                    );
+                  },
                   topicImage: Image(
                     image: AssetImage("assets/gClef.PNG"),
                     fit: BoxFit.contain,
@@ -69,6 +99,19 @@ class _TutorialsPageState extends State<TutorialsPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CustomTutorialCardButton(
+                  goTo: () {
+                    playSound("uiClick.wav");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return TopicTemplate(
+                            topicLabel: "Music Terms",
+                          );
+                        },
+                      ),
+                    );
+                  },
                   topicImage: Image(
                     image: NetworkImage(
                         "https://img2.pngio.com/library-computer-icons-book-symbol-classified-vector-png-library-symbol-png-512_512.png"),
@@ -77,6 +120,19 @@ class _TutorialsPageState extends State<TutorialsPage> {
                   topicLabel: "Music Terms",
                 ),
                 CustomTutorialCardButton(
+                  goTo: () {
+                    playSound("uiClick.wav");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return TopicTemplate(
+                            topicLabel: "Bass Notes",
+                          );
+                        },
+                      ),
+                    );
+                  },
                   topicImage: Image(
                     image: NetworkImage(
                         "https://www.pngitem.com/pimgs/m/119-1192338_clef-treble-musical-note-bass-clef-png-transparent.png"),

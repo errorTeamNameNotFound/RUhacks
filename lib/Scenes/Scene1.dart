@@ -22,13 +22,69 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
   Animation<double> _horizontalMovement;
   Animation<double> _verticalMovement;
 
-  void checkCorrect(value){
-    print("${value} -- ${globals.prevNotif}");
-    if (value == globals.prevNotif)
-      {
-        return;
+  void wrongCheckCorrect(value){
+    print("wrong: ${value} -- ${globals.wrongPrevNotif}");
+    if (value == globals.wrongPrevNotif)
+    {
+      return;
+    }
+    if (value < globals.wrongPrevNotif){
+      isRight = false;
+      if (counter == 1) {
+        _horizontalMovement = xFirstRightJump();
+        _verticalMovement = yFirstWrongJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+
+        counter = 1;
       }
-    if (value > globals.prevNotif) {
+      if (counter == 2) {
+        _horizontalMovement = xSecondRightJump();
+        _verticalMovement = ySecondWrongJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+
+        counter = 1;
+      }
+
+      if (counter == 3) {
+        _horizontalMovement = xThirdRightJump();
+        _verticalMovement = yThirdWrongJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+
+        counter = 1;
+      }
+      if (counter == 4) {
+        setState(() {
+          print("shocked!!!!!!!!!!!!!!!!!!!!!!!");
+          _imageDisplayed = "shocked";
+        });
+
+        counter = 1;
+      }
+    }
+    print(counter);
+    globals.wrongPrevNotif = globals.wrongNotePlayed.value;
+  }
+
+  void rightCheckCorrect(value){
+    print("right: ${value} -- ${globals.rightPrevNotif}");
+    if (value == globals.rightPrevNotif || globals.rightPrevNotif == 0)
+    {
+      return;
+    }
+    if (value > globals.rightPrevNotif) {
+      isRight = true;
       if (counter == 1) {
         _horizontalMovement = xFirstRightJump();
         _verticalMovement = yFirstRightJump();
@@ -86,53 +142,10 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
         }
       }
       counter++;
-    } else if (value < globals.prevNotif){
-      if (counter == 1) {
-        _horizontalMovement = xFirstRightJump();
-        _verticalMovement = yFirstWrongJump();
-
-        setState(() {
-          _birdController.reset();
-          _birdController.forward();
-        });
-
-        counter = 1;
-      }
-      if (counter == 2) {
-        _horizontalMovement = xSecondRightJump();
-        _verticalMovement = ySecondWrongJump();
-
-        setState(() {
-          _birdController.reset();
-          _birdController.forward();
-        });
-
-        counter = 1;
-      }
-
-      if (counter == 3) {
-        _horizontalMovement = xThirdRightJump();
-        _verticalMovement = yThirdWrongJump();
-
-        setState(() {
-          _birdController.reset();
-          _birdController.forward();
-        });
-
-        counter = 1;
-      }
-      if (counter == 4) {
-        setState(() {
-          print("shocked!!!!!!!!!!!!!!!!!!!!!!!");
-          _imageDisplayed = "shocked";
-        });
-
-        counter = 1;
-      }
     }
     print(counter);
-
-    globals.prevNotif = globals.rightNotePlayed.value;
+    print("rightPrevNotif ${globals.rightPrevNotif} => ${globals.rightNotePlayed.value}");
+    globals.rightPrevNotif = globals.rightNotePlayed.value;
   }
 
   @override
@@ -278,17 +291,28 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                     ),
                   ),
 
-                  ValueListenableBuilder(
-                      valueListenable: globals.rightNotePlayed,
+                  ValueListenableBuilder(valueListenable: globals.rightNotePlayed,
                       builder: (context, value, widget) {
                         //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
                         WidgetsBinding.instance
                             .addPostFrameCallback((_) => {
-                              checkCorrect(value)
+                          rightCheckCorrect(value)
                         });
                         //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
                         return Container();
-                      }),
+                      }
+                  ),
+                  ValueListenableBuilder(valueListenable: globals.wrongNotePlayed,
+                      builder: (context, value, widget) {
+                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        WidgetsBinding.instance
+                            .addPostFrameCallback((_) => {
+                          wrongCheckCorrect(value)
+                        });
+                        //print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        return Container();
+                      }
+                  ),
 
                   AnimatedBuilder(
                     animation: _birdController,
@@ -334,20 +358,21 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
                   Expanded(
                     flex: 1,
                     child:
-                        Image.asset(globals.staffPics[globals.PicsCurSpot + 1]),
+                    Image.asset(globals.staffPics[globals.PicsCurSpot + 1]),
                   ),
                   Expanded(
                     flex: 1,
                     child:
-                        Image.asset(globals.staffPics[globals.PicsCurSpot + 2]),
+                    Image.asset(globals.staffPics[globals.PicsCurSpot + 2]),
                   ),
                   Expanded(
                     flex: 1,
                     child:
-                        Image.asset(globals.staffPics[globals.PicsCurSpot + 3]),
+                    Image.asset(globals.staffPics[globals.PicsCurSpot + 3]),
                   ),
                 ],
               )),
+
           Expanded(
             flex: 7, //TODO: FLEX
             child: PianoKeys(),

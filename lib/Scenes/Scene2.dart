@@ -23,71 +23,13 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
   Animation<double> _horizontalMovement;
   Animation<double> _verticalMovement;
 
-  void checkCorrect(value){
-    print("${value} -- ${globals.prevNotif}");
-    if (value == globals.prevNotif)
+  void wrongCheckCorrect(value){
+    print("${value} -- ${globals.wrongPrevNotif}");
+    if (value == globals.wrongPrevNotif)
     {
       return;
     }
-    if (value > globals.prevNotif) {
-      if (counter == 1) {
-        _horizontalMovement = xFirstRightJump();
-        _verticalMovement = yFirstRightJump();
-
-        setState(() {
-          _birdController.reset();
-          _birdController.forward();
-        });
-      }
-      if (counter == 2) {
-        _horizontalMovement = xSecondRightJump();
-        _verticalMovement = ySecondRightJump();
-
-        setState(() {
-          _birdController.reset();
-          _birdController.forward();
-        });
-      }
-
-      if (counter == 3) {
-        _horizontalMovement = xThirdRightJump();
-        _verticalMovement = yThirdRightJump();
-
-        setState(() {
-          _birdController.reset();
-          _birdController.forward();
-        });
-      }
-      if (counter == 4) {
-        globals.PicsCurSpot += 4;
-        print("${globals.PicsCurSpot} - ${globals.staffPics.length}");
-        if (globals.staffPics.length - globals.PicsCurSpot == 4) {
-          print("Next Scene is Final Scene");
-          globals.lastScene = true;
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return Scene2();
-              },
-            ),
-          );
-        } else if (globals.lastScene) {
-          print("Last Scene!!!!!");
-          Navigator.pop(context);
-        } else {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return Scene2();
-              },
-            ),
-          );
-        }
-      }
-      counter++;
-    } else if (value < globals.prevNotif){
+    if (value < globals.wrongPrevNotif){
       if (counter == 1) {
         _horizontalMovement = xFirstRightJump();
         _verticalMovement = yFirstWrongJump();
@@ -132,9 +74,78 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
       }
     }
     print(counter);
-    //counter++;
-    globals.prevNotif = globals.rightNotePlayed.value;
+    globals.wrongPrevNotif = globals.wrongNotePlayed.value;
   }
+
+  void rightCheckCorrect(value){
+    print("${value} -- ${globals.rightPrevNotif}");
+    if (value == globals.rightPrevNotif)
+    {
+      return;
+    }
+    if (value > globals.rightPrevNotif) {
+      if (counter == 1) {
+        _horizontalMovement = xFirstRightJump();
+        _verticalMovement = yFirstRightJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+      }
+      if (counter == 2) {
+        _horizontalMovement = xSecondRightJump();
+        _verticalMovement = ySecondRightJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+      }
+
+      if (counter == 3) {
+        _horizontalMovement = xThirdRightJump();
+        _verticalMovement = yThirdRightJump();
+
+        setState(() {
+          _birdController.reset();
+          _birdController.forward();
+        });
+      }
+      if (counter == 4) {
+        globals.PicsCurSpot += 4;
+        print("${globals.PicsCurSpot} - ${globals.staffPics.length}");
+        if (globals.staffPics.length - globals.PicsCurSpot == 4) {
+          print("Next Scene is Final Scene");
+          globals.lastScene = true;
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return Scene1();
+              },
+            ),
+          );
+        } else if (globals.lastScene) {
+          print("Last Scene!!!!!");
+          Navigator.pop(context);
+        } else {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return Scene1();
+              },
+            ),
+          );
+        }
+      }
+      counter++;
+    }
+    print(counter);
+    globals.rightPrevNotif = globals.rightNotePlayed.value;
+  }
+
 
   @override
   void initState() {
@@ -282,15 +293,28 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
 
                   ValueListenableBuilder(valueListenable: globals.rightNotePlayed,
                       builder: (context, value, widget) {
-                        print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
                         WidgetsBinding.instance
                             .addPostFrameCallback((_) => {
-                          checkCorrect(value)
+                          rightCheckCorrect(value)
                         });
-                        print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
                         return Container();
                       }
                   ),
+
+                  ValueListenableBuilder(valueListenable: globals.rightNotePlayed,
+                      builder: (context, value, widget) {
+                        // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        WidgetsBinding.instance
+                            .addPostFrameCallback((_) => {
+                          wrongCheckCorrect(value)
+                        });
+                        // print("Afrsdfhksadhgfksjfgdhlksdjfghlkfjdghsdjkgfldkjfghdlkjfgh");
+                        return Container();
+                      }
+                  ),
+
 
 
                   AnimatedBuilder(
@@ -337,17 +361,17 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                   Expanded(
                     flex: 1,
                     child:
-                        Image.asset(globals.staffPics[globals.PicsCurSpot + 1]),
+                    Image.asset(globals.staffPics[globals.PicsCurSpot + 1]),
                   ),
                   Expanded(
                     flex: 1,
                     child:
-                        Image.asset(globals.staffPics[globals.PicsCurSpot + 2]),
+                    Image.asset(globals.staffPics[globals.PicsCurSpot + 2]),
                   ),
                   Expanded(
                     flex: 1,
                     child:
-                        Image.asset(globals.staffPics[globals.PicsCurSpot + 3]),
+                    Image.asset(globals.staffPics[globals.PicsCurSpot + 3]),
                   ),
                 ],
               )),
