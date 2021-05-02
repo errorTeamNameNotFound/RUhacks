@@ -4,7 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/CustomWidgets/SideScroller.dart';
+import 'package:ru_hacks/Scenes/EndScene.dart';
 import 'package:ru_hacks/Scenes/Scene1.dart';
+import 'package:ru_hacks/Scenes/Scene2.dart';
+import 'package:ru_hacks/Scenes/Scene3.dart';
+import 'package:ru_hacks/Scenes/Scene4.dart';
 import 'package:ru_hacks/functions/songLoop.dart';
 import 'package:ru_hacks/functions/notePicture.dart';
 import 'package:ru_hacks/data/globals.dart' as globals;
@@ -33,7 +37,7 @@ class _PianoPageState extends State<PianoPage> {
 
     songPicture(globals.easySongs.first);
     globals.lastScene = false;
-    globals.PicsCurSpot=0;
+    globals.PicsCurSpot = 0;
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -54,7 +58,8 @@ class _PianoPageState extends State<PianoPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Scene1(),
+      body: EndScene(),
+      // body: Scene1(),
       // body: Column(
       //   crossAxisAlignment: CrossAxisAlignment.stretch,
       //   children: <Widget>[

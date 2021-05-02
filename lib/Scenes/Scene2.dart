@@ -12,8 +12,8 @@ class Scene2 extends StatefulWidget {
 class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
   String _imageDisplayed = "default";
   double _imageSize = 200;
-  double horizontalDistance = 300;
-  double verticalDistance = 0;
+  double horizontalDistance = 250;
+  double verticalDistance = -15;
   bool isRight = false;
   int counter = 1;
 
@@ -66,16 +66,16 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: Text(
-          "(Song Title)",
-          style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.bold, letterSpacing: 2),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      // extendBodyBehindAppBar: true,
+      // appBar: AppBar(
+      //   title: Text(
+      //     "(Song Title)",
+      //     style: TextStyle(
+      //         fontSize: 25, fontWeight: FontWeight.bold, letterSpacing: 2),
+      //   ),
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      // ),
       body: Column(
         children: <Widget>[
           Expanded(
@@ -165,8 +165,12 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                     builder: (BuildContext context, _) {
                       return Transform.translate(
                         // Get animated offset
-                        offset: Offset(50 + _horizontalMovement.value,
-                            335 - _verticalMovement.value - MediaQuery.of(context).size.width*0.11), //Animate this
+                        offset: Offset(
+                            50 + _horizontalMovement.value,
+                            335 -
+                                _verticalMovement.value -
+                                MediaQuery.of(context).size.width *
+                                    0.11), //Animate this
                         child: Container(
                           width: _imageSize,
                           height: _imageSize,
@@ -199,19 +203,21 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                   ),
                   Expanded(
                     flex: 1,
-                    child: Image.asset(globals.staffPics[globals.PicsCurSpot+1]),
+                    child:
+                        Image.asset(globals.staffPics[globals.PicsCurSpot + 1]),
                   ),
                   Expanded(
                     flex: 1,
-                    child: Image.asset(globals.staffPics[globals.PicsCurSpot+2]),
+                    child:
+                        Image.asset(globals.staffPics[globals.PicsCurSpot + 2]),
                   ),
                   Expanded(
                     flex: 1,
-                    child: Image.asset(globals.staffPics[globals.PicsCurSpot+3]),
+                    child:
+                        Image.asset(globals.staffPics[globals.PicsCurSpot + 3]),
                   ),
                 ],
-              )
-          ),
+              )),
           Expanded(
             flex: 1,
             child: GestureDetector(
@@ -254,10 +260,12 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                             });
                           }
                           if (counter == 4) {
-                            globals.PicsCurSpot+=4;
-                            print("${globals.PicsCurSpot} - ${globals.staffPics.length}");
-                            if(globals.staffPics.length - globals.PicsCurSpot == 4)
-                            {
+                            globals.PicsCurSpot += 4;
+                            print(
+                                "${globals.PicsCurSpot} - ${globals.staffPics.length}");
+                            if (globals.staffPics.length -
+                                    globals.PicsCurSpot ==
+                                4) {
                               print("Next Scene is Final Scene");
                               globals.lastScene = true;
                               Navigator.pushReplacement(
@@ -268,12 +276,10 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
                                   },
                                 ),
                               );
-                            }else if(globals.lastScene)
-                            {
+                            } else if (globals.lastScene) {
                               print("Last Scene!!!!!");
                               Navigator.pop(context);
-                            } else
-                            {
+                            } else {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
@@ -360,7 +366,8 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
     return TweenSequence(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 0, end: 300), weight: 50),
+            tween: Tween<double>(begin: 0, end: horizontalDistance),
+            weight: 50),
       ],
     ).animate(_birdController);
   }
@@ -391,7 +398,9 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
     return TweenSequence(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 300, end: 600), weight: 50),
+            tween: Tween<double>(
+                begin: horizontalDistance, end: horizontalDistance * 2),
+            weight: 50),
       ],
     ).animate(_birdController);
   }
@@ -422,7 +431,9 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
     return TweenSequence(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 600, end: 900), weight: 50),
+            tween: Tween<double>(
+                begin: horizontalDistance * 2, end: horizontalDistance * 3),
+            weight: 50),
       ],
     ).animate(_birdController);
   }
