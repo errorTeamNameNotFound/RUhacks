@@ -1,4 +1,10 @@
+import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
+
+void playSound(String fileName) {
+  final player = AudioCache();
+  player.play(fileName);
+}
 
 //UI Colors
 const kOffWhite = Color(0xfff8f8f8);
