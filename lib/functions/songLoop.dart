@@ -1,4 +1,5 @@
 import 'package:audioplayers/audio_cache.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:ru_hacks/data/globals.dart' as globals;
 
 void playSound(String note) {
@@ -13,6 +14,7 @@ Future<void> songLoop(String song) async {
   double tempNum;
   int notesCorrectSoFar = 0;
   int i = 0;
+  int timeCheck;
 
   double beat = 60 / tempo;
   //print(beat);
@@ -28,20 +30,29 @@ Future<void> songLoop(String song) async {
     playSound("uiClick.wav");
     print(i.toString());
     tempNum = (beat) * 1000;
-    tempNum += (beat / 8) * 1000;
+    tempNum += (beat / 4) * 1000;
     await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
   }
 
+  //timer for animation
+  //globals.timerAmount = tempNum.toInt();
+
   print("starting play loop");
   while (i <= song.length.toInt()) {
-    print("$i: " + lastNoteValue.toString());
-    print("$i: " + currentNoteLetter);
+    timeCheck = 0;
+    //print("$i: " + lastNoteValue.toString());
+    //print("$i: " + currentNoteLetter);
     tempNum = (beat * lastNoteValue) * 1000;
+    timeCheck += tempNum.toInt();
     await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
 
     //check/ wait for user input
     tempNum = (beat / 4) * 1000;
+    timeCheck += tempNum.toInt();
     await new Future.delayed(Duration(milliseconds: tempNum.toInt()));
+
+    //print time
+    print("${i}: " + timeCheck.toString());
 
     //Testing info
     //print("user note:" + globals.currentNote);
