@@ -197,16 +197,16 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // extendBodyBehindAppBar: true,
-      // appBar: AppBar(
-      //   title: Text(
-      //     "(Song Title)",
-      //     style: TextStyle(
-      //         fontSize: 25, fontWeight: FontWeight.bold, letterSpacing: 2),
-      //   ),
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      // ),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: Text(
+           "(Song Title)",
+           style: TextStyle(
+               fontSize: 25, fontWeight: FontWeight.bold, letterSpacing: 2),
+         ),
+         backgroundColor: Colors.transparent,
+         elevation: 0,
+       ),
       body: Column(
         children: <Widget>[
           Expanded(
