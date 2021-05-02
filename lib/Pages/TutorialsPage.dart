@@ -107,6 +107,7 @@ class _TutorialsPageState extends State<TutorialsPage> {
                         builder: (context) {
                           return TopicTemplate(
                             topicLabel: "Music Terms",
+                            topicList: musicTermsTopicList,
                           );
                         },
                       ),
