@@ -1,15 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:ru_hacks/CustomWidgets/BlackKeys.dart';
 import 'package:ru_hacks/constants.dart';
 import 'package:ru_hacks/data/TutorialTopicLists.dart';
 import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
 import 'package:ru_hacks/data/globals.dart' as globals;
 import 'package:rnd/rnd.dart';
 
-const kArrowSize = 15;
-const kCardHeight = 1.3;
-const kCardWidth = 1.5;
+const kBirdSize = 3.0;
 
 class playAlong extends StatefulWidget {
   String bOrT;
@@ -24,6 +23,8 @@ class playAlong extends StatefulWidget {
 class _PlayAlongState extends State<playAlong> {
   int index = 0;
   Random rnd;
+  String imageDisplayed = "default";
+  double bottomPadding = 0.0;
 
   Image img() {
     int min = 0;
@@ -41,24 +42,28 @@ class _PlayAlongState extends State<playAlong> {
 
     //get note that matches image
     globals.tutorialNote = image_name.substring(17, 18);
-    
-    
+
+    return Image(
+      image: AssetImage(image_name),
+      fit: BoxFit.fitHeight,
+    );
     return Image.asset(image_name);
   }
 
-  Widget refresh() {
-
+  void refresh() {
     print(globals.currentNote);
     print(globals.tutorialNote);
 
-    if (globals.currentNote == globals.tutorialNote){
-      //got correct note TODO change melody to happy
-      globals.displayText = "good I guess\n";
-      globals.textColor = Colors.green;
+    if (globals.currentNote == globals.tutorialNote) {
+      setState(() {
+        imageDisplayed = "singing";
+        bottomPadding = 30.0;
+      });
     } else {
-      //got wrong note TODO change to shocked melody
-      globals.displayText = "You're an IDIOT sandwich\n" + "The correct note was ${globals.tutorialNote}";
-      globals.textColor = Colors.red;
+      setState(() {
+        imageDisplayed = "shocked";
+        bottomPadding = 30.0;
+      });
     }
 
     setState(() {});
@@ -68,7 +73,7 @@ class _PlayAlongState extends State<playAlong> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Play Along"),
+        title: Text("Play Along with Melody"),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -83,28 +88,57 @@ class _PlayAlongState extends State<playAlong> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 0.0),
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 4,
-            ),
-            Text(
-                "${globals.displayText}",
-              style: TextStyle(
-                fontSize: 40,
-                color: globals.textColor,
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              color: Colors.white,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: AnimatedContainer(
+                      margin: EdgeInsets.only(left: 50, bottom: bottomPadding),
+                      duration: Duration(milliseconds: 80),
+                      onEnd: () {
+                        setState(() {
+                          bottomPadding =
+                              0.0; //Brings back to original position
+                        });
+                      },
+                      width: MediaQuery.of(context).size.width / kBirdSize,
+                      height: MediaQuery.of(context).size.height / kBirdSize,
+                      child: Image(
+                        image: AssetImage("assets/birdy/$imageDisplayed.png"),
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 7,
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(40.0),
+                      child: img(),
+                    ),
+                  ),
+                ],
               ),
-    ),
-            //TODO add melody
-            img(),
-            Expanded(
-              flex: 7,
-              child: PianoKeys(notifyParent: refresh),
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: Stack(
+              children: <Widget>[
+                PianoKeys(notifyParent: refresh),
+                BlackKeys(
+                  width: 21,
+                  height: 3.6,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
