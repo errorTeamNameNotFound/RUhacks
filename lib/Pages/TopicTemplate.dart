@@ -26,6 +26,7 @@ class _TopicTemplateState extends State<TopicTemplate>
   FlipCardController _cardController;
 
   void addIndex() {
+    playSound("flipSFX.wav");
     if (index < widget.topicList.length - 1) {
       setState(() {
         index++;
@@ -35,6 +36,7 @@ class _TopicTemplateState extends State<TopicTemplate>
   }
 
   void subIndex() {
+    playSound("flipSFX.wav");
     if (index > 0) {
       setState(() {
         index--;
