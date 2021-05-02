@@ -3,6 +3,7 @@ import 'package:ru_hacks/CustomWidgets/CustomTutorialCardButton.dart';
 import 'package:ru_hacks/Pages/TopicTemplate.dart';
 import 'package:ru_hacks/constants.dart';
 import 'package:ru_hacks/data/TutorialTopicLists.dart';
+import 'package:ru_hacks/Pages/playAlongTemplate.dart';
 
 //debugging purposes
 String url =
@@ -76,9 +77,8 @@ class _TutorialsPageState extends State<TutorialsPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return TopicTemplate(
-                            topicLabel: "Treble Notes",
-                            topicList: trebleNotesTopicList,
+                          return playAlong(
+                              bOrT: "treble"
                           );
                         },
                       ),
@@ -126,8 +126,8 @@ class _TutorialsPageState extends State<TutorialsPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return TopicTemplate(
-                            topicLabel: "Bass Notes",
+                          return playAlong(
+                            bOrT: "bass"
                           );
                         },
                       ),

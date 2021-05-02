@@ -1,46 +1,72 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:ru_hacks/constants.dart';
 import 'package:ru_hacks/data/TutorialTopicLists.dart';
+import 'package:ru_hacks/CustomWidgets/PianoKeys.dart';
+import 'package:ru_hacks/data/globals.dart' as globals;
+import 'package:rnd/rnd.dart';
 
 const kArrowSize = 15;
 const kCardHeight = 1.3;
 const kCardWidth = 1.5;
 
-class TopicTemplate extends StatefulWidget {
-  String topicLabel;
-  List<TopicItem> topicList;
+class playAlong extends StatefulWidget {
+  String bOrT;
+  List<String> notes;
 
-  TopicTemplate({this.topicLabel, this.topicList});
+  playAlong({this.bOrT});
 
   @override
-  _TopicTemplateState createState() => _TopicTemplateState();
+  _PlayAlongState createState() => _PlayAlongState();
 }
 
-class _TopicTemplateState extends State<TopicTemplate> {
+class _PlayAlongState extends State<playAlong> {
   int index = 0;
+  Random rnd;
 
-  //TODO: BUG when it's at the end
-  void addIndex() {
-    if (index <= widget.topicList.length) {
-      setState(() {
-        index++;
-      });
+  Image img() {
+    int min = 0;
+    int max;
+    if (widget.bOrT == "bass") {
+      widget.notes = globals.bassNotes;
+      max = globals.bassNotes.length - 1;
+    } else {
+      widget.notes = globals.trebleNotes;
+      max = globals.trebleNotes.length - 1;
     }
+    rnd = new Random();
+    int r = min + rnd.nextInt(max - min);
+    String image_name = widget.notes[r].toString();
+
+    //get note that matches image
+    globals.tutorialNote = image_name.substring(17, 18);
+    
+    
+    return Image.asset(image_name);
   }
 
-  void subIndex() {
-    if (index > 0) {
-      setState(() {
-        index--;
-      });
+  Widget refresh() {
+
+    print(globals.currentNote);
+    print(globals.tutorialNote);
+
+    if (globals.currentNote == globals.tutorialNote){
+      globals.displayText = "good I guess";
+      globals.textColor = Colors.green;
+    } else {
+      globals.displayText = "You're an IDIOT sandwich";
+      globals.textColor = Colors.red;
     }
+
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.topicLabel),
+        title: Text("Play Along"),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -56,89 +82,23 @@ class _TopicTemplateState extends State<TopicTemplate> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 40.0),
+        padding: const EdgeInsets.symmetric(vertical: 0.0),
         child: Column(
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    subIndex();
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / kArrowSize,
-                    height: MediaQuery.of(context).size.height / kArrowSize,
-                    decoration: BoxDecoration(
-                      color: kOffWhite,
-                      borderRadius: BorderRadius.circular(30.0),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 2,
-                          offset: Offset(1, 1),
-                          color: Colors.grey,
-                        ),
-                      ],
-                    ),
-                    child: Icon(Icons.arrow_back),
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width / kCardHeight,
-                  height: MediaQuery.of(context).size.height / kCardWidth,
-                  decoration: BoxDecoration(
-                    color: kOffWhite,
-                    borderRadius: BorderRadius.circular(20.0),
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 2,
-                        offset: Offset(1, 1),
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(30.0),
-                      child: widget.topicList[index].topicImage,
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    addIndex();
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / kArrowSize,
-                    height: MediaQuery.of(context).size.height / kArrowSize,
-                    decoration: BoxDecoration(
-                      color: kOffWhite,
-                      borderRadius: BorderRadius.circular(30.0),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 2,
-                          offset: Offset(1, 1),
-                          color: Colors.grey,
-                        ),
-                      ],
-                    ),
-                    child: Icon(
-                      Icons.arrow_forward,
-                    ),
-                  ),
-                ),
-              ],
-            ),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 20,
+              height: MediaQuery.of(context).size.height / 4,
             ),
             Text(
-              widget.topicList[index].topicLabel,
+                globals.displayText,
               style: TextStyle(
-                fontSize: 50,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2.0,
+                fontSize: 40,
+                color: globals.textColor,
               ),
+    ),
+            img(),
+            Expanded(
+              flex: 7,
+              child: PianoKeys(notifyParent: refresh),
             ),
           ],
         ),

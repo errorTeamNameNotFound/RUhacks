@@ -1,5 +1,6 @@
 //lists of song strings
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 List<String> easySongs = [];
 List<String> mediumSongs = [];
@@ -37,3 +38,11 @@ List<int> noteDurations = [];
 //scene animation variables
 int placement;
 int notesCorrectSoFar;
+
+
+//tutorial variables
+List<String> bassNotes = ["assets/staffPics/a1.PNG","assets/staffPics/b1.PNG","assets/staffPics/CC1.PNG","assets/staffPics/e1.PNG","assets/staffPics/f1.PNG","assets/staffPics/g1.PNG"];
+List<String> trebleNotes = ["assets/staffPics/AA1.PNG","assets/staffPics/CC1.PNG","assets/staffPics/DD1.PNG","assets/staffPics/EE1.PNG","assets/staffPics/FF1.PNG","assets/staffPics/GG1.PNG"];
+String displayText = "what is this?";
+Color textColor = Colors.black;
+String tutorialNote = 'A';

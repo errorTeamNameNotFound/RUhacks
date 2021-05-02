@@ -7,11 +7,16 @@ import 'BlackKeys.dart';
 import 'package:ru_hacks/data/globals.dart' as globals;
 
 class PianoKeys extends StatefulWidget {
+  final Function() notifyParent;
+  PianoKeys({Key key, this.notifyParent}) : super(key: key);
   @override
   _PianoKeysState createState() => _PianoKeysState();
 }
 
 class _PianoKeysState extends State<PianoKeys> {
+
+
+
   List<KeyClass> keys = [
     KeyClass(
         keyLabel: "E",
@@ -110,6 +115,10 @@ class _PianoKeysState extends State<PianoKeys> {
           playSound(soundFileName);
           keys[index].keyColor = Colors.grey[400];
           globals.currentNote = keys[index].keyValue;
+          if(widget.notifyParent != null){
+            widget.notifyParent();
+          }
+
         });
 
         Future.delayed(const Duration(milliseconds: 100), () {
