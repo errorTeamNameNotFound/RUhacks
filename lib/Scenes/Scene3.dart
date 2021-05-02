@@ -62,6 +62,12 @@ class _Scene3State extends State<Scene3> with SingleTickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _birdController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(

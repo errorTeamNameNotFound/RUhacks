@@ -63,22 +63,28 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _birdController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: Text(
-          "(Song Title)",
-          style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.bold, letterSpacing: 2),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      // extendBodyBehindAppBar: true,
+      // appBar: AppBar(
+      //   title: Text(
+      //     "(Song Title)",
+      //     style: TextStyle(
+      //         fontSize: 25, fontWeight: FontWeight.bold, letterSpacing: 2),
+      //   ),
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      // ),
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 12,                //TODO: FLEX
+            flex: 12, //TODO: FLEX
             child: GestureDetector(
               child: Stack(
                 children: <Widget>[
@@ -193,7 +199,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
             ),
           ),
           Expanded(
-              flex: 5,                //TODO: FLEX
+              flex: 5, //TODO: FLEX
               child: Row(
                 children: <Widget>[
                   Expanded(
@@ -357,7 +363,7 @@ class _Scene1State extends State<Scene1> with SingleTickerProviderStateMixin {
             ),
           ),
           Expanded(
-            flex: 7,                //TODO: FLEX
+            flex: 7, //TODO: FLEX
             child: PianoKeys(),
           ),
         ],

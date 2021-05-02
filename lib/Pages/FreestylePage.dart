@@ -33,8 +33,8 @@ class _FreestylePageState extends State<FreestylePage> {
         children: <Widget>[
           PianoKeys(),
           BlackKeys(
-            width: 18,
-            height: 2,
+            width: 20,
+            height: 1.6,
           ),
         ],
       ),

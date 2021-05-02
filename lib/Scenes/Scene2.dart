@@ -65,6 +65,12 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _birdController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       // extendBodyBehindAppBar: true,
@@ -80,7 +86,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 12,                //TODO: FLEX
+            flex: 12, //TODO: FLEX
             child: GestureDetector(
               child: Stack(
                 children: <Widget>[
@@ -195,7 +201,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
             ),
           ),
           Expanded(
-              flex: 5,                //TODO: FLEX
+              flex: 5, //TODO: FLEX
               child: Row(
                 children: <Widget>[
                   Expanded(
@@ -359,7 +365,7 @@ class _Scene2State extends State<Scene2> with SingleTickerProviderStateMixin {
             ),
           ),
           Expanded(
-            flex: 7,                //TODO: FLEX
+            flex: 7, //TODO: FLEX
             child: PianoKeys(),
           ),
         ],
